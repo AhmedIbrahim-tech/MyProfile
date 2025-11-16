@@ -1,0 +1,138 @@
+.news-ticker {
+  position: fixed;
+  top: 130px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: #1a0d2e;
+  border-radius: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  z-index: 998;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.news-ticker:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: #1a0d2e;
+}
+
+.ticker-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1rem 0 0;
+  background: transparent;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.ticker-label:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.ticker-label i {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.ticker-label:hover i {
+  transform: scale(1.1);
+}
+
+.ticker-content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  padding: 0 0 0 1rem;
+}
+
+.ticker-item {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  animation: ticker-slide 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.ticker-item:hover {
+  color: rgba(255, 255, 255, 1);
+  transform: translateX(5px);
+}
+
+.ticker-emoji {
+  display: inline-block;
+  font-size: 1.1rem;
+  margin-right: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.ticker-text {
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.news-ticker:hover .ticker-emoji {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.news-ticker:hover .ticker-text {
+  transform: translateX(3px);
+}
+
+.ticker-item i {
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+@keyframes ticker-slide {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .news-ticker {
+    top: 120px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+  }
+
+  .ticker-label {
+    padding: 0 0 0.5rem 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ticker-content {
+    padding: 0.5rem 0 0 0;
+    text-align: center;
+  }
+
+  .ticker-item {
+    font-size: 0.8rem;
+  }
+}
+

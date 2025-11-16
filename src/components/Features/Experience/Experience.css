@@ -1,0 +1,334 @@
+.experience {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #1a1a3e 0%, #0a0a1e 100%);
+}
+
+.experience-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+.section-title {
+  font-size: 3rem;
+  color: #fff;
+  text-align: left;
+  margin-bottom: 3rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-title i {
+  color: #7C3AED;
+  font-size: 2.5rem;
+}
+
+.section-title strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.section-title span {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+}
+
+.current-experience-wrapper {
+  margin-bottom: 3rem;
+}
+
+.current-experience-wrapper .current-experience {
+  width: 100%;
+  grid-column: 1 / -1;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 2rem;
+}
+
+.experience-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s;
+}
+
+.experience-card:hover {
+  background: rgba(124, 58, 237, 0.1);
+  border-color: rgba(124, 58, 237, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(124, 58, 237, 0.2);
+}
+
+.current-experience {
+  background: rgba(124, 58, 237, 0.15);
+  border: 2px solid rgba(124, 58, 237, 0.6);
+  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+  position: relative;
+}
+
+.current-experience::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #7C3AED 0%, #A855F7 50%, #7C3AED 100%);
+  border-radius: 12px 12px 0 0;
+}
+
+.current-experience:hover {
+  background: rgba(124, 58, 237, 0.2);
+  border-color: rgba(124, 58, 237, 0.8);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(124, 58, 237, 0.4);
+}
+
+.current-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.current-badge i {
+  font-size: 0.5rem;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.6);
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.exp-header {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.exp-title {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.current-experience .exp-title {
+  color: #fff;
+  font-weight: 700;
+}
+
+.exp-meta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.exp-type,
+.exp-location {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.exp-type i,
+.exp-location i {
+  color: #7C3AED;
+  font-size: 0.85rem;
+}
+
+.exp-role {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.exp-responsibilities {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.responsibility-item {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+  margin-bottom: 0.875rem;
+  font-size: 0.95rem;
+  padding-left: 1.75rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.responsibility-item:last-child {
+  margin-bottom: 0;
+}
+
+.responsibility-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
+  transition: all 0.3s ease;
+}
+
+.responsibility-item::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 0.65rem;
+  width: 2px;
+  height: calc(100% + 0.5rem);
+  background: linear-gradient(180deg, rgba(124, 58, 237, 0.3) 0%, transparent 100%);
+  transform: translateY(8px);
+}
+
+.responsibility-item:last-child::after {
+  display: none;
+}
+
+.responsibility-item:hover {
+  color: rgba(255, 255, 255, 0.95);
+  transform: translateX(4px);
+}
+
+.responsibility-item:hover::before {
+  width: 10px;
+  height: 10px;
+  top: 0.6rem;
+  left: -1px;
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.7);
+}
+
+.responsibility-item strong {
+  color: #fff;
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.responsibility-item:hover strong {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.3) 0%, rgba(168, 85, 247, 0.3) 100%);
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+}
+
+.current-experience .responsibility-item::before {
+  background: linear-gradient(135deg, #A855F7 0%, #C084FC 100%);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
+  width: 10px;
+  height: 10px;
+  top: 0.6rem;
+}
+
+.current-experience .responsibility-item:hover::before {
+  width: 12px;
+  height: 12px;
+  top: 0.55rem;
+  left: -1px;
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.8);
+}
+
+.exp-technologies {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.exp-technologies i {
+  color: #7C3AED;
+  font-size: 1rem;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-tag {
+  background: rgba(124, 58, 237, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.current-experience .tech-tag {
+  background: rgba(124, 58, 237, 0.3);
+  border: 1px solid rgba(124, 58, 237, 0.5);
+}
+
+@media (max-width: 768px) {
+  .experience {
+    padding: 3rem 0;
+  }
+
+  .experience-container {
+    padding: 0 2rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-title i {
+    font-size: 1.5rem;
+  }
+
+  .experience-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .experience-card {
+    padding: 1.5rem;
+  }
+
+  .exp-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+

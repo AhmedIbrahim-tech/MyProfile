@@ -1,0 +1,131 @@
+.not-found-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0a0a1e 0%, #1a1a3e 100%);
+  padding: 4rem 2rem;
+}
+
+.not-found-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.not-found-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.not-found-number {
+  font-size: 10rem;
+  font-weight: 900;
+  color: #7C3AED;
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(124, 58, 237, 0.5);
+  animation: glow 2s ease-in-out infinite alternate;
+  margin-bottom: 1rem;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 40px rgba(124, 58, 237, 0.5);
+  }
+  to {
+    text-shadow: 0 0 60px rgba(124, 58, 237, 0.8), 0 0 80px rgba(124, 58, 237, 0.4);
+  }
+}
+
+.not-found-title {
+  font-size: 3rem;
+  color: #fff;
+  font-weight: 700;
+  margin: 0;
+}
+
+.not-found-message {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0;
+}
+
+.not-found-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.not-found-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  border-radius: 8px;
+  color: #7C3AED;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s;
+  font-size: 1rem;
+}
+
+.not-found-btn:hover {
+  background: #7C3AED;
+  border-color: #7C3AED;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+}
+
+.not-found-btn.secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.not-found-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+.not-found-btn i {
+  font-size: 1.125rem;
+}
+
+@media (max-width: 768px) {
+  .not-found-number {
+    font-size: 6rem;
+  }
+
+  .not-found-title {
+    font-size: 2rem;
+  }
+
+  .not-found-message {
+    font-size: 1.125rem;
+  }
+
+  .not-found-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .not-found-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.875rem;
+  }
+}
+

@@ -1,0 +1,185 @@
+.scroll-btn {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  width: clamp(48px, 5vw, 56px);
+  height: clamp(48px, 5vw, 56px);
+  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #fff;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4),
+              0 2px 8px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+  animation: fadeInUp 0.3s ease-out;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.scroll-btn-up {
+  bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.scroll-btn-down {
+  bottom: clamp(7rem, 12vw, 9rem);
+}
+
+.scroll-btn.visible,
+.scroll-btn-up.visible,
+.scroll-btn-down.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+.scroll-btn:hover {
+  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5),
+              0 4px 12px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.scroll-btn:active {
+  transform: scale(0.95) translateY(0);
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.scroll-btn i {
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+.scroll-btn:hover i {
+  transform: translateY(-2px);
+}
+
+.scroll-btn-up:hover i {
+  transform: translateY(-3px);
+}
+
+.scroll-btn-down:hover i {
+  transform: translateY(3px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Large Tablets / Small Laptops (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .scroll-btn {
+    right: clamp(1.25rem, 3.5vw, 1.75rem);
+    width: clamp(52px, 5.5vw, 58px);
+    height: clamp(52px, 5.5vw, 58px);
+  }
+
+  .scroll-btn-up {
+    bottom: clamp(2.25rem, 5.5vw, 3.25rem);
+  }
+
+  .scroll-btn-down {
+    bottom: clamp(7.5rem, 12.5vw, 9.5rem);
+  }
+}
+
+/* Small Tablets and Mobile (0px - 768px) */
+@media (max-width: 768px) {
+  .scroll-btn {
+    right: clamp(1rem, 4vw, 1.5rem);
+    width: clamp(44px, 6vw, 52px);
+    height: clamp(44px, 6vw, 52px);
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
+  }
+
+  .scroll-btn-up {
+    /* Position above IconDock: IconDock (~60px) + spacing (~16px) = ~76px */
+    bottom: clamp(4.5rem, 11vw, 5.5rem);
+  }
+
+  .scroll-btn-down {
+    bottom: clamp(6rem, 14vw, 8rem);
+  }
+}
+
+/* Small Mobile (0px - 480px) */
+@media (max-width: 480px) {
+  .scroll-btn {
+    right: clamp(0.875rem, 4.5vw, 1.25rem);
+    width: clamp(40px, 7vw, 48px);
+    height: clamp(40px, 7vw, 48px);
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+  }
+
+  .scroll-btn-up {
+    /* Position above IconDock: IconDock (~56px) + spacing (~12px) = ~68px */
+    bottom: clamp(4rem, 12vw, 4.75rem);
+  }
+
+  .scroll-btn-down {
+    bottom: clamp(5.5rem, 15vw, 7.5rem);
+  }
+}
+
+/* Ensure buttons don't overlap with IconDock on mobile */
+@media (max-width: 768px) {
+  .scroll-btn-down {
+    /* Position above scroll-up button with spacing */
+    bottom: clamp(7.5rem, 17vw, 9.5rem);
+  }
+}
+
+/* Accessibility: Focus styles */
+.scroll-btn:focus {
+  outline: 2px solid rgba(124, 58, 237, 0.5);
+  outline-offset: 2px;
+}
+
+.scroll-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-btn {
+    transition: opacity 0.2s ease;
+  }
+
+  .scroll-btn:hover {
+    transform: scale(1);
+  }
+
+  .scroll-btn i {
+    transition: none;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+

@@ -1,5 +1,5 @@
 .hero {
-  padding: 10rem 0 4rem;
+  padding: clamp(8rem, 15vh, 10rem) 0 clamp(3rem, 6vh, 4rem);
   background: linear-gradient(135deg, rgba(10, 10, 30, 0.85) 0%, rgba(26, 26, 62, 0.85) 100%),
               url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1920&q=80') center/cover no-repeat fixed;
   min-height: 100vh;
@@ -7,7 +7,7 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  margin-top: 0;
+  margin-top: clamp(140px, 18vh, 170px);
 }
 
 .hero::before {
@@ -38,12 +38,21 @@
   max-width: 1400px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 4rem;
+  padding: 0 clamp(1rem, 4vw, 4rem);
   position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 4rem;
+  justify-content: center;
+  gap: clamp(2rem, 5vw, 4rem);
+}
+
+/* Large Desktops (1025px+) - Full Width */
+@media (min-width: 1025px) {
+  .hero-container {
+    padding: 0 clamp(3rem, 6vw, 6rem);
+    max-width: 100%;
+  }
 }
 
 .hero-logo {
@@ -51,19 +60,19 @@
 }
 
 .logo-circle {
-  width: 180px;
-  height: 180px;
+  width: clamp(120px, 20vw, 180px);
+  height: clamp(120px, 20vw, 180px);
   border-radius: 50%;
   background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 20px 60px rgba(124, 58, 237, 0.5), 0 0 0 10px rgba(124, 58, 237, 0.1);
-  border: 3px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 60px rgba(124, 58, 237, 0.5), 0 0 0 clamp(5px, 1vw, 10px) rgba(124, 58, 237, 0.1);
+  border: clamp(2px, 0.3vw, 3px) solid rgba(255, 255, 255, 0.2);
   position: relative;
   animation: float 6s ease-in-out infinite;
   overflow: hidden;
-  padding: 3px;
+  padding: clamp(2px, 0.3vw, 3px);
 }
 
 @keyframes float {
@@ -80,64 +89,73 @@
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: clamp(1px, 0.2vw, 2px) solid rgba(255, 255, 255, 0.3);
 }
 
 .hero-content {
-  max-width: 800px;
+  max-width: 100%;
   flex: 1;
 }
 
+/* Large Desktops (1441px+) - Allow more content width */
+@media (min-width: 1441px) {
+  .hero-content {
+    max-width: 900px;
+  }
+}
+
 .hero-title {
-  font-size: 4rem;
+  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 800;
   color: #fff;
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
   line-height: 1.2;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .hero-subtitle {
-  font-size: 1.75rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   color: #7C3AED;
-  margin-bottom: 1.5rem;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
   font-weight: 600;
 }
 
 .hero-description {
-  font-size: 1.125rem;
+  font-size: clamp(0.95rem, 1.5vw, 1.125rem);
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
 }
 
 .hero-info {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 2.5rem;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .info-item {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
   color: rgba(255, 255, 255, 0.9);
-  font-size: 1rem;
-  margin-bottom: 0.75rem;
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
 }
 
 .info-item i {
   color: #7C3AED;
-  font-size: 1.1rem;
-  width: 20px;
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+  width: clamp(18px, 2vw, 20px);
   text-align: center;
+  flex-shrink: 0;
 }
 
 .info-item a {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   transition: color 0.3s;
+  word-break: break-word;
 }
 
 .info-item a:hover {
@@ -146,18 +164,34 @@
 
 .hero-actions {
   display: flex;
-  gap: 1rem;
+  gap: clamp(0.75rem, 1.5vw, 1rem);
   flex-wrap: wrap;
 }
 
 .btn-primary,
 .btn-secondary {
-  padding: 0.875rem 2rem;
+  padding: clamp(0.75rem, 1.5vw, 0.875rem) clamp(1.5rem, 3vw, 2rem);
   border-radius: 8px;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  text-align: center;
+}
+
+.btn-primary i,
+.btn-secondary i {
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover i,
+.btn-secondary:hover i {
+  transform: translateX(3px);
 }
 
 .btn-primary {
@@ -182,38 +216,76 @@
   transform: translateY(-2px);
 }
 
+/* Large Tablets / Small Laptops (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-container {
+    gap: 3rem;
+  }
+
+  .logo-circle {
+    width: clamp(140px, 18vw, 160px);
+    height: clamp(140px, 18vw, 160px);
+  }
+}
+
+/* Small Tablets and Mobile (0px - 768px) */
 @media (max-width: 768px) {
   .hero {
-    padding: 8rem 0 3rem;
     background-attachment: scroll;
+    padding-top: clamp(6rem, 12vh, 8rem);
+    margin-top: clamp(130px, 16vh, 150px);
   }
 
   .hero-container {
     flex-direction: column;
-    padding: 0 2rem;
     text-align: center;
-    gap: 2rem;
+    gap: clamp(1.5rem, 3vw, 2rem);
   }
 
   .logo-circle {
-    width: 140px;
-    height: 140px;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.5rem;
-  }
-
-  .hero-description {
-    font-size: 1rem;
+    width: clamp(100px, 25vw, 140px);
+    height: clamp(100px, 25vw, 140px);
   }
 
   .hero-info {
     align-items: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    flex: 1;
+    min-width: 140px;
+  }
+}
+
+/* Small Mobile (0px - 480px) */
+@media (max-width: 480px) {
+  .hero {
+    padding-top: clamp(5rem, 10vh, 6rem);
+    margin-top: clamp(120px, 15vh, 140px);
+  }
+
+  .hero-container {
+    padding: 0 clamp(1rem, 4vw, 1.5rem);
+  }
+
+  .logo-circle {
+    width: clamp(90px, 22vw, 120px);
+    height: clamp(90px, 22vw, 120px);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
   }
 }
 

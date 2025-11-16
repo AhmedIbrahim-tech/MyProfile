@@ -40,14 +40,17 @@ const Footer = () => {
             </div>
           </div>
 
-          {sectionConfig.projects && (
+          {sectionConfig.projects && profileData.projects && profileData.projects.length > 0 && (
             <div className="footer-section">
               <h4>Top Projects</h4>
               <ul>
-                <li><a href="https://github.com/AhmedIbrahim-tech/Ecommerce-App" target="_blank" rel="noopener noreferrer">E-Commerce App</a></li>
-                <li><a href="https://github.com/AhmedIbrahim-tech/File-Sharing-App" target="_blank" rel="noopener noreferrer">File Sharing</a></li>
-                <li><a href="https://github.com/AhmedIbrahim-tech/Instagram-Platform" target="_blank" rel="noopener noreferrer">Social Media Platform</a></li>
-                <li><a href="https://github.com/AhmedIbrahim-tech/Movie-Site" target="_blank" rel="noopener noreferrer">Movie Site</a></li>
+                {profileData.projects.slice(0, 4).map((project, index) => (
+                  <li key={index}>
+                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                      {project.name}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           )}

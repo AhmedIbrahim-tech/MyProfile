@@ -3,3 +3,10 @@
   min-height: 100vh;
 }
 
+/* Small screens - add padding-top */
+@media (max-width: 768px) {
+  .blog-page {
+    padding-top: 15%;
+  }
+}
+

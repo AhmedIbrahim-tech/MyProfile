@@ -1,5 +1,18 @@
 .projects-page {
-  padding-top: 5rem;
+  padding-top: clamp(140px, 18vh, 170px);
   min-height: 100vh;
+}
+
+/* Adjust padding for smaller screens */
+@media (max-width: 768px) {
+  .projects-page {
+    padding-top: clamp(130px, 16vh, 150px);
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-page {
+    padding-top: clamp(120px, 15vh, 140px);
+  }
 }
 

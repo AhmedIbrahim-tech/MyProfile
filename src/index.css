@@ -18,6 +18,42 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  /* Responsive Breakpoints */
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet-small: 768px;
+  --breakpoint-tablet-large: 1024px;
+  --breakpoint-desktop: 1440px;
+
+  /* Fluid Typography - Clamp values (min, preferred, max) */
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.5rem);
+  --font-size-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.875rem);
+  --font-size-2xl: clamp(1.5rem, 1.3rem + 1vw, 2.25rem);
+  --font-size-3xl: clamp(2rem, 1.7rem + 1.5vw, 3rem);
+  --font-size-4xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+
+  /* Spacing Scale - Fluid */
+  --spacing-xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.5rem);
+  --spacing-sm: clamp(0.5rem, 0.4rem + 0.5vw, 1rem);
+  --spacing-md: clamp(1rem, 0.8rem + 1vw, 2rem);
+  --spacing-lg: clamp(1.5rem, 1.2rem + 1.5vw, 3rem);
+  --spacing-xl: clamp(2rem, 1.6rem + 2vw, 4rem);
+  --spacing-2xl: clamp(3rem, 2.4rem + 3vw, 5rem);
+
+  /* Container Max Widths */
+  --container-sm: 100%;
+  --container-md: 100%;
+  --container-lg: 1200px;
+  --container-xl: 1400px;
+  --container-2xl: 1600px;
+
+  /* Padding Scale */
+  --padding-container-mobile: clamp(1rem, 4vw, 2rem);
+  --padding-container-tablet: clamp(2rem, 5vw, 3rem);
+  --padding-container-desktop: clamp(3rem, 6vw, 4rem);
 }
 
 body {
@@ -25,6 +61,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background: #1a0d2e;
+  font-size: var(--font-size-base);
 }
 
 #root {
@@ -52,7 +89,7 @@ html {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: clamp(8px, 0.5vw, 10px);
 }
 
 ::-webkit-scrollbar-track {
@@ -66,4 +103,11 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #6D28D9;
+}
+
+/* Responsive Image Base Styles */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }

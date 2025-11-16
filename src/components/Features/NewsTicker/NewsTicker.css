@@ -1,6 +1,6 @@
 .news-ticker {
   position: fixed;
-  top: 130px;
+  top: clamp(85px, 10vh, 100px);
   left: 0;
   right: 0;
   width: 100%;
@@ -10,9 +10,11 @@
   z-index: 998;
   display: flex;
   align-items: center;
-  padding: 0.75rem 2rem;
-  overflow: hidden;
+  padding: clamp(0.625rem, 1.5vw, 1rem) clamp(1rem, 4vw, 2rem);
+  overflow: visible;
   transition: all 0.3s ease;
+  min-height: auto;
+  box-sizing: border-box;
 }
 
 .news-ticker:hover {
@@ -23,13 +25,13 @@
 .ticker-label {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0 1rem 0 0;
+  gap: clamp(0.375rem, 0.8vw, 0.5rem);
+  padding: 0 clamp(0.625rem, 1.2vw, 1rem) 0 0;
   background: transparent;
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: clamp(0.75rem, 1.1vw, 0.9rem);
   white-space: nowrap;
   flex-shrink: 0;
   transition: all 0.3s ease;
@@ -40,8 +42,9 @@
 }
 
 .ticker-label i {
-  font-size: 1rem;
+  font-size: clamp(0.8rem, 1.1vw, 1rem);
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .ticker-label:hover i {
@@ -50,38 +53,53 @@
 
 .ticker-content {
   flex: 1;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
-  padding: 0 0 0 1rem;
+  padding: 0 0 0 clamp(0.625rem, 1.2vw, 1rem);
+  min-width: 0;
+  display: flex;
+  align-items: center;
 }
 
 .ticker-item {
   color: rgba(255, 255, 255, 0.9);
-  font-size: 0.9rem;
-  white-space: nowrap;
+  font-size: clamp(0.75rem, 1.1vw, 0.9rem);
   animation: ticker-slide 0.5s ease-in-out;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: clamp(0.5rem, 1vw, 0.625rem);
   transition: all 0.3s ease;
   cursor: default;
+  width: 100%;
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow: visible;
 }
 
 .ticker-item:hover {
   color: rgba(255, 255, 255, 1);
-  transform: translateX(5px);
 }
 
 .ticker-emoji {
-  display: inline-block;
-  font-size: 1.1rem;
-  margin-right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+  margin-right: clamp(0.375rem, 0.8vw, 0.5rem);
   transition: transform 0.3s ease;
+  flex-shrink: 0;
+  min-width: clamp(1.125rem, 1.8vw, 1.5rem);
+  line-height: 1;
 }
 
 .ticker-text {
   display: inline-block;
   transition: all 0.3s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  flex: 1;
+  min-width: 0;
+  overflow: visible;
 }
 
 .news-ticker:hover .ticker-emoji {
@@ -108,31 +126,134 @@
   }
 }
 
+/* Large Tablets / Small Laptops (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .news-ticker {
+    top: clamp(80px, 9.5vh, 90px);
+  }
+}
+
+/* Small Tablets and Mobile (0px - 768px) */
 @media (max-width: 768px) {
   .news-ticker {
-    top: 120px;
-    left: 0;
-    right: 0;
-    width: 100%;
+    top: clamp(70px, 8.5vh, 85px);
     flex-direction: column;
-    padding: 0.5rem 1rem;
+    align-items: stretch;
+    padding: clamp(1rem, 3vw, 1.25rem) clamp(1rem, 3vw, 1.25rem);
+    gap: clamp(0.625rem, 1.8vw, 0.875rem);
+    min-height: auto;
+    overflow: visible;
   }
 
   .ticker-label {
-    padding: 0 0 0.5rem 0;
+    padding: 0;
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     width: 100%;
     justify-content: center;
+    padding-bottom: clamp(0.625rem, 1.8vw, 0.875rem);
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+  .ticker-label i {
+    font-size: clamp(0.875rem, 1.8vw, 1rem);
+  }
+
+  .ticker-label span {
+    font-size: clamp(0.875rem, 2vw, 0.95rem);
   }
 
   .ticker-content {
-    padding: 0.5rem 0 0 0;
+    padding: 0;
     text-align: center;
+    width: 100%;
+    flex: none;
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .ticker-item {
-    font-size: 0.8rem;
+    font-size: clamp(0.875rem, 2.2vw, 0.95rem);
+    justify-content: center;
+    flex-wrap: wrap;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.6;
+    gap: clamp(0.5rem, 1.5vw, 0.75rem);
+    width: 100%;
+    overflow: visible;
+    word-break: break-word;
+  }
+
+  .ticker-emoji {
+    font-size: clamp(1.1rem, 2.8vw, 1.3rem);
+    margin-right: 0;
+    min-width: auto;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .ticker-text {
+    width: 100%;
+    text-align: center;
+    flex: none;
+    display: block;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .news-ticker:hover .ticker-item {
+    transform: none;
+  }
+
+  .news-ticker:hover .ticker-text {
+    transform: none;
+  }
+
+  .news-ticker:hover .ticker-emoji {
+    transform: none;
+  }
+}
+
+/* Small Mobile (0px - 480px) */
+@media (max-width: 480px) {
+  .news-ticker {
+    top: clamp(65px, 8vh, 80px);
+    padding: clamp(0.875rem, 2.5vw, 1rem) clamp(0.875rem, 2.5vw, 1rem);
+    gap: clamp(0.625rem, 1.5vw, 0.75rem);
+  }
+
+  .ticker-label {
+    font-size: clamp(0.8rem, 2.2vw, 0.875rem);
+    padding-bottom: clamp(0.625rem, 1.5vw, 0.75rem);
+  }
+
+  .ticker-label i {
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+  }
+
+  .ticker-label span {
+    font-size: clamp(0.8rem, 2.2vw, 0.875rem);
+  }
+
+  .ticker-item {
+    font-size: clamp(0.8rem, 2.5vw, 0.875rem);
+    gap: clamp(0.5rem, 1.2vw, 0.625rem);
+    line-height: 1.7;
+  }
+
+  .ticker-emoji {
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    margin-bottom: 0.125rem;
+  }
+
+  .ticker-text {
+    font-size: clamp(0.8rem, 2.5vw, 0.875rem);
+    line-height: 1.7;
   }
 }
 

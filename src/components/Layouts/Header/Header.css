@@ -5,38 +5,46 @@
   right: 0;
   background: #1a0d2e;
   z-index: 1000;
-  padding: 1.5rem 2rem;
+  padding: clamp(0.75rem, 2vw, 1.5rem) clamp(1rem, 4vw, 2rem);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .header-container {
-  max-width: 1200px;
+  max-width: 100%;
   width: 100%;
   margin: 0 auto;
-  padding: 0.875rem 2.5rem;
+  padding: clamp(0.75rem, 1.5vw, 0.875rem) clamp(1.5rem, 4vw, 2.5rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: relative;
   background: #1a0d2e;
-  border-radius: 50px;
+  border-radius: clamp(30px, 5vw, 50px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
               0 4px 16px rgba(0, 0, 0, 0.2),
               inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
+/* Large Desktops (1025px+) - Full Width */
+@media (min-width: 1025px) {
+  .header-container {
+    padding: clamp(0.75rem, 1.5vw, 0.875rem) clamp(3rem, 6vw, 6rem);
+  }
+}
+
 .logo {
   display: flex;
   align-items: center;
-  gap: 0.875rem;
-  font-size: 1.25rem;
+  gap: clamp(0.5rem, 1vw, 0.875rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   font-weight: 600;
   color: #fff;
   text-decoration: none;
   transition: opacity 0.3s;
   flex-shrink: 0;
+  z-index: 1001;
 }
 
 .logo:hover {
@@ -44,8 +52,8 @@
 }
 
 .logo-icon {
-  width: 44px;
-  height: 44px;
+  width: clamp(36px, 4vw, 44px);
+  height: clamp(36px, 4vw, 44px);
   background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
   border-radius: 50%;
   display: flex;
@@ -54,11 +62,12 @@
   position: relative;
   box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4),
               inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
 }
 
 .logo-cube {
-  width: 20px;
-  height: 20px;
+  width: clamp(16px, 2vw, 20px);
+  height: clamp(16px, 2vw, 20px);
   position: relative;
   transform: rotate(-15deg);
 }
@@ -67,8 +76,8 @@
 .logo-cube::before {
   content: '';
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 100%;
+  height: 100%;
   background: #fff;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   box-shadow: 
@@ -82,19 +91,59 @@
 .logo-cube::after {
   content: '';
   position: absolute;
-  width: 12px;
-  height: 8px;
+  width: 60%;
+  height: 40%;
   background: rgba(255, 255, 255, 0.9);
   clip-path: polygon(50% 0%, 100% 25%, 50% 50%, 0% 25%);
-  top: -4px;
-  left: 4px;
+  top: -20%;
+  left: 20%;
   transform: perspective(50px) rotateY(-20deg) rotateX(-30deg);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 24px;
+  height: 18px;
+  position: relative;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
 .nav {
   display: flex;
-  gap: 2.5rem;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -106,7 +155,7 @@
   color: #fff;
   text-decoration: none;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
   transition: all 0.3s ease;
   position: relative;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
@@ -114,8 +163,9 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: clamp(0.4rem, 1vw, 0.5rem) clamp(0.75rem, 1.5vw, 1rem);
   border-radius: 25px;
+  white-space: nowrap;
 }
 
 .nav a:hover {
@@ -131,9 +181,10 @@
 }
 
 .nav-icon {
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
   display: inline-block;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 .nav a:hover .nav-icon {
@@ -146,7 +197,7 @@
   color: #fff;
   text-decoration: none;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
   transition: all 0.3s ease;
   position: relative;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
@@ -154,7 +205,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: clamp(0.4rem, 1vw, 0.5rem) clamp(0.75rem, 1.5vw, 1rem);
   border-radius: 25px;
   cursor: pointer;
   flex-shrink: 0;
@@ -172,7 +223,7 @@
 }
 
 .download-resume-btn .nav-icon {
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
   display: inline-block;
   transition: transform 0.3s ease;
 }
@@ -181,41 +232,106 @@
   transform: scale(1.2) rotate(5deg);
 }
 
+/* Tablet and Small Laptop (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nav {
+    gap: 1.5rem;
+  }
+
+  .download-resume-btn .btn-text {
+    display: none;
+  }
+
+  .download-resume-btn {
+    padding: 0.5rem;
+    min-width: 45px;
+  }
+}
+
+/* Mobile and Small Tablets (0px - 768px) */
 @media (max-width: 768px) {
   .header {
-    padding: 1rem;
+    padding: clamp(0.5rem, 2vw, 1rem);
   }
 
   .header-container {
-    padding: 0.75rem 1.5rem;
-    border-radius: 40px;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
+    padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+    border-radius: clamp(25px, 5vw, 40px);
+    flex-wrap: nowrap;
   }
 
-  .nav {
-    position: relative;
-    left: auto;
-    transform: none;
-    gap: 1.5rem;
-    order: 3;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .nav a {
-    font-size: 0.9rem;
+  .mobile-menu-toggle {
+    display: block;
+    order: 2;
   }
 
   .logo {
     order: 1;
+    flex: 1;
+  }
+
+  .logo span {
+    font-size: clamp(0.875rem, 3vw, 1rem);
   }
 
   .download-resume-btn {
-    order: 2;
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+    order: 3;
+    padding: clamp(0.4rem, 1.5vw, 0.5rem) clamp(0.5rem, 2vw, 0.75rem);
+  }
+
+  .download-resume-btn .btn-text {
+    display: none;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(26, 13, 46, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    padding: 2rem;
+  }
+
+  .nav.mobile-open {
+    transform: translateX(0);
+  }
+
+  .nav a {
+    font-size: 1.125rem;
+    padding: 1rem 2rem;
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+}
+
+/* Small Mobile (0px - 480px) */
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0.5rem 1rem;
+  }
+
+  .logo span {
+    font-size: 0.875rem;
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav a {
+    font-size: 1rem;
+    padding: 0.875rem 1.5rem;
   }
 }
 

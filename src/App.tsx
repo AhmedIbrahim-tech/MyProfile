@@ -3,6 +3,7 @@ import Header from './components/Layouts/Header/Header';
 import Footer from './components/Layouts/Footer/Footer';
 import IconDock from './components/Features/IconDock/IconDock';
 import NewsTicker from './components/Features/NewsTicker/NewsTicker';
+import ScrollNavigation from './components/Features/ScrollNavigation/ScrollNavigation';
 import Home from './pages/Home/Home';
 import ProjectsPage from './pages/ProjectsPage/ProjectsPage';
 import ContactPage from './pages/ContactPage/ContactPage';
@@ -29,6 +30,7 @@ function App() {
         </main>
         <Footer />
         <IconDock />
+        <ScrollNavigation />
       </div>
     </Router>
   );

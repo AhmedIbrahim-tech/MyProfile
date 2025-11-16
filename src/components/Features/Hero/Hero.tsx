@@ -51,12 +51,14 @@ const Hero = () => {
           <div className="hero-actions">
             {sectionConfig.projects && (
               <a href="#projects" className="btn-primary">
-                View Projects
+                <i className="fas fa-code"></i>
+                <span>View Projects</span>
               </a>
             )}
             {sectionConfig.contact && (
               <a href="/contact" className="btn-secondary">
-                Contact Me
+                <i className="fas fa-envelope"></i>
+                <span>Contact Me</span>
               </a>
             )}
           </div>

@@ -40,8 +40,8 @@ export const ProjectCard = ({ repo }: ProjectCardProps) => {
             {category === "fullstack"
               ? "Full Stack"
               : category === "frontend"
-              ? "Front End"
-              : "Back End"}
+                ? "Front End"
+                : "Back End"}
           </div>
         )}
       </div>
@@ -64,10 +64,7 @@ export const ProjectCard = ({ repo }: ProjectCardProps) => {
         )}
 
         <ul className="project-features">
-          {(repo.topics && repo.topics.length > 0
-            ? repo.topics.slice(0, 3)
-            : generateFeatures(repo)
-          ).map((feature, index) => (
+          {generateFeatures(repo).map((feature, index) => (
             <li key={index}>{feature}</li>
           ))}
         </ul>

@@ -15,7 +15,47 @@ const Hero = () => {
         <div className="hero-content">
           <h1 className="hero-title">{profileData.name}</h1>
           <h2 className="hero-subtitle">{profileData.title}</h2>
-          <p className="hero-description">{profileData.about}</p>
+          <ul className="hero-description">
+            {profileData.about.map((point, index) => {
+              // Highlight "3+ years of experience" and ".NET Core & React" or ".NET Core" and "React"
+              const highlightText = (text: string) => {
+                let highlighted = text;
+                
+                // Highlight "3+ years of experience"
+                highlighted = highlighted.replace(
+                  /(3\+ years of experience)/gi,
+                  '<span class="highlight">$1</span>'
+                );
+                
+                // Highlight ".NET Core & React" as a combined phrase first
+                highlighted = highlighted.replace(
+                  /(\.NET Core\s*&\s*React)/gi,
+                  '<span class="highlight">$1</span>'
+                );
+                
+                // Highlight ".NET Core" (avoid matching if already inside a span)
+                highlighted = highlighted.replace(
+                  /(\.NET Core)(?![^<]*>)/gi,
+                  '<span class="highlight">$1</span>'
+                );
+                
+                // Highlight "React" (avoid matching if already inside a span)
+                highlighted = highlighted.replace(
+                  /(\bReact\b)(?![^<]*>)/gi,
+                  '<span class="highlight">$1</span>'
+                );
+                
+                return highlighted;
+              };
+              
+              return (
+                <li 
+                  key={index} 
+                  dangerouslySetInnerHTML={{ __html: highlightText(point) }}
+                />
+              );
+            })}
+          </ul>
 
           <div className="hero-info">
             <div className="info-item">

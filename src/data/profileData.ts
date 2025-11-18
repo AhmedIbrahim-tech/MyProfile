@@ -5,16 +5,17 @@ export const profileData = {
   title: "Full Stack (.NET Core & React) Developer",
   location: "Mit-Ghamr, Dakahlia, Egypt",
   phone: "01007691743",
-  email: "ahmedebrahim.official@gmail.com",
+  email: "ahmedeprahim.official@gmail.com",
   github: "https://github.com/AhmedIbrahim-tech",
   linkedin: "https://www.linkedin.com/in/ahmedeprahim",
   facebook: "https://www.facebook.com/ahmedeprahima/",
   whatsapp: "https://wa.me/201007691743",
 
-  about: `Passionate full-stack developer with 3+ years of experience crafting scalable web applications and enterprise solutions. 
-Specializing in .NET Core backend development and React frontend architecture, I bring expertise in clean code principles, 
-design patterns, and agile methodologies. Currently delivering high-quality solutions for diverse clients across healthcare, 
-education, and agriculture sectors while working remotely with HUED, a leading Saudi-based software house.`,
+  about: [
+    "Passionate full-stack developer with 3+ years of experience crafting scalable web applications and enterprise solutions",
+    "Specializing in .NET Core backend development and React frontend architecture",
+    "Working remotely with HUED, a leading Saudi-based software house"
+  ],
 
   education: {
     institution: "Thebes Academy",
@@ -87,7 +88,10 @@ education, and agriculture sectors while working remotely with HUED, a leading S
       "HTML5, CSS3",
       "Bootstrap Framework",
       "Sass/SCSS",
-      "React.js (Redux & React Query)",
+      "React.js",
+      "Next.js",
+      "Vite",
+      "Redux State Management",
       "JavaScript and TypeScript",
       "jQuery Library",
       "Tailwind CSS",

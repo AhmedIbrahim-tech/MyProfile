@@ -257,6 +257,11 @@
 .form-group {
   display: flex;
   flex-direction: column;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.form-row .form-group {
+  margin-bottom: 0;
 }
 
 .form-group label {
@@ -296,6 +301,45 @@
   resize: vertical;
 }
 
+.custom-subject-group {
+  animation: slideDown 0.3s ease-out;
+  overflow: hidden;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 200px;
+    margin-top: 0;
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.custom-subject-group input {
+  animation: fadeIn 0.4s ease-out 0.1s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .form-message {
   padding: 1rem;
   border-radius: 8px;
@@ -314,6 +358,12 @@
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid rgba(239, 68, 68, 0.3);
   color: #EF4444;
+}
+
+.form-message.sending {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #3B82F6;
 }
 
 .form-actions {

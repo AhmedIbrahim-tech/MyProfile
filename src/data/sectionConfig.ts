@@ -5,7 +5,7 @@ export const sectionConfig = {
   hero: true,
   skills: true,
   experience: true,
-  education: false,
+  education: true,
   projects: true, // For ProjectsPage
   blog: true, // For BlogPage
   contact: true, // For ContactPage

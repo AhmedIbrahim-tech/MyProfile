@@ -120,9 +120,13 @@
   flex-shrink: 0;
 }
 
-.skill-icon i {
+.skill-icon i,
+.skill-icon svg {
   font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  width: clamp(1.25rem, 2.2vw, 1.75rem);
+  height: clamp(1.25rem, 2.2vw, 1.75rem);
   color: #fff;
+  fill: currentColor;
 }
 
 .skill-name {
@@ -236,8 +240,11 @@
     height: clamp(28px, 6vw, 32px);
   }
 
-  .skill-icon i {
+  .skill-icon i,
+  .skill-icon svg {
     font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+    width: clamp(1.1rem, 2.5vw, 1.25rem);
+    height: clamp(1.1rem, 2.5vw, 1.25rem);
   }
 
   .skill-name {

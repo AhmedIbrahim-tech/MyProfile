@@ -1,71 +1,68 @@
 import { profileData } from '../../../data/profileData';
 import './Skills.css';
+import * as Si from 'react-icons/si';
+import * as Fa from 'react-icons/fa';
 
-// Skill icon mapping - matching image style
 const getSkillIcon = (skill: string) => {
   const skillLower = skill.toLowerCase();
   
-  // Programming Languages - using brand icons
-  if (skillLower.includes('typescript') || skillLower.includes('ts')) return 'fab fa-js-square';
-  if (skillLower.includes('javascript') || skillLower.includes('js')) return 'fab fa-js-square';
-  if (skillLower.includes('c#') || skillLower.includes('csharp') || skillLower.includes('.net') || skillLower.includes('asp.net')) return 'fab fa-microsoft';
-  if (skillLower.includes('angular')) return 'fab fa-angular';
+  if (skillLower.includes('typescript') || skillLower.includes('ts')) return Si.SiTypescript;
+  if (skillLower.includes('javascript') || skillLower.includes('js')) return Si.SiJavascript;
+  if (skillLower.includes('c#') || skillLower.includes('csharp')) return Si.SiSharp;
+  if (skillLower.includes('.net') || skillLower.includes('asp.net')) return Si.SiDotnet;
+  if (skillLower.includes('angular')) return Si.SiAngular;
   
-  // Frontend Frameworks & Libraries
-  if (skillLower.includes('react')) return 'fab fa-react';
-  if (skillLower.includes('next')) return 'fab fa-react';
-  if (skillLower.includes('jquery')) return 'fab fa-js-square';
-  if (skillLower.includes('material ui') || skillLower.includes('ant design')) return 'fas fa-palette';
+  if (skillLower.includes('next.js') || skillLower.includes('next')) return Si.SiNextdotjs;
+  if (skillLower.includes('react.js') || skillLower.includes('react')) return Si.SiReact;
+  if (skillLower.includes('vite')) return Si.SiVite;
+  if (skillLower.includes('redux') || skillLower.includes('state management')) return Si.SiRedux;
+  if (skillLower.includes('jquery')) return Si.SiJquery;
+  if (skillLower.includes('material ui')) return Si.SiMui;
+  if (skillLower.includes('ant design')) return Si.SiMui;
   
-  // Markup & Styling - brand icons
-  if (skillLower.includes('html')) return 'fab fa-html5';
-  if (skillLower.includes('css') && !skillLower.includes('scss') && !skillLower.includes('sass')) return 'fab fa-css3-alt';
-  if (skillLower.includes('bootstrap')) return 'fab fa-bootstrap';
-  if (skillLower.includes('tailwind')) return 'fab fa-css3-alt';
-  if (skillLower.includes('sass') || skillLower.includes('scss')) return 'fab fa-sass';
+  if (skillLower.includes('tailwind css') || skillLower.includes('tailwind')) return Si.SiTailwindcss;
+  if (skillLower.includes('bootstrap framework') || skillLower.includes('bootstrap')) return Si.SiBootstrap;
+  if (skillLower.includes('html')) return Si.SiHtml5;
+  if (skillLower.includes('css') && !skillLower.includes('scss') && !skillLower.includes('sass') && !skillLower.includes('tailwind')) return Si.SiCss3;
+  if (skillLower.includes('sass') || skillLower.includes('scss')) return Si.SiSass;
   
-  // Databases & ORMs
-  if (skillLower.includes('sql') || skillLower.includes('database') || skillLower.includes('microsoft sql')) return 'fas fa-database';
-  if (skillLower.includes('entity framework') || skillLower.includes('ef core')) return 'fas fa-database';
-  if (skillLower.includes('dapper') || skillLower.includes('orm')) return 'fas fa-database';
-  if (skillLower.includes('linq')) return 'fas fa-database';
+  if (skillLower.includes('entity framework core') || skillLower.includes('entity framework') || skillLower.includes('ef core')) return Si.SiDotnet;
+  if (skillLower.includes('microsoft sql') || skillLower.includes('sql server')) return Fa.FaDatabase;
+  if (skillLower.includes('dapper') || skillLower.includes('orm')) return Fa.FaDatabase;
+  if (skillLower.includes('sql') || skillLower.includes('database')) return Fa.FaDatabase;
+  if (skillLower.includes('linq')) return Fa.FaDatabase;
   
-  // APIs & Services
-  if (skillLower.includes('api') || skillLower.includes('restful') || skillLower.includes('minimal api')) return 'fas fa-plug';
-  if (skillLower.includes('signalr') || skillLower.includes('websocket') || skillLower.includes('real-time')) return 'fas fa-broadcast-tower';
-  if (skillLower.includes('postman')) return 'fas fa-cloud';
-  if (skillLower.includes('payment') || skillLower.includes('gateway')) return 'fas fa-credit-card';
+  if (skillLower.includes('api') || skillLower.includes('restful') || skillLower.includes('minimal api')) return Fa.FaPlug;
+  if (skillLower.includes('signalr') || skillLower.includes('websocket') || skillLower.includes('real-time')) return Fa.FaBroadcastTower;
+  if (skillLower.includes('postman')) return Si.SiPostman;
+  if (skillLower.includes('payment') || skillLower.includes('gateway')) return Fa.FaCreditCard;
   
-  // Version Control & DevOps - brand icons
-  if (skillLower.includes('git') || skillLower.includes('github') || skillLower.includes('azure devops') || skillLower.includes('version control')) return 'fab fa-github';
-  if (skillLower.includes('docker')) return 'fab fa-docker';
-  if (skillLower.includes('ci/cd') || skillLower.includes('pipeline')) return 'fas fa-tasks';
+  if (skillLower.includes('github')) return Si.SiGithub;
+  if (skillLower.includes('git') || skillLower.includes('azure devops') || skillLower.includes('version control')) return Si.SiGithub;
+  if (skillLower.includes('docker')) return Si.SiDocker;
+  if (skillLower.includes('ci/cd') || skillLower.includes('pipeline')) return Fa.FaTasks;
   
-  // Architecture & Patterns
-  if (skillLower.includes('architecture') || skillLower.includes('microservices') || skillLower.includes('clean architecture')) return 'fas fa-sitemap';
-  if (skillLower.includes('pattern') || skillLower.includes('repository') || skillLower.includes('cqrs') || skillLower.includes('mediator') || skillLower.includes('solid')) return 'fas fa-project-diagram';
-  if (skillLower.includes('design pattern')) return 'fas fa-shapes';
+  if (skillLower.includes('architecture') || skillLower.includes('microservices') || skillLower.includes('clean architecture')) return Fa.FaSitemap;
+  if (skillLower.includes('pattern') || skillLower.includes('repository') || skillLower.includes('cqrs') || skillLower.includes('mediator') || skillLower.includes('solid')) return Fa.FaProjectDiagram;
+  if (skillLower.includes('design pattern')) return Fa.FaShapes;
   
-  // Libraries & Technologies
-  if (skillLower.includes('serilog')) return 'fas fa-file-alt';
-  if (skillLower.includes('fluentvalidation') || skillLower.includes('fluent validation')) return 'fas fa-check-circle';
-  if (skillLower.includes('mediatr') || skillLower.includes('mediator')) return 'fas fa-exchange-alt';
-  if (skillLower.includes('automapper') || skillLower.includes('auto mapper')) return 'fas fa-sync-alt';
-  if (skillLower.includes('swagger') || skillLower.includes('openapi')) return 'fas fa-book-open';
-  if (skillLower.includes('jwt') || skillLower.includes('authentication')) return 'fas fa-key';
-  if (skillLower.includes('identity framework') || skillLower.includes('identity')) return 'fas fa-user-shield';
-  if (skillLower.includes('redis')) return 'fas fa-memory';
-  if (skillLower.includes('rabbitmq') || skillLower.includes('rabbit mq')) return 'fas fa-exchange-alt';
-  if (skillLower.includes('hangfire')) return 'fas fa-clock';
-  if (skillLower.includes('xunit') || skillLower.includes('moq') || skillLower.includes('unit test')) return 'fas fa-vial';
+  if (skillLower.includes('serilog')) return Fa.FaFileAlt;
+  if (skillLower.includes('fluentvalidation') || skillLower.includes('fluent validation')) return Fa.FaCheckCircle;
+  if (skillLower.includes('mediatr') || skillLower.includes('mediator')) return Fa.FaExchangeAlt;
+  if (skillLower.includes('automapper') || skillLower.includes('auto mapper')) return Fa.FaSyncAlt;
+  if (skillLower.includes('swagger') || skillLower.includes('openapi')) return Fa.FaBookOpen;
+  if (skillLower.includes('jwt') || skillLower.includes('authentication')) return Fa.FaKey;
+  if (skillLower.includes('identity framework') || skillLower.includes('identity')) return Fa.FaUserShield;
+  if (skillLower.includes('redis')) return Si.SiRedis;
+  if (skillLower.includes('rabbitmq') || skillLower.includes('rabbit mq')) return Fa.FaExchangeAlt;
+  if (skillLower.includes('hangfire')) return Fa.FaClock;
+  if (skillLower.includes('xunit') || skillLower.includes('moq') || skillLower.includes('unit test')) return Fa.FaVial;
   
-  // Methodologies & Practices
-  if (skillLower.includes('agile') || skillLower.includes('scrum')) return 'fas fa-users';
-  if (skillLower.includes('testing') || skillLower.includes('integration test')) return 'fas fa-vial';
-  if (skillLower.includes('performance') || skillLower.includes('optimization')) return 'fas fa-tachometer-alt';
+  if (skillLower.includes('agile') || skillLower.includes('scrum')) return Fa.FaUsers;
+  if (skillLower.includes('testing') || skillLower.includes('integration test')) return Fa.FaVial;
+  if (skillLower.includes('performance') || skillLower.includes('optimization')) return Fa.FaTachometerAlt;
   
-  // Default icon
-  return 'fas fa-code';
+  return Fa.FaCode;
 };
 
 const Skills = () => {
@@ -113,14 +110,17 @@ const Skills = () => {
                 {category.title}
               </h3>
               <div className="skills-grid">
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className="skill-card">
-                    <div className="skill-icon">
-                      <i className={getSkillIcon(skill)}></i>
+                {category.skills.map((skill, skillIndex) => {
+                  const IconComponent = getSkillIcon(skill);
+                  return (
+                    <div key={skillIndex} className="skill-card">
+                      <div className="skill-icon">
+                        <IconComponent />
+                      </div>
+                      <span className="skill-name">{skill}</span>
                     </div>
-                    <span className="skill-name">{skill}</span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           ))}

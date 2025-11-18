@@ -310,7 +310,7 @@
 /* Small Tablets and Mobile (0px - 768px) */
 @media (max-width: 768px) {
   .education {
-    padding: clamp(2.5rem, 6vh, 3rem) 0;
+    padding: clamp(2.5rem, 6vh, 3rem) 0 clamp(4rem, 8vh, 5rem);
   }
 
   .education-container {

@@ -1,4 +1,18 @@
 .home {
   width: 100%;
+  position: relative;
+}
+
+/* Add bottom padding on mobile to account for IconDock */
+@media (max-width: 768px) {
+  .home {
+    padding-bottom: clamp(5rem, 12vh, 7rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .home {
+    padding-bottom: clamp(4.5rem, 10vh, 6rem);
+  }
 }
 

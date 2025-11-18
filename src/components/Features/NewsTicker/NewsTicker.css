@@ -7,7 +7,7 @@
   background: #1a0d2e;
   border-radius: 0;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  z-index: 998;
+  z-index: 999;
   display: flex;
   align-items: center;
   padding: clamp(0.625rem, 1.5vw, 1rem) clamp(1rem, 4vw, 2rem);
@@ -137,23 +137,26 @@
 @media (max-width: 768px) {
   .news-ticker {
     top: clamp(70px, 8.5vh, 85px);
-    flex-direction: column;
-    align-items: stretch;
-    padding: clamp(1rem, 3vw, 1.25rem) clamp(1rem, 3vw, 1.25rem);
-    gap: clamp(0.625rem, 1.8vw, 0.875rem);
+    flex-direction: row;
+    align-items: center;
+    padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 3vw, 1.25rem);
+    gap: clamp(0.5rem, 1.5vw, 0.75rem);
     min-height: auto;
-    overflow: visible;
+    overflow: hidden;
+    max-height: clamp(50px, 8vh, 60px);
+    z-index: 999;
   }
 
   .ticker-label {
-    padding: 0;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    width: 100%;
-    justify-content: center;
-    padding-bottom: clamp(0.625rem, 1.8vw, 0.875rem);
+    padding: 0 clamp(0.5rem, 1.2vw, 0.75rem) 0 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: none;
+    width: auto;
+    justify-content: flex-start;
+    padding-bottom: 0;
     margin-bottom: 0;
     white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .ticker-label i {
@@ -165,27 +168,28 @@
   }
 
   .ticker-content {
-    padding: 0;
-    text-align: center;
+    padding: 0 0 0 clamp(0.5rem, 1.2vw, 0.75rem);
+    text-align: left;
     width: 100%;
-    flex: none;
-    overflow: visible;
+    flex: 1;
+    overflow: hidden;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    min-width: 0;
   }
 
   .ticker-item {
-    font-size: clamp(0.875rem, 2.2vw, 0.95rem);
-    justify-content: center;
-    flex-wrap: wrap;
-    white-space: normal;
-    text-align: center;
-    line-height: 1.6;
-    gap: clamp(0.5rem, 1.5vw, 0.75rem);
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    text-align: left;
+    line-height: 1.4;
+    gap: clamp(0.375rem, 1.2vw, 0.5rem);
     width: 100%;
-    overflow: visible;
-    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .ticker-emoji {
@@ -197,13 +201,14 @@
   }
 
   .ticker-text {
-    width: 100%;
-    text-align: center;
-    flex: none;
-    display: block;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    hyphens: auto;
+    width: auto;
+    text-align: left;
+    flex: 1;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
   }
 
   .news-ticker:hover .ticker-item {
@@ -223,13 +228,15 @@
 @media (max-width: 480px) {
   .news-ticker {
     top: clamp(65px, 8vh, 80px);
-    padding: clamp(0.875rem, 2.5vw, 1rem) clamp(0.875rem, 2.5vw, 1rem);
-    gap: clamp(0.625rem, 1.5vw, 0.75rem);
+    padding: clamp(0.5rem, 1.5vw, 0.625rem) clamp(0.875rem, 2.5vw, 1rem);
+    gap: clamp(0.375rem, 1.2vw, 0.5rem);
+    max-height: clamp(45px, 7vh, 55px);
+    z-index: 999;
   }
 
   .ticker-label {
     font-size: clamp(0.8rem, 2.2vw, 0.875rem);
-    padding-bottom: clamp(0.625rem, 1.5vw, 0.75rem);
+    padding-bottom: clamp(0.5rem, 1.2vw, 0.625rem);
   }
 
   .ticker-label i {
@@ -243,7 +250,7 @@
   .ticker-item {
     font-size: clamp(0.8rem, 2.5vw, 0.875rem);
     gap: clamp(0.5rem, 1.2vw, 0.625rem);
-    line-height: 1.7;
+    line-height: 1.5;
   }
 
   .ticker-emoji {
@@ -253,7 +260,7 @@
 
   .ticker-text {
     font-size: clamp(0.8rem, 2.5vw, 0.875rem);
-    line-height: 1.7;
+    line-height: 1.5;
   }
 }
 

@@ -1,6 +1,7 @@
 import { profileData } from "../../../data/profileData";
 import { sectionConfig } from "../../../data/sectionConfig";
 import profileImage from "../../../assets/IMG_2510.jpg";
+import ScrollDownIndicator from "../ScrollDownIndicator/ScrollDownIndicator";
 import "./Hero.css";
 
 const Hero = () => {
@@ -104,6 +105,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      <ScrollDownIndicator />
     </section>
   );
 };

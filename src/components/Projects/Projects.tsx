@@ -21,12 +21,6 @@ const Projects = () => {
     category: getTopProjectCategory(project),
   }));
 
-  const categorizedRepos = {
-    frontend: repos.filter((repo) => getProjectCategory(repo) === "frontend"),
-    backend: repos.filter((repo) => getProjectCategory(repo) === "backend"),
-    fullstack: repos.filter((repo) => getProjectCategory(repo) === "fullstack"),
-  };
-
   // Collect all unique technology tags from all projects
   const availableTechnologies = useMemo(() => {
     const techSet = new Set<string>();

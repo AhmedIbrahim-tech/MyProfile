@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import resumePdf from '../../../assets/Ahmed Eprahim Resume.pdf';
 import { sectionConfig } from '../../../data/sectionConfig';
+import ThemeToggle from '../../ThemeToggle/ThemeToggle';
 import './Header.css';
 
 const Header = () => {
@@ -78,10 +79,13 @@ const Header = () => {
           )}
         </nav>
 
-        <button className="download-resume-btn" onClick={handleDownloadResume}>
-          <span className="nav-icon"><i className="fas fa-download"></i></span>
-          <span className="btn-text">Download Resume</span>
-        </button>
+        <div className="header-actions">
+          <ThemeToggle />
+          <button className="download-resume-btn" onClick={handleDownloadResume}>
+            <span className="nav-icon"><i className="fas fa-download"></i></span>
+            <span className="btn-text">Download Resume</span>
+          </button>
+        </div>
       </div>
     </header>
   );

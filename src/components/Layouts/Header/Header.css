@@ -191,6 +191,13 @@
   transform: scale(1.2) rotate(5deg);
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  flex-shrink: 0;
+}
+
 .download-resume-btn {
   background: rgba(139, 92, 246, 0.2);
   border: 1px solid rgba(139, 92, 246, 0.4);
@@ -272,6 +279,11 @@
 
   .logo span {
     font-size: clamp(0.875rem, 3vw, 1rem);
+  }
+
+  .header-actions {
+    order: 3;
+    gap: 0.5rem;
   }
 
   .download-resume-btn {

@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Header from './components/Layouts/Header/Header';
 import Footer from './components/Layouts/Footer/Footer';
 import IconDock from './components/Features/IconDock/IconDock';
@@ -31,6 +32,7 @@ function App() {
         <Footer />
         <IconDock />
         <ScrollNavigation />
+        <SpeedInsights />
       </div>
     </Router>
   );

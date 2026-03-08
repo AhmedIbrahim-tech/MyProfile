@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import './NewsTicker.css';
 
@@ -50,7 +49,7 @@ const NewsTicker = () => {
     return () => clearInterval(interval);
   }, [newsItems.length]);
 
-  const tickerContent = (
+  return (
     <div className="news-ticker">
       <div className="ticker-label">
         <i className="fas fa-bullhorn"></i>
@@ -68,9 +67,6 @@ const NewsTicker = () => {
       </div>
     </div>
   );
-
-  // Render in document.body so position:fixed is always relative to viewport (stays fixed on scroll)
-  return createPortal(tickerContent, document.body);
 };
 
 export default NewsTicker;

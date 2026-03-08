@@ -1,14 +1,11 @@
+/* مساحة علوية تعادل ارتفاع الـ Header الثابت حتى لا يغطي الشريط */
 .news-ticker {
-  position: fixed;
-  /* Below fixed header: enough space so ticker never overlaps nav */
-  top: clamp(118px, 15vh, 150px);
-  left: 0;
-  right: 0;
   width: 100%;
+  margin-top: clamp(100px, 11vh, 128px);
   background: #1a0d2e;
   border-radius: 0;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  z-index: 999;
+  z-index: 10;
   display: flex;
   align-items: center;
   padding: clamp(0.625rem, 1.5vw, 1rem) clamp(1rem, 4vw, 2rem);
@@ -16,6 +13,7 @@
   transition: all 0.3s ease;
   min-height: 2.75rem;
   box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .news-ticker:hover {
@@ -132,21 +130,21 @@
 /* Large Tablets / Small Laptops (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
   .news-ticker {
-    top: clamp(112px, 13vh, 138px);
+    margin-top: clamp(92px, 10.5vh, 118px);
   }
 }
 
 /* Small Tablets and Mobile (0px - 768px) */
 @media (max-width: 768px) {
   .news-ticker {
-    top: clamp(100px, 12vh, 125px);
+    margin-top: clamp(88px, 10vh, 112px);
     flex-direction: row;
     align-items: center;
     padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(1rem, 3vw, 1.25rem);
     gap: clamp(0.5rem, 1.5vw, 0.75rem);
     min-height: 2.75rem;
     overflow: visible;
-    z-index: 999;
+    z-index: 10;
   }
 
   .ticker-label {
@@ -235,11 +233,11 @@
 /* Small Mobile (0px - 480px) */
 @media (max-width: 480px) {
   .news-ticker {
-    top: clamp(92px, 11vh, 112px);
+    margin-top: clamp(82px, 9.5vh, 102px);
     padding: clamp(0.5rem, 1.5vw, 0.625rem) clamp(0.875rem, 2.5vw, 1rem);
     gap: clamp(0.375rem, 1.2vw, 0.5rem);
     min-height: 2.5rem;
-    z-index: 999;
+    z-index: 10;
   }
 
   .ticker-label {

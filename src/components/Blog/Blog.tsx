@@ -1,95 +1,29 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
+import { useBlogPosts } from '../../hooks/useBlogPosts';
 import './Blog.css';
-
-interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  date: string;
-  category: string;
-  readTime: string;
-  image: string;
-}
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const { posts, loading, error } = useBlogPosts();
 
-  const blogPosts: BlogPost[] = [
-    {
-      id: 1,
-      title: 'Getting Started with React and TypeScript',
-      excerpt: 'Learn how to set up a modern React application with TypeScript for better type safety and developer experience.',
-      content: 'Full content here...',
-      author: 'Ahmed Ibrahim',
-      date: '2024-01-15',
-      category: 'Frontend',
-      readTime: '5 min read',
-      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=400&fit=crop'
-    },
-    {
-      id: 2,
-      title: 'Building RESTful APIs with ASP.NET Core',
-      excerpt: 'A comprehensive guide to creating robust and scalable REST APIs using ASP.NET Core and best practices.',
-      content: 'Full content here...',
-      author: 'Ahmed Ibrahim',
-      date: '2024-01-10',
-      category: 'Backend',
-      readTime: '8 min read',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop'
-    },
-    {
-      id: 3,
-      title: 'Modern CSS Techniques for Better UI',
-      excerpt: 'Explore advanced CSS features like Grid, Flexbox, and custom properties to create stunning user interfaces.',
-      content: 'Full content here...',
-      author: 'Ahmed Ibrahim',
-      date: '2024-01-05',
-      category: 'Frontend',
-      readTime: '6 min read',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop'
-    },
-    {
-      id: 4,
-      title: 'Database Design Best Practices',
-      excerpt: 'Learn essential database design principles and patterns for building efficient and maintainable database schemas.',
-      content: 'Full content here...',
-      author: 'Ahmed Ibrahim',
-      date: '2023-12-28',
-      category: 'Backend',
-      readTime: '7 min read',
-      image: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&h=400&fit=crop'
-    },
-    {
-      id: 5,
-      title: 'Full-Stack Development Workflow',
-      excerpt: 'Discover how to efficiently manage a full-stack development workflow from design to deployment.',
-      content: 'Full content here...',
-      author: 'Ahmed Ibrahim',
-      date: '2023-12-20',
-      category: 'Full Stack',
-      readTime: '10 min read',
-      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=400&fit=crop'
-    },
-    {
-      id: 6,
-      title: 'Git Workflow and Collaboration',
-      excerpt: 'Master Git workflows, branching strategies, and collaboration techniques for team development.',
-      content: 'Full content here...',
-      author: 'Ahmed Ibrahim',
-      date: '2023-12-15',
-      category: 'DevOps',
-      readTime: '6 min read',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop'
+  // Extract unique categories from posts
+  const categories = useMemo(() => {
+    const cats = new Set<string>(['all']);
+    posts.forEach(post => {
+      if (post.category) {
+        cats.add(post.category);
+      }
+    });
+    return Array.from(cats);
+  }, [posts]);
+
+  const filteredPosts = useMemo(() => {
+    if (selectedCategory === 'all') {
+      return posts;
     }
-  ];
-
-  const categories = ['all', 'Full Stack', 'Backend', 'Database', 'Frontend', 'DevOps'];
-
-  const filteredPosts = selectedCategory === 'all'
-    ? blogPosts
-    : blogPosts.filter(post => post.category === selectedCategory);
+    return posts.filter(post => post.category === selectedCategory);
+  }, [posts, selectedCategory]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -127,7 +61,17 @@ const Blog = () => {
           ))}
         </div>
 
-        {filteredPosts.length === 0 ? (
+        {loading ? (
+          <div className="no-posts">
+            <i className="fas fa-spinner fa-spin"></i>
+            <p>Loading blog posts...</p>
+          </div>
+        ) : error ? (
+          <div className="no-posts">
+            <i className="fas fa-exclamation-triangle"></i>
+            <p>{error}</p>
+          </div>
+        ) : filteredPosts.length === 0 ? (
           <div className="no-posts">
             <i className="fas fa-inbox"></i>
             <p>No posts found in this category.</p>
@@ -166,10 +110,10 @@ const Blog = () => {
                     <i className="fas fa-user"></i>
                     <span>{post.author}</span>
                   </div>
-                  <button className="blog-read-more" disabled title="Coming Soon">
+                  <Link to={`/blog/${post.id}`} className="blog-read-more">
                     Read More
                     <i className="fas fa-arrow-right"></i>
-                  </button>
+                  </Link>
                 </div>
               </article>
             ))}

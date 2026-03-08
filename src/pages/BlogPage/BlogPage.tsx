@@ -1,5 +1,5 @@
-// import Blog from '../../components/Blog/Blog';
-import ComingSoon from '../ComingSoon/ComingSoon';
+import Blog from '../../components/Blog/Blog';
+// import ComingSoon from '../ComingSoon/ComingSoon';
 import { sectionConfig } from '../../data/sectionConfig';
 import './BlogPage.css';
 
@@ -10,8 +10,8 @@ const BlogPage = () => {
 
   return (
     <div className="blog-page">
-      {/* <Blog /> */}
-      <ComingSoon />
+      <Blog />
+      {/* <ComingSoon /> */}
     </div>
   );
 };

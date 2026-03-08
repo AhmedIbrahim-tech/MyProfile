@@ -4,7 +4,27 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #0a0a1e 0%, #1a1a3e 100%);
-  padding: 4rem 2rem;
+  padding: clamp(140px, 18vh, 170px) 2rem 4rem;
+}
+
+@media (max-width: 1024px) {
+  .not-found-page {
+    padding-top: clamp(135px, 17vh, 160px);
+  }
+}
+
+@media (max-width: 768px) {
+  .not-found-page {
+    padding-top: clamp(130px, 16vh, 150px);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .not-found-page {
+    padding-top: clamp(120px, 15vh, 140px);
+  }
 }
 
 .not-found-container {

@@ -9,6 +9,7 @@ import Home from './pages/Home/Home';
 import ProjectsPage from './pages/ProjectsPage/ProjectsPage';
 import ContactPage from './pages/ContactPage/ContactPage';
 import BlogPage from './pages/BlogPage/BlogPage';
+import BlogDetailsPage from './pages/BlogDetailsPage/BlogDetailsPage';
 import ComingSoon from './pages/ComingSoon/ComingSoon';
 import NotFound from './pages/NotFound/NotFound';
 import './App.css';
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:id" element={<BlogDetailsPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/coming-soon" element={<ComingSoon />} />
             <Route path="*" element={<NotFound />} />

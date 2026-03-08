@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import './NewsTicker.css';
 
@@ -49,16 +50,17 @@ const NewsTicker = () => {
     return () => clearInterval(interval);
   }, [newsItems.length]);
 
-  return (
+  const tickerContent = (
     <div className="news-ticker">
       <div className="ticker-label">
         <i className="fas fa-bullhorn"></i>
         <span>Latest News</span>
       </div>
       <div className="ticker-content">
-        <div 
+        <div
           className="ticker-item"
           key={currentIndex}
+          title={newsItems[currentIndex].text}
         >
           <span className="ticker-emoji">{newsItems[currentIndex].emoji}</span>
           <span className="ticker-text">{newsItems[currentIndex].text}</span>
@@ -66,6 +68,9 @@ const NewsTicker = () => {
       </div>
     </div>
   );
+
+  // Render in document.body so position:fixed is always relative to viewport (stays fixed on scroll)
+  return createPortal(tickerContent, document.body);
 };
 
 export default NewsTicker;

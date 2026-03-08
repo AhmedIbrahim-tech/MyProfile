@@ -1,12 +1,24 @@
 .blog-page {
-  padding-top: 5rem;
+  padding-top: clamp(140px, 18vh, 170px);
   min-height: 100vh;
 }
 
-/* Small screens - add padding-top */
+/* Adjust padding for smaller screens */
+@media (max-width: 1024px) {
+  .blog-page {
+    padding-top: clamp(135px, 17vh, 160px);
+  }
+}
+
 @media (max-width: 768px) {
   .blog-page {
-    padding-top: 15%;
+    padding-top: clamp(130px, 16vh, 150px);
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-page {
+    padding-top: clamp(120px, 15vh, 140px);
   }
 }
 

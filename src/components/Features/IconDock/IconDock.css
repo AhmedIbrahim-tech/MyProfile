@@ -15,12 +15,12 @@
   display: flex;
   align-items: center;
   gap: clamp(0.5rem, 1vw, 0.75rem);
-  background: rgba(10, 10, 30, 0.95);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  background: var(--overlay-bg);
+  backdrop-filter: var(--backdrop-blur);
+  border: 1px solid var(--border);
   border-radius: clamp(30px, 5vw, 50px);
   padding: clamp(0.5rem, 1vw, 0.75rem) clamp(1rem, 2vw, 1.5rem);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px var(--card-shadow);
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -35,9 +35,9 @@
   height: clamp(36px, 5vw, 45px);
   min-width: clamp(36px, 5vw, 45px);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--app-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,16 +49,18 @@
 }
 
 .dock-icon:hover {
-  background: rgba(124, 58, 237, 0.3);
-  border-color: rgba(124, 58, 237, 0.5);
-  transform: translateY(-5px) scale(1.1);
-  box-shadow: 0 5px 20px rgba(124, 58, 237, 0.4);
+  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 4px 16px var(--card-shadow);
 }
 
 .dock-icon.active {
-  background: rgba(124, 58, 237, 0.4);
-  border-color: rgba(124, 58, 237, 0.6);
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+  background: var(--accent-soft, rgba(124, 58, 237, 0.15));
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  box-shadow: 0 2px 12px var(--card-shadow);
 }
 
 /* Large Tablets / Small Laptops (769px - 1024px) */

@@ -2,9 +2,9 @@
 .news-ticker {
   width: 100%;
   margin-top: clamp(100px, 11vh, 128px);
-  background: #1a0d2e;
+  background: var(--app-background);
   border-radius: 0;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 16px var(--card-shadow);
   z-index: 10;
   display: flex;
   align-items: center;
@@ -17,8 +17,8 @@
 }
 
 .news-ticker:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  background: #1a0d2e;
+  box-shadow: 0 6px 20px var(--card-shadow-hover);
+  background: var(--app-background);
 }
 
 .ticker-label {
@@ -27,8 +27,8 @@
   gap: clamp(0.375rem, 0.8vw, 0.5rem);
   padding: 0 clamp(0.625rem, 1.2vw, 1rem) 0 0;
   background: transparent;
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  color: #fff;
+  border-right: 1px solid var(--border-color);
+  color: var(--app-text);
   font-weight: 600;
   font-size: clamp(0.75rem, 1.1vw, 0.9rem);
   white-space: nowrap;
@@ -37,7 +37,7 @@
 }
 
 .ticker-label:hover {
-  color: rgba(255, 255, 255, 1);
+  color: var(--app-text);
 }
 
 .ticker-label i {
@@ -61,7 +61,7 @@
 }
 
 .ticker-item {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--app-text);
   font-size: clamp(0.75rem, 1.1vw, 0.9rem);
   animation: ticker-slide 0.5s ease-in-out;
   display: flex;
@@ -78,7 +78,7 @@
 }
 
 .ticker-item:hover {
-  color: rgba(255, 255, 255, 1);
+  color: var(--app-text);
 }
 
 .ticker-emoji {
@@ -149,7 +149,7 @@
 
   .ticker-label {
     padding: 0 clamp(0.5rem, 1.2vw, 0.75rem) 0 0;
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-right: 1px solid var(--border-color);
     border-bottom: none;
     width: auto;
     justify-content: flex-start;

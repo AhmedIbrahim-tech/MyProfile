@@ -1,9 +1,10 @@
 .project-filters {
-  background: rgba(124, 58, 237, 0.05);
-  border: 1px solid rgba(124, 58, 237, 0.2);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 16px;
   padding: 2rem;
   margin-bottom: 3rem;
+  box-shadow: 0 4px 12px var(--card-shadow);
 }
 
 .filters-header {
@@ -17,7 +18,7 @@
 
 .filters-title {
   font-size: 1.5rem;
-  color: #7C3AED;
+  color: var(--app-text);
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -27,7 +28,7 @@
 
 .filters-title i {
   font-size: 1.25rem;
-  color: #fff;
+  color: var(--accent-primary);
 }
 
 .clear-filters-btn {
@@ -35,10 +36,10 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: rgba(124, 58, 237, 0.2);
-  border: 1px solid rgba(124, 58, 237, 0.5);
+  background: var(--surface-alt, var(--card-bg-hover));
+  border: 1px solid var(--border);
   border-radius: 8px;
-  color: #7C3AED;
+  color: var(--app-text);
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
@@ -46,8 +47,9 @@
 }
 
 .clear-filters-btn:hover {
-  background: rgba(124, 58, 237, 0.3);
-  border-color: #7C3AED;
+  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
   transform: translateY(-2px);
 }
 
@@ -65,12 +67,12 @@
   gap: 0.5rem;
   font-size: 1rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--app-text);
   margin-bottom: 1rem;
 }
 
 .filter-group-label i {
-  color: #7C3AED;
+  color: var(--accent-primary);
   font-size: 0.875rem;
 }
 
@@ -83,9 +85,9 @@
 
 .toggle-tech-btn {
   background: transparent;
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  border: 1px solid var(--border);
   border-radius: 6px;
-  color: #7C3AED;
+  color: var(--app-text);
   padding: 0.5rem;
   cursor: pointer;
   transition: all 0.3s;
@@ -97,13 +99,15 @@
 }
 
 .toggle-tech-btn:hover {
-  background: rgba(124, 58, 237, 0.1);
-  border-color: #7C3AED;
+  background: var(--surface-alt, var(--card-bg-hover));
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
 }
 
 .toggle-tech-btn.active {
-  background: rgba(124, 58, 237, 0.2);
-  border-color: #7C3AED;
+  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
 }
 
 .category-filters {
@@ -121,10 +125,10 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
-  background: rgba(124, 58, 237, 0.1);
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  background: var(--surface-alt, var(--card-bg-hover));
+  border: 1px solid var(--border);
   border-radius: 8px;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--app-text-secondary);
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -132,16 +136,17 @@
 }
 
 .category-btn:hover {
-  background: rgba(124, 58, 237, 0.2);
-  border-color: rgba(124, 58, 237, 0.5);
+  background: var(--card-bg-hover);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
   transform: translateY(-2px);
 }
 
 .category-btn.active {
-  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
-  border-color: #7C3AED;
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
   color: #fff;
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 2px 8px var(--card-shadow);
 }
 
 .category-btn i {
@@ -164,10 +169,10 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.6rem 1.2rem;
-  background: rgba(124, 58, 237, 0.1);
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  background: var(--surface-alt, var(--card-bg-hover));
+  border: 1px solid var(--border);
   border-radius: 20px;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--app-text-secondary);
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
@@ -175,16 +180,16 @@
 }
 
 .tech-filter-tag:hover {
-  background: rgba(124, 58, 237, 0.2);
-  border-color: rgba(124, 58, 237, 0.5);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
   transform: translateY(-2px);
 }
 
 .tech-filter-tag.active {
-  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
-  border-color: #7C3AED;
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
   color: #fff;
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+  box-shadow: 0 2px 8px var(--card-shadow);
 }
 
 .tech-filter-tag.active i {
@@ -192,7 +197,7 @@
 }
 
 .no-tech-message {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--app-text-tertiary);
   font-size: 0.875rem;
   font-style: italic;
   padding: 1rem 0;
@@ -204,12 +209,12 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(124, 58, 237, 0.2);
+  border-top: 1px solid var(--divider-color);
   margin-top: 1.5rem;
 }
 
 .active-filters-label {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--app-text-secondary);
   font-size: 0.875rem;
   font-weight: 600;
 }
@@ -219,10 +224,10 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: rgba(124, 58, 237, 0.2);
-  border: 1px solid rgba(124, 58, 237, 0.4);
+  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  border: 1px solid var(--border);
   border-radius: 20px;
-  color: #7C3AED;
+  color: var(--accent-primary);
   font-size: 0.875rem;
   font-weight: 500;
 }
@@ -230,7 +235,7 @@
 .remove-filter-btn {
   background: transparent;
   border: none;
-  color: #7C3AED;
+  color: var(--accent-primary);
   cursor: pointer;
   padding: 0;
   display: flex;
@@ -243,8 +248,8 @@
 }
 
 .remove-filter-btn:hover {
-  background: rgba(124, 58, 237, 0.3);
-  color: #fff;
+  background: var(--accent-soft, rgba(124, 58, 237, 0.15));
+  color: var(--accent-primary);
 }
 
 .remove-filter-btn i {

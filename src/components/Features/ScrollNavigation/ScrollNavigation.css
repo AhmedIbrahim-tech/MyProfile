@@ -3,8 +3,8 @@
   right: clamp(1rem, 3vw, 2rem);
   width: clamp(48px, 5vw, 56px);
   height: clamp(48px, 5vw, 56px);
-  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  background: var(--accent-gradient);
+  border: 2px solid var(--border);
   border-radius: 50%;
   color: #fff;
   font-size: clamp(1rem, 1.5vw, 1.25rem);
@@ -13,9 +13,8 @@
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.4),
-              0 2px 8px rgba(0, 0, 0, 0.3),
-              inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 16px var(--card-shadow),
+              0 2px 8px var(--card-shadow);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 1;
   transform: scale(1) translateY(0);
@@ -44,18 +43,18 @@
 }
 
 .scroll-btn:hover {
-  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-primary-hover) 100%);
   transform: scale(1.1) translateY(-2px);
   box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5),
-              0 4px 12px rgba(0, 0, 0, 0.4),
-              inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.2);
+              0 4px 12px var(--card-shadow-hover),
+              inset 0 1px 0 var(--card-border);
+  border-color: var(--card-border);
 }
 
 .scroll-btn:active {
   transform: scale(0.95) translateY(0);
   box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3),
-              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+              inset 0 1px 0 var(--card-border);
 }
 
 .scroll-btn i {
@@ -151,7 +150,7 @@
 
 /* Accessibility: Focus styles */
 .scroll-btn:focus {
-  outline: 2px solid rgba(124, 58, 237, 0.5);
+  outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
 }
 

@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #0a0a1e 0%, #1a1a3e 100%);
+  background: linear-gradient(135deg, var(--section-bg) 0%, var(--section-bg-alt) 100%);
   padding: clamp(1rem, 2vh, 2rem) 2rem 4rem;
 }
 
@@ -23,7 +23,7 @@
 
 .coming-soon-icon {
   font-size: 6rem;
-  color: #7C3AED;
+  color: var(--accent-primary);
   animation: float 3s ease-in-out infinite;
   margin-bottom: 1rem;
 }
@@ -39,18 +39,14 @@
 
 .coming-soon-title {
   font-size: 4rem;
-  color: #fff;
+  color: var(--app-text);
   font-weight: 700;
   margin: 0;
-  background: linear-gradient(135deg, #7C3AED 0%, #a78bfa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .coming-soon-message {
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--app-text-secondary);
   line-height: 1.6;
   max-width: 600px;
   margin: 0;
@@ -75,30 +71,30 @@
 .countdown-value {
   font-size: 3rem;
   font-weight: 700;
-  color: #7C3AED;
-  background: rgba(124, 58, 237, 0.1);
-  border: 2px solid rgba(124, 58, 237, 0.3);
+  color: var(--accent-primary);
+  background: var(--surface-alt, var(--card-bg-hover));
+  border: 2px solid var(--border);
   border-radius: 12px;
   padding: 1rem 1.5rem;
   min-width: 100px;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2);
+  box-shadow: 0 4px 12px var(--card-shadow);
   transition: all 0.3s;
   animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
   0%, 100% {
-    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2);
+    box-shadow: 0 4px 12px var(--card-shadow);
   }
   50% {
-    box-shadow: 0 4px 25px rgba(124, 58, 237, 0.4);
+    box-shadow: 0 6px 20px var(--card-shadow);
   }
 }
 
 .countdown-label {
   font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--app-text-tertiary);
   margin-top: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -107,7 +103,7 @@
 
 .countdown-separator {
   font-size: 2.5rem;
-  color: #7C3AED;
+  color: var(--accent-primary);
   font-weight: 700;
   margin: 0 0.5rem;
   animation: blink 1s ease-in-out infinite;
@@ -131,10 +127,10 @@
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 2rem;
-  background: rgba(124, 58, 237, 0.1);
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  background: var(--surface-alt, var(--card-bg-hover));
+  border: 1px solid var(--border);
   border-radius: 8px;
-  color: #7C3AED;
+  color: var(--accent-primary);
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s;
@@ -142,11 +138,11 @@
 }
 
 .coming-soon-btn:hover {
-  background: #7C3AED;
-  border-color: #7C3AED;
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+  box-shadow: 0 6px 20px var(--card-shadow);
 }
 
 .coming-soon-btn i {

@@ -1,6 +1,6 @@
 .education {
   padding: clamp(3rem, 8vh, 5rem) 0;
-  background: linear-gradient(135deg, #1a1a3e 0%, #0a0a1e 100%);
+  background: linear-gradient(135deg, var(--section-bg-alt) 0%, var(--section-bg) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -12,7 +12,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 50%, var(--accent-soft, transparent) 0%, transparent 50%);
+  opacity: 0.5;
   pointer-events: none;
 }
 
@@ -34,7 +35,7 @@
 
 .section-title {
   font-size: clamp(2rem, 4vw, 3rem);
-  color: #fff;
+  color: var(--app-text);
   text-align: left;
   margin-bottom: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
@@ -47,7 +48,7 @@
 }
 
 .section-title i {
-  color: #7C3AED;
+  color: var(--accent-primary);
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
   animation: float 3s ease-in-out infinite;
   flex-shrink: 0;
@@ -63,20 +64,20 @@
 }
 
 .section-title strong {
-  color: #fff;
+  color: var(--app-text);
   font-weight: 700;
 }
 
 .section-title span {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--app-text-secondary);
   font-weight: 400;
 }
 
 .education-card {
   display: flex;
   gap: clamp(1.5rem, 3vw, 2.5rem);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 16px;
   padding: clamp(2rem, 4vw, 3.5rem);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -101,7 +102,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #7C3AED 0%, #A855F7 50%, #7C3AED 100%);
+  background: var(--accent-gradient);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s ease;
@@ -112,10 +113,10 @@
 }
 
 .education-card:hover {
-  background: rgba(124, 58, 237, 0.1);
-  border-color: rgba(124, 58, 237, 0.5);
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(124, 58, 237, 0.3);
+  background: var(--card-bg-hover);
+  border-color: var(--border);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px var(--card-shadow);
 }
 
 .education-icon {
@@ -125,9 +126,9 @@
   justify-content: center;
   width: clamp(60px, 8vw, 80px);
   height: clamp(60px, 8vw, 80px);
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+  background: var(--surface-alt, var(--card-bg-hover));
   border-radius: 16px;
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  border: 1px solid var(--border);
   transition: all 0.4s ease;
   position: relative;
 }
@@ -138,7 +139,7 @@
   inset: -2px;
   border-radius: 16px;
   padding: 2px;
-  background: linear-gradient(135deg, #7C3AED, #A855F7);
+  background: var(--accent-gradient);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -147,23 +148,24 @@
 }
 
 .education-card:hover .education-icon {
-  transform: scale(1.1) rotate(5deg);
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.3) 0%, rgba(168, 85, 247, 0.3) 100%);
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+  transform: scale(1.05) rotate(2deg);
+  border-color: var(--accent-primary);
+  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  box-shadow: 0 4px 16px var(--card-shadow);
 }
 
 .education-card:hover .education-icon::after {
-  opacity: 1;
+  opacity: 0.6;
 }
 
 .education-icon svg {
   transition: all 0.4s ease;
-  filter: drop-shadow(0 4px 8px rgba(124, 58, 237, 0.3));
+  color: var(--text-muted, var(--app-text-secondary));
 }
 
 .education-card:hover .education-icon svg {
-  transform: scale(1.1);
-  filter: drop-shadow(0 6px 12px rgba(124, 58, 237, 0.5));
+  transform: scale(1.05);
+  color: var(--accent-primary);
 }
 
 .education-content {
@@ -171,11 +173,11 @@
 }
 
 .education-content h3 {
-  color: #fff;
+  color: var(--app-text);
   font-size: clamp(1.5rem, 3vw, 2rem);
   margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
   font-weight: 700;
-  background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.8) 100%);
+  background: linear-gradient(135deg, var(--app-text) 0%, var(--app-text-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -183,14 +185,14 @@
 }
 
 .education-card:hover .education-content h3 {
-  background: linear-gradient(135deg, #fff 0%, #A855F7 100%);
+  background: linear-gradient(135deg, var(--app-text) 0%, var(--accent-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .education-degree {
-  color: #7C3AED;
+  color: var(--accent-primary);
   font-size: clamp(1rem, 2vw, 1.25rem);
   margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
   font-weight: 600;
@@ -205,32 +207,32 @@
 }
 
 .education-grade {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--app-text-secondary);
   margin-bottom: clamp(1.5rem, 3vw, 2rem);
   font-size: clamp(0.875rem, 1.2vw, 1rem);
   display: inline-flex;
   align-items: center;
   gap: clamp(0.375rem, 0.8vw, 0.5rem);
   padding: clamp(0.4rem, 0.8vw, 0.5rem) clamp(0.75rem, 1.5vw, 1rem);
-  background: rgba(124, 58, 237, 0.15);
+  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
   border-radius: 8px;
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  border: 1px solid var(--border);
   font-weight: 500;
 }
 
 .grade-label {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--app-text-secondary);
   font-weight: 500;
 }
 
 .graduation-project {
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(168, 85, 247, 0.1) 100%);
+  background: var(--surface-alt, var(--card-bg-hover));
   padding: clamp(1.5rem, 3vw, 2rem);
   border-radius: 12px;
-  border-left: clamp(3px, 0.5vw, 4px) solid #7C3AED;
-  border-top: 1px solid rgba(124, 58, 237, 0.3);
-  border-right: 1px solid rgba(124, 58, 237, 0.3);
-  border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+  border-left: clamp(3px, 0.5vw, 4px) solid var(--accent-primary);
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
@@ -243,16 +245,17 @@
   left: 0;
   width: 4px;
   height: 100%;
-  background: linear-gradient(180deg, #7C3AED 0%, #A855F7 100%);
+  background: var(--accent-gradient);
   transform: scaleY(0);
   transform-origin: top;
   transition: transform 0.4s ease;
 }
 
 .education-card:hover .graduation-project {
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(168, 85, 247, 0.15) 100%);
-  border-color: rgba(124, 58, 237, 0.5);
-  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.2);
+  background: var(--accent-soft, rgba(124, 58, 237, 0.08));
+  border-color: var(--border);
+  border-left-color: var(--accent-primary);
+  box-shadow: 0 4px 16px var(--card-shadow);
   transform: translateX(4px);
 }
 
@@ -261,7 +264,7 @@
 }
 
 .graduation-project h4 {
-  color: #fff;
+  color: var(--app-text);
   font-size: clamp(1.1rem, 2vw, 1.25rem);
   margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
   font-weight: 700;
@@ -277,13 +280,13 @@
 }
 
 .project-label {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--app-text-secondary);
   font-weight: 600;
   font-size: 0.95em;
 }
 
 .graduation-project p {
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--app-text-secondary);
   line-height: 1.8;
   margin: 0;
   font-size: clamp(0.875rem, 1.2vw, 1rem);
@@ -291,7 +294,7 @@
 }
 
 .education-card:hover .graduation-project p {
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--app-text);
 }
 
 /* Large Tablets / Small Laptops (769px - 1024px) */

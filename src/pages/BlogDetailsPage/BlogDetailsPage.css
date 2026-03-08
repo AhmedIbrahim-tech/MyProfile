@@ -2,10 +2,7 @@
   padding-top: clamp(1rem, 2vh, 2rem);
   padding-bottom: 4rem;
   min-height: 100vh;
-  background: 
-    radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-    linear-gradient(135deg, #0a0a1e 0%, #1a1a3e 100%);
+  background: linear-gradient(135deg, var(--section-bg) 0%, var(--section-bg-alt) 100%);
   position: relative;
 }
 
@@ -26,25 +23,25 @@
   align-items: center;
   gap: 0.625rem;
   padding: 0.875rem 1.75rem;
-  background: rgba(124, 58, 237, 0.1);
+  background: var(--surface-alt, var(--card-bg-hover));
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  border: 1px solid var(--border);
   border-radius: 12px;
-  color: #7C3AED;
+  color: var(--accent-primary);
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: inherit;
   font-size: 1rem;
   margin-bottom: 2rem;
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
+  box-shadow: 0 4px 12px var(--card-shadow);
 }
 
 .back-button:hover {
-  background: rgba(124, 58, 237, 0.2);
-  border-color: rgba(124, 58, 237, 0.5);
+  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  border-color: var(--accent-primary);
   transform: translateX(-4px);
-  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.2);
+  box-shadow: 0 6px 20px var(--card-shadow);
 }
 
 .back-button.rtl:hover {
@@ -64,15 +61,13 @@
 }
 
 .blog-details-article {
-  background: rgba(26, 13, 46, 0.6);
+  background: var(--card-bg);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(124, 58, 237, 0.2);
+  border: 1px solid var(--card-border);
   border-radius: 24px;
   overflow: hidden;
   padding: 0;
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(124, 58, 237, 0.1) inset;
+  box-shadow: 0 20px 60px var(--card-shadow), 0 0 0 1px var(--card-border) inset;
   animation: fadeInUp 0.6s ease-out;
 }
 
@@ -97,7 +92,7 @@
   width: 100%;
   height: 450px;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+  background: var(--surface-alt, var(--card-bg-hover));
 }
 
 .blog-details-image {
@@ -130,7 +125,7 @@
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  background: rgba(124, 58, 237, 0.95);
+  background: var(--accent-primary);
   backdrop-filter: blur(10px);
   color: #fff;
   padding: 0.625rem 1.25rem;
@@ -139,18 +134,14 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 
-    0 4px 16px rgba(124, 58, 237, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  box-shadow: 0 4px 16px var(--card-shadow);
   z-index: 2;
   transition: all 0.3s ease;
 }
 
 .blog-details-category-badge:hover {
   transform: scale(1.05);
-  box-shadow: 
-    0 6px 24px rgba(124, 58, 237, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+  box-shadow: 0 6px 24px var(--card-shadow);
 }
 
 .blog-details-article.rtl .blog-details-category-badge {
@@ -160,7 +151,7 @@
 
 .blog-details-header-content {
   padding: 3rem 3rem 2.5rem;
-  background: rgba(26, 13, 46, 0.4);
+  background: var(--card-bg);
 }
 
 .blog-details-meta {
@@ -170,9 +161,9 @@
   margin-bottom: 2rem;
   flex-wrap: wrap;
   padding: 1rem 1.5rem;
-  background: rgba(124, 58, 237, 0.08);
+  background: var(--surface-alt, var(--card-bg-hover));
   border-radius: 16px;
-  border: 1px solid rgba(124, 58, 237, 0.15);
+  border: 1px solid var(--border);
   backdrop-filter: blur(10px);
 }
 
@@ -184,13 +175,13 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--app-text-secondary);
   font-size: 0.875rem;
   font-weight: 500;
 }
 
 .blog-details-meta i {
-  color: #7C3AED;
+  color: var(--accent-primary);
   font-size: 0.875rem;
   width: 16px;
   text-align: center;
@@ -199,18 +190,18 @@
 .blog-details-meta-divider {
   width: 1px;
   height: 20px;
-  background: rgba(124, 58, 237, 0.3);
+  background: var(--border);
   flex-shrink: 0;
 }
 
 .blog-details-title {
   font-size: clamp(2rem, 4vw, 3rem);
-  color: #fff;
+  color: var(--app-text);
   margin-bottom: 1.5rem;
   font-weight: 800;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.9) 100%);
+  background: linear-gradient(135deg, var(--app-text) 0%, var(--app-text-secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -220,12 +211,12 @@
   text-align: right;
   direction: rtl;
   font-family: 'Cairo', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
-  -webkit-text-fill-color: #fff;
+  -webkit-text-fill-color: var(--app-text);
   background: none;
 }
 
 .blog-details-excerpt {
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--app-text-secondary);
   font-size: 1.25rem;
   line-height: 1.7;
   margin-bottom: 0;
@@ -240,11 +231,11 @@
 
 .blog-details-content {
   padding: 3rem;
-  border-top: 1px solid rgba(124, 58, 237, 0.2);
-  color: rgba(255, 255, 255, 0.9);
+  border-top: 1px solid var(--card-border);
+  color: var(--app-text);
   line-height: 1.9;
   font-size: 1.125rem;
-  background: rgba(26, 13, 46, 0.3);
+  background: var(--section-bg-alt);
 }
 
 .blog-details-content.rtl {
@@ -254,7 +245,7 @@
 }
 
 .content-header {
-  color: #fff;
+  color: var(--app-text);
   font-weight: 700;
   margin-top: 3rem;
   margin-bottom: 1.5rem;
@@ -271,7 +262,7 @@
   top: 0;
   bottom: 0;
   width: 4px;
-  background: linear-gradient(135deg, #7C3AED 0%, #a78bfa 100%);
+  background: var(--accent-gradient);
   border-radius: 2px;
 }
 
@@ -311,7 +302,7 @@
 
 .content-paragraph {
   margin-bottom: 1.5rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--app-text);
   font-size: 1.125rem;
 }
 
@@ -325,8 +316,8 @@
   font-weight: 500;
   margin-bottom: 2rem;
   padding: 1rem 1.5rem;
-  background: rgba(124, 58, 237, 0.08);
-  border-left: 3px solid #7C3AED;
+  background: var(--accent-soft, rgba(124, 58, 237, 0.08));
+  border-left: 3px solid var(--accent-primary);
   border-radius: 8px;
 }
 
@@ -334,12 +325,12 @@
   text-align: right;
   direction: rtl;
   border-left: none;
-  border-right: 3px solid #7C3AED;
+  border-right: 3px solid var(--accent-primary);
 }
 
 .code-block {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 12px;
   padding: 1.75rem;
   margin: 2rem 0;
@@ -350,9 +341,7 @@
   direction: ltr;
   text-align: left;
   position: relative;
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 16px var(--card-shadow), inset 0 1px 0 var(--card-border);
 }
 
 .code-block::before {
@@ -362,7 +351,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #7C3AED 0%, #a78bfa 100%);
+  background: var(--accent-gradient);
   border-radius: 12px 12px 0 0;
 }
 
@@ -374,10 +363,10 @@
 
 .blog-details-footer {
   padding: 2.5rem 3rem;
-  border-top: 1px solid rgba(124, 58, 237, 0.2);
+  border-top: 1px solid var(--card-border);
   display: flex;
   justify-content: center;
-  background: rgba(26, 13, 46, 0.4);
+  background: var(--section-bg-alt);
 }
 
 .back-to-blog-btn {
@@ -385,25 +374,25 @@
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 2rem;
-  background: rgba(124, 58, 237, 0.1);
+  background: var(--surface-alt, var(--card-bg-hover));
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  border: 1px solid var(--border);
   border-radius: 12px;
-  color: #7C3AED;
+  color: var(--accent-primary);
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: inherit;
   font-size: 1rem;
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.1);
+  box-shadow: 0 4px 12px var(--card-shadow);
 }
 
 .back-to-blog-btn:hover {
-  background: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 100%);
+  background: var(--accent-primary);
   color: #fff;
+  border-color: var(--accent-primary);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.3);
-  border-color: transparent;
+  box-shadow: 0 6px 24px var(--card-shadow);
 }
 
 .back-to-blog-btn.rtl:hover {
@@ -425,18 +414,18 @@
 .not-found-content {
   text-align: center;
   padding: 4rem 2rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--app-text);
 }
 
 .not-found-content h1 {
   font-size: 2rem;
-  color: #fff;
+  color: var(--app-text);
   margin-bottom: 1rem;
 }
 
 .not-found-content p {
   font-size: 1.125rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--app-text-secondary);
   margin-bottom: 2rem;
 }
 

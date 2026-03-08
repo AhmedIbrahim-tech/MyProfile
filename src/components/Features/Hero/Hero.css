@@ -1,8 +1,9 @@
 .hero {
-  padding: clamp(8rem, 15vh, 10rem) 0 clamp(3rem, 6vh, 4rem);
-  background: linear-gradient(135deg, rgba(10, 10, 30, 0.85) 0%, rgba(26, 26, 62, 0.85) 100%),
+  padding: clamp(2rem, 4vh, 3rem) 0 clamp(3rem, 6vh, 4rem);
+  background: var(--hero-overlay),
               url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1920&q=80') center/cover no-repeat fixed;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   display: flex;
   align-items: center;
   position: relative;
@@ -18,7 +19,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(10, 10, 30, 0.75) 0%, rgba(26, 26, 62, 0.75) 100%);
+  background: var(--hero-overlay-extra);
   z-index: 0;
 }
 
@@ -30,9 +31,11 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, var(--accent-soft) 0%, transparent 45%),
+    radial-gradient(circle at 80% 80%, var(--accent-soft) 0%, transparent 40%);
+  opacity: 0.4;
   z-index: 0;
+  pointer-events: none;
 }
 
 .hero-container {
@@ -64,12 +67,12 @@
   width: clamp(120px, 20vw, 180px);
   height: clamp(120px, 20vw, 180px);
   border-radius: 50%;
-  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+  background: var(--accent-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 20px 60px rgba(124, 58, 237, 0.5), 0 0 0 clamp(5px, 1vw, 10px) rgba(124, 58, 237, 0.1);
-  border: clamp(2px, 0.3vw, 3px) solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 40px var(--card-shadow-hover), 0 0 0 1px var(--border);
+  border: clamp(2px, 0.3vw, 3px) solid var(--border);
   position: relative;
   animation: float 6s ease-in-out infinite;
   overflow: hidden;
@@ -90,7 +93,7 @@
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  border: clamp(1px, 0.2vw, 2px) solid rgba(255, 255, 255, 0.3);
+  border: clamp(1px, 0.2vw, 2px) solid var(--card-border);
 }
 
 .hero-content {
@@ -108,15 +111,15 @@
 .hero-title {
   font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 800;
-  color: #fff;
+  color: var(--app-text);
   margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
   line-height: 1.2;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 20px var(--card-shadow);
 }
 
 .hero-subtitle {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-  color: #7C3AED;
+  color: var(--accent-primary);
   margin-bottom: clamp(1rem, 2vw, 1.5rem);
   font-weight: 600;
 }
@@ -124,7 +127,7 @@
 .hero-description {
   font-size: clamp(0.95rem, 1.5vw, 1.125rem);
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--app-text-secondary);
   margin-bottom: clamp(1.5rem, 3vw, 2rem);
   list-style: none;
   padding-left: 0;
@@ -141,7 +144,7 @@
 
 .hero-description li:hover {
   transform: translateX(6px);
-  color: rgba(255, 255, 255, 1);
+  color: var(--app-text);
 }
 
 .hero-description li::before {
@@ -151,31 +154,32 @@
   top: clamp(0.4rem, 0.7vw, 0.7rem);
   width: clamp(20px, 2.5vw, 24px);
   height: clamp(20px, 2.5vw, 24px);
-  background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--accent-primary);
   font-size: clamp(0.7rem, 1vw, 0.85rem);
   font-weight: bold;
-  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+  box-shadow: none;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero-description li:hover::before {
-  transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.5);
-  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  transform: scale(1.05);
+  background: var(--accent-soft);
+  border-color: var(--accent-primary);
 }
 
 .hero-description .highlight {
-  color: #fff;
+  color: var(--accent-primary);
   font-weight: 600;
-  background: linear-gradient(135deg, #7C3AED 0%, #8B5CF6 100%);
-  padding: 3px 8px;
-  border-radius: 5px;
-  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.3);
+  background: var(--accent-soft);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
   display: inline-block;
   line-height: 1.4;
 }
@@ -191,13 +195,13 @@
   display: flex;
   align-items: center;
   gap: clamp(0.5rem, 1vw, 0.75rem);
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--app-text);
   font-size: clamp(0.875rem, 1.2vw, 1rem);
   margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
 }
 
 .info-item i {
-  color: #7C3AED;
+  color: var(--accent-primary);
   font-size: clamp(1rem, 1.3vw, 1.1rem);
   width: clamp(18px, 2vw, 20px);
   text-align: center;
@@ -205,14 +209,14 @@
 }
 
 .info-item a {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--app-text);
   text-decoration: none;
   transition: color 0.3s;
   word-break: break-word;
 }
 
 .info-item a:hover {
-  color: #7C3AED;
+  color: var(--accent-primary);
 }
 
 .hero-actions {
@@ -248,24 +252,26 @@
 }
 
 .btn-primary {
-  background: #7C3AED;
+  background: var(--accent-primary);
   color: #fff;
 }
 
 .btn-primary:hover {
-  background: #6D28D9;
+  background: var(--accent-primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+  box-shadow: 0 8px 20px var(--card-shadow-hover);
 }
 
 .btn-secondary {
-  background: rgba(124, 58, 237, 0.1);
-  color: #7C3AED;
-  border: 1px solid #7C3AED;
+  background: var(--surface-alt, var(--card-bg-hover));
+  color: var(--accent-primary);
+  border: 1px solid var(--border);
 }
 
 .btn-secondary:hover {
-  background: rgba(124, 58, 237, 0.2);
+  background: var(--card-bg-hover);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary-hover);
   transform: translateY(-2px);
 }
 
@@ -285,10 +291,10 @@
 @media (max-width: 768px) {
   .hero {
     background-attachment: scroll;
-    padding: clamp(9.5rem, 18vh, 11.5rem) clamp(1rem, 4vw, 1.5rem) clamp(6rem, 12vh, 7rem);
+    padding: clamp(2rem, 4vh, 2.5rem) clamp(1rem, 4vw, 1.5rem) clamp(6rem, 12vh, 7rem);
     margin-top: 0;
     min-height: 100vh;
-    height: 100vh;
+    height: auto;
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
@@ -448,10 +454,10 @@
 /* Small Mobile (0px - 480px) */
 @media (max-width: 480px) {
   .hero {
-    padding: clamp(9rem, 16vh, 11rem) clamp(0.75rem, 3vw, 1.25rem) clamp(5.5rem, 11vh, 6.5rem);
+    padding: clamp(1.5rem, 3vh, 2rem) clamp(0.75rem, 3vw, 1.25rem) clamp(5.5rem, 11vh, 6.5rem);
     margin-top: 0;
     min-height: 100vh;
-    height: 100vh;
+    height: auto;
     overflow-y: auto;
     overflow-x: hidden;
     display: flex;

@@ -1,5 +1,5 @@
 import { profileData } from '@/data/profileData';
-import '@/components/Features/Education/Education.css';
+import '@/features/Education/Education.css';
 
 // Education icon SVG component
 const EducationIcon = () => (

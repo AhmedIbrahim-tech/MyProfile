@@ -16,8 +16,8 @@ import { profileData } from '@/data/profileData';
 import { sectionConfig } from '@/data/sectionConfig';
 import { footerContent } from '@/data/footerContent';
 import { blogPosts } from '@/data/blogData';
-import { LogoMark } from '@/components/Layouts/Footer/FooterIcons';
-import '@/components/Layouts/Footer/Footer.css';
+import { LogoMark } from '@/layouts/Footer/FooterIcons';
+import '@/layouts/Footer/Footer.css';
 
 // -----------------------------------------------------------------------------
 // Icons (react-icons)

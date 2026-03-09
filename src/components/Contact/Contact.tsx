@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import { profileData } from '@/data/profileData';
-import Loading from '@/components/shared/Loading';
+import Loading from '@/shared/Loading';
 import '@/components/Contact/Contact.css';
 
 const Contact = () => {

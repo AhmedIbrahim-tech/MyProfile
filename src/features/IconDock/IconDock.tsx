@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { profileData } from '@/data/profileData';
 import resumePdf from '@/assets/Ahmed Eprahim Resume.pdf';
-import '@/components/Features/IconDock/IconDock.css';
+import '@/features/IconDock/IconDock.css';
 
 const IconDock = () => {
   const location = useLocation();

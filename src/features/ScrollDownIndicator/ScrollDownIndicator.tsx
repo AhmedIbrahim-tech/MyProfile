@@ -1,4 +1,4 @@
-import '@/components/Features/ScrollDownIndicator/ScrollDownIndicator.css';
+import '@/features/ScrollDownIndicator/ScrollDownIndicator.css';
 
 const ScrollDownIndicator = () => {
   const handleScrollDown = () => {

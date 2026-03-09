@@ -1,4 +1,4 @@
-import '@/components/shared/Loading/Loading.css';
+import '@/shared/Loading/Loading.css';
 
 interface LoadingProps {
   message?: string;

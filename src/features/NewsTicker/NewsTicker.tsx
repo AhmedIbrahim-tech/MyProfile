@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import '@/components/Features/NewsTicker/NewsTicker.css';
+import '@/features/NewsTicker/NewsTicker.css';
 
 const NewsTicker = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

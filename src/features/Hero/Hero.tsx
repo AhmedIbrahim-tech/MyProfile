@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { profileData } from "@/data/profileData";
 import { sectionConfig } from "@/data/sectionConfig";
 import profileImage from "@/assets/IMG_2510.jpg";
-import ScrollDownIndicator from "@/components/Features/ScrollDownIndicator/ScrollDownIndicator";
-import "@/components/Features/Hero/Hero.css";
+import ScrollDownIndicator from "@/features/ScrollDownIndicator/ScrollDownIndicator";
+import "@/features/Hero/Hero.css";
 
 const Hero = () => {
   return (

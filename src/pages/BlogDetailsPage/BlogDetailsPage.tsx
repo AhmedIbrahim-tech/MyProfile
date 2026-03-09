@@ -1,7 +1,7 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { createElement, useMemo, type ReactNode } from 'react';
 import { useBlogPost, useBlogPosts } from '@/hooks/useBlogPosts';
-import Loading from '@/components/shared/Loading';
+import Loading from '@/shared/Loading';
 import '@/pages/BlogDetailsPage/BlogDetailsPage.css';
 
 // Utility function to detect if text contains Arabic characters

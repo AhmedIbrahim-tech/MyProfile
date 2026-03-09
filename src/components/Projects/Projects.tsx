@@ -9,7 +9,7 @@ import { useRepositories } from "@/components/Projects/hooks/useRepositories";
 import { ProjectCard } from "@/components/Projects/components/ProjectCard";
 import { TopProjectCard } from "@/components/Projects/components/TopProjectCard";
 import { ProjectFilters, type FilterCategory } from "@/components/Projects/components/ProjectFilters";
-import Loading from "@/components/shared/Loading";
+import Loading from "@/shared/Loading";
 import "@/components/Projects/Projects.css";
 
 const Projects = () => {

@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useBlogPosts } from '@/hooks/useBlogPosts';
-import Loading from '@/components/shared/Loading';
+import Loading from '@/shared/Loading';
 import '@/components/Blog/Blog.css';
 
 const Blog = () => {

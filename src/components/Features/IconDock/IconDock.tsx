@@ -48,6 +48,7 @@ const IconDock = () => {
             }
           }}
           title="Home"
+          aria-label="Go to home"
         >
           <i className="fas fa-sun"></i>
         </button>
@@ -55,7 +56,8 @@ const IconDock = () => {
         <button 
           className="dock-icon"
           onClick={handleDownloadResume}
-          title="Download CV"
+          title="Download Resume"
+          aria-label="Download resume (PDF)"
         >
           <i className="fas fa-download"></i>
         </button>
@@ -126,6 +128,7 @@ const IconDock = () => {
           rel="noopener noreferrer"
           className="dock-icon"
           title="GitHub"
+          aria-label="GitHub profile"
         >
           <i className="fab fa-github"></i>
         </a>
@@ -136,16 +139,18 @@ const IconDock = () => {
           rel="noopener noreferrer"
           className="dock-icon"
           title="LinkedIn"
+          aria-label="LinkedIn profile"
         >
           <i className="fab fa-linkedin"></i>
         </a>
         
         <a 
-          href={`https://wa.me/${profileData.phone.replace(/\D/g, '')}`}
+          href={`https://wa.me/${profileData.phone.replace(/\D/g, '').replace(/^0/, '20')}`}
           target="_blank"
           rel="noopener noreferrer"
           className="dock-icon"
           title="WhatsApp"
+          aria-label="Contact on WhatsApp"
         >
           <i className="fab fa-whatsapp"></i>
         </a>

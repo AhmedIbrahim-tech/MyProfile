@@ -267,6 +267,34 @@ button {
   font-family: inherit;
 }
 
+/* Base typography and readability */
+body {
+  line-height: 1.6;
+}
+
+/* Section rhythm: consistent vertical spacing between major sections */
+:root {
+  --section-padding-y: clamp(4rem, 10vh, 6rem);
+  --section-inner-gap: clamp(2rem, 4vw, 3rem);
+}
+
+/* Section title consistency: sizing, spacing, icon alignment */
+.section-title {
+  align-items: center;
+}
+
+.section-title i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Focus visibility for accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent-primary, var(--accent));
+  outline-offset: 2px;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;

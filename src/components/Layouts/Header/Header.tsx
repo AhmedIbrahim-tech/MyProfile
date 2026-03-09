@@ -81,7 +81,7 @@ const Header = () => {
 
         <div className="header-actions">
           <ThemeToggle />
-          <button className="download-resume-btn" onClick={handleDownloadResume}>
+          <button className="download-resume-btn" onClick={handleDownloadResume} aria-label="Download resume (PDF)">
             <span className="nav-icon"><i className="fas fa-download"></i></span>
             <span className="btn-text">Download Resume</span>
           </button>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { profileData } from "../../../data/profileData";
 import { sectionConfig } from "../../../data/sectionConfig";
 import profileImage from "../../../assets/IMG_2510.jpg";
@@ -18,40 +19,32 @@ const Hero = () => {
           <h2 className="hero-subtitle">{profileData.title}</h2>
           <ul className="hero-description">
             {profileData.about.map((point, index) => {
-              // Highlight "3+ years of experience" and ".NET Core & React" or ".NET Core" and "React"
+              // One key highlight per line to reduce visual noise and improve scanability
               const highlightText = (text: string) => {
                 let highlighted = text;
-                
-                // Highlight "3+ years of experience"
-                highlighted = highlighted.replace(
-                  /(3\+ years of experience)/gi,
-                  '<span class="highlight">$1</span>'
-                );
-                
-                // Highlight ".NET Core & React" as a combined phrase first
-                highlighted = highlighted.replace(
-                  /(\.NET Core\s*&\s*React)/gi,
-                  '<span class="highlight">$1</span>'
-                );
-                
-                // Highlight ".NET Core" (avoid matching if already inside a span)
-                highlighted = highlighted.replace(
-                  /(\.NET Core)(?![^<]*>)/gi,
-                  '<span class="highlight">$1</span>'
-                );
-                
-                // Highlight "React" (avoid matching if already inside a span)
-                highlighted = highlighted.replace(
-                  /(\bReact\b)(?![^<]*>)/gi,
-                  '<span class="highlight">$1</span>'
-                );
-                
+                // Line 1: experience; Line 2: stack; Line 3: company name
+                if (index === 0) {
+                  highlighted = highlighted.replace(
+                    /(3\+ years of experience)/gi,
+                    '<span class="highlight">$1</span>'
+                  );
+                } else if (index === 1) {
+                  highlighted = highlighted.replace(
+                    /(\.NET Core\s*&\s*React)/gi,
+                    '<span class="highlight">$1</span>'
+                  );
+                } else if (index === 2) {
+                  highlighted = highlighted.replace(
+                    /(HUED)/gi,
+                    '<span class="highlight">$1</span>'
+                  );
+                }
                 return highlighted;
               };
-              
+
               return (
-                <li 
-                  key={index} 
+                <li
+                  key={index}
                   dangerouslySetInnerHTML={{ __html: highlightText(point) }}
                 />
               );
@@ -91,16 +84,16 @@ const Hero = () => {
 
           <div className="hero-actions">
             {sectionConfig.projects && (
-              <a href="#projects" className="btn-primary">
+              <Link to="/projects" className="btn-primary">
                 <i className="fas fa-code"></i>
                 <span>View Projects</span>
-              </a>
+              </Link>
             )}
             {sectionConfig.contact && (
-              <a href="/contact" className="btn-secondary">
+              <Link to="/contact" className="btn-secondary">
                 <i className="fas fa-envelope"></i>
                 <span>Contact Me</span>
-              </a>
+              </Link>
             )}
           </div>
         </div>

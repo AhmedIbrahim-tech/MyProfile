@@ -76,8 +76,8 @@ const Footer = () => {
           <p>Copyright {currentYear} AhmedIbrahim.com</p>
           <p>All Rights Reserved</p>
           <div className="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
+            <a href="#privacy" aria-label="Privacy Policy">Privacy Policy</a>
+            <a href="#terms" aria-label="Terms of Service">Terms of Service</a>
           </div>
         </div>
       </div>

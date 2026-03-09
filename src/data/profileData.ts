@@ -12,17 +12,17 @@ export const profileData = {
   whatsapp: "https://wa.me/201007691743",
 
   about: [
-    "Passionate full-stack developer with 3+ years of experience crafting scalable web applications and enterprise solutions",
-    "Specializing in .NET Core backend development and React frontend architecture",
-    "Working remotely with HUED, a leading Saudi-based software house"
+    "Full-stack developer with 3+ years of experience building scalable web applications and enterprise systems",
+    "Specializing in .NET Core backend and React frontend architecture",
+    "Currently working remotely with HUED, a Saudi-based software house"
   ],
 
   education: {
     institution: "Thebes Academy",
-    degree: "Bachelor of Computer Science, 2016 - 2020",
+    degree: "Bachelor of Computer Science, 2016 – 2020",
     grade: "Very Good",
     project: "School Management System (Grade: Excellent)",
-    projectDescription: "A website facilitating interaction between schools, students, and their parents."
+    projectDescription: "Web platform for schools, students, and parents to manage attendance, grades, and communication."
   },
 
   experience: [
@@ -130,49 +130,49 @@ export const profileData = {
   projects: [
     {
       name: "E-Commerce Platform",
-      description: "Utilized ASP.NET Core and Angular to create a scalable e-commerce application.",
+      description: "Scalable e-commerce application built with ASP.NET Core and Angular.",
       features: [
-        "Features included user registration/login, product catalog management, secure payment gateway integration, shopping cart, responsive design, and search functionality."
+        "User auth, product catalog, payment integration, shopping cart, and responsive design."
       ],
       github: "https://github.com/AhmedIbrahim-tech/E-Commerce-Platform"
     },
     {
       name: "Gym Management System",
-      description: "Developed a web application for a gym using ASP.NET Core MVC.",
+      description: "Web application for gym management built with ASP.NET Core MVC.",
       features: [
-        "Features included user registration/login, product catalog management, secure payment gateway integration, shopping cart, responsive design, and search functionality."
+        "Member registration and login, membership plans, class scheduling, and responsive admin dashboard."
       ],
       github: "https://github.com/AhmedIbrahim-tech/VitaGymPortalWeb"
     },
     {
-      name : "Book Rental System",
-      description: "Full-stack web application designed to efficiently manage the rental process for a book rental service, built with ASP.NET Core MVC for both frontend and backend.",
+      name: "Book Rental System",
+      description: "Full-stack book rental management app built with ASP.NET Core MVC.",
       features: [
-        "Features included user registration/login, book catalog management, book borrowing, book returning, responsive design, and search functionality."
+        "User auth, book catalog, borrow/return workflow, and search."
       ],
       github: "https://github.com/AhmedIbrahim-tech/Bookify"
     },
     {
       name: "File Sharing System",
-      description: "Developed an ASP.NET Core MVC application for file sharing.",
+      description: "ASP.NET Core MVC application for secure file sharing.",
       features: [
-        "Supports user registration/login, file upload/download, file management and encryption."
+        "User auth, upload/download, file management, and encryption."
       ],
       github: "https://github.com/AhmedIbrahim-tech/Filesharing"
     },
     {
-      name: "Social Media Platform (Instagram-like Project)",
-      description: "Developed a social media platform resembling Instagram, utilizing ASP.NET Core MVC for backend development.",
+      name: "Social Media Platform (Instagram-like)",
+      description: "Social platform with ASP.NET Core MVC backend.",
       features: [
-        "Implements user profiles, photo sharing, likes, comments, and follows, focusing on responsive design."
+        "User profiles, photo sharing, likes, comments, and follows."
       ],
       github: "https://github.com/AhmedIbrahim-tech/Instagram-Platform"
     },
     {
       name: "Movie Site",
-      description: "A vibrant platform developed with ASP.NET Core MVC for movie enthusiasts to discover and discuss the best films.",
+      description: "ASP.NET Core MVC site for discovering and browsing films.",
       features: [
-        "Showcases top-rated movies, titles actors based on their film performances, provides detailed film descriptions, and lists production years."
+        "Top-rated movies, cast info, descriptions, and release years."
       ],
       github: "https://github.com/AhmedIbrahim-tech/TopMovies"
     }

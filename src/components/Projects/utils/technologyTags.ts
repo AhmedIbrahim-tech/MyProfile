@@ -1,6 +1,6 @@
-import type { Repository } from "../types";
-import type { TopProject } from "../types";
-import { getProjectCategory } from "./projectCategory";
+import type { Repository } from "@/components/Projects/types";
+import type { TopProject } from "@/components/Projects/types";
+import { getProjectCategory } from "@/components/Projects/utils/projectCategory";
 
 export const getTechnologyTags = (repo: Repository): string[] => {
   const tags: Set<string> = new Set();

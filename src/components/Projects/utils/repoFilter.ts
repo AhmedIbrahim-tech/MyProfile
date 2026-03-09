@@ -1,4 +1,4 @@
-import { hiddenRepos } from "../../../data/hiddenRepos";
+import { hiddenRepos } from "@/data/hiddenRepos";
 
 export const isRepoHidden = (repoName: string): boolean => {
   const normalizedRepoName = repoName.toLowerCase().replace(/[-_\s]/g, "");

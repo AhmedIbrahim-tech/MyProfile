@@ -1,9 +1,9 @@
-import Hero from '../../components/Features/Hero/Hero';
-import Skills from '../../components/Features/Skills/Skills';
-import Experience from '../../components/Features/Experience/Experience';
-import Education from '../../components/Features/Education/Education';
-import { sectionConfig } from '../../data/sectionConfig';
-import './Home.css';
+import Hero from '@/components/Features/Hero/Hero';
+import Skills from '@/components/Features/Skills/Skills';
+import Experience from '@/components/Features/Experience/Experience';
+import Education from '@/components/Features/Education/Education';
+import { sectionConfig } from '@/data/sectionConfig';
+import '@/pages/Home/Home.css';
 
 const Home = () => {
   return (

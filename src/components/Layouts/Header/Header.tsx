@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import resumePdf from '../../../assets/Ahmed Eprahim Resume.pdf';
-import { sectionConfig } from '../../../data/sectionConfig';
-import ThemeToggle from '../../ThemeToggle/ThemeToggle';
-import './Header.css';
+import resumePdf from '@/assets/Ahmed Eprahim Resume.pdf';
+import { sectionConfig } from '@/data/sectionConfig';
+import ThemeToggle from '@/components/ThemeToggle/ThemeToggle';
+import '@/components/Layouts/Header/Header.css';
 
 const Header = () => {
   const location = useLocation();

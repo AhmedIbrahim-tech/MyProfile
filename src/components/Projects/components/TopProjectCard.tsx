@@ -1,7 +1,7 @@
-import type { TopProject } from "../types";
-import { getTopProjectCategory } from "../utils/projectCategory";
-import { getTopProjectTags } from "../utils/technologyTags";
-import { getProjectImage } from "../constants/projectImages";
+import type { TopProject } from "@/components/Projects/types";
+import { getTopProjectCategory } from "@/components/Projects/utils/projectCategory";
+import { getTopProjectTags } from "@/components/Projects/utils/technologyTags";
+import { getProjectImage } from "@/components/Projects/constants/projectImages";
 
 interface TopProjectCardProps {
   project: TopProject;

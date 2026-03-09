@@ -1,6 +1,6 @@
-import Contact from '../../components/Contact/Contact';
-import { sectionConfig } from '../../data/sectionConfig';
-import './ContactPage.css';
+import Contact from '@/components/Contact/Contact';
+import { sectionConfig } from '@/data/sectionConfig';
+import '@/pages/ContactPage/ContactPage.css';
 
 const ContactPage = () => {
   if (!sectionConfig.contact) {

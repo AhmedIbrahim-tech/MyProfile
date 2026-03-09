@@ -1,5 +1,5 @@
-import { profileData } from '../../../data/profileData';
-import './Experience.css';
+import { profileData } from '@/data/profileData';
+import '@/components/Features/Experience/Experience.css';
 
 const Experience = () => {
   const getTechnologies = (exp: typeof profileData.experience[0] & { technologies?: string[] }) => {

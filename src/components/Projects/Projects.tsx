@@ -1,15 +1,16 @@
 import { useState, useMemo } from "react";
-import { profileData } from "../../data/profileData";
-import type { TopProject } from "./types";
-import { getProjectCategory } from "./utils/projectCategory";
-import { getTopProjectCategory } from "./utils/projectCategory";
-import { getTechnologyTags } from "./utils/technologyTags";
-import { getTopProjectTags } from "./utils/technologyTags";
-import { useRepositories } from "./hooks/useRepositories";
-import { ProjectCard } from "./components/ProjectCard";
-import { TopProjectCard } from "./components/TopProjectCard";
-import { ProjectFilters, type FilterCategory } from "./components/ProjectFilters";
-import "./Projects.css";
+import { profileData } from "@/data/profileData";
+import type { TopProject } from "@/components/Projects/types";
+import { getProjectCategory } from "@/components/Projects/utils/projectCategory";
+import { getTopProjectCategory } from "@/components/Projects/utils/projectCategory";
+import { getTechnologyTags } from "@/components/Projects/utils/technologyTags";
+import { getTopProjectTags } from "@/components/Projects/utils/technologyTags";
+import { useRepositories } from "@/components/Projects/hooks/useRepositories";
+import { ProjectCard } from "@/components/Projects/components/ProjectCard";
+import { TopProjectCard } from "@/components/Projects/components/TopProjectCard";
+import { ProjectFilters, type FilterCategory } from "@/components/Projects/components/ProjectFilters";
+import Loading from "@/components/shared/Loading";
+import "@/components/Projects/Projects.css";
 
 const Projects = () => {
   const { repos, loading, error } = useRepositories();
@@ -99,10 +100,7 @@ const Projects = () => {
               My <strong>Projects</strong>
             </span>
           </h2>
-          <div className="loading">
-            <div className="spinner"></div>
-            <p>Loading projects...</p>
-          </div>
+          <Loading message="Loading projects..." size="md" className="loading" />
         </div>
       </section>
     );

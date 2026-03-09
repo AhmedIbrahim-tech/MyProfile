@@ -1,4 +1,4 @@
-import type { Repository, TopProject, ProjectCategory } from "../types";
+import type { Repository, TopProject, ProjectCategory } from "@/components/Projects/types";
 
 export const getProjectCategory = (repo: Repository): ProjectCategory => {
   const name = repo.name.toLowerCase();

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import './ScrollNavigation.css';
+import '@/components/Features/ScrollNavigation/ScrollNavigation.css';
 
 const ScrollNavigation = () => {
   const [showScrollUp, setShowScrollUp] = useState(false);

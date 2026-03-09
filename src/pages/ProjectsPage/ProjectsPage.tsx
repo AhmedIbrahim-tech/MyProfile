@@ -1,6 +1,6 @@
-import Projects from '../../components/Projects/Projects';
-import { sectionConfig } from '../../data/sectionConfig';
-import './ProjectsPage.css';
+import Projects from '@/components/Projects/Projects';
+import { sectionConfig } from '@/data/sectionConfig';
+import '@/pages/ProjectsPage/ProjectsPage.css';
 
 const ProjectsPage = () => {
   if (!sectionConfig.projects) {

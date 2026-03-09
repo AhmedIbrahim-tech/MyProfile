@@ -1,5 +1,5 @@
-import type { Repository } from "../types";
-import { getProjectCategory } from "./projectCategory";
+import type { Repository } from "@/components/Projects/types";
+import { getProjectCategory } from "@/components/Projects/utils/projectCategory";
 
 export const generateDescription = (repo: Repository): string => {
   const name = repo.name.toLowerCase();

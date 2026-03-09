@@ -1,37 +1,25 @@
-import type { BlogPost } from '../../types/blog';
+import type { BlogPost } from '@/types/blog';
 
 export const post: BlogPost = {
   id: 7,
-  title: 'Reflection in C# - السر ورا الـ Frameworks الكبيرة',
+  title: 'Reflection in C# — How Frameworks Work Behind the Scenes',
   excerpt:
-    'عمرك فكرت إزاي الـ frameworks الكبيرة بتتعامل مع الكود بتاعك من غير ما تعرف تفاصيله؟ اكتشف السر ورا Entity Framework، ASP.NET، و AutoMapper.',
-  content: `🔍 "عمرك فكرت إزاي الـ frameworks الكبيرة بتتعامل مع الكود بتاعك من غير ما تعرف تفاصيله؟"
+    'كيف تقرأ Entity Framework وASP.NET وAutoMapper بنيات الكود وتتعامل معها دون معرفة مسبقة؟ الجواب في Reflection والـ Metadata وقت التشغيل.',
+  content: `# Reflection في C#
 
-يعني مثلًا:
+كيف تحوّل Entity Framework الـ classes إلى جداول؟ كيف يربط ASP.NET الـ routes بالـ controllers؟ كيف ينشئ AutoMapper التعيين بين نوعين مختلفين؟ كل هذا يحدث دون أن تكتب بنفسك الكود الذي يفحص البنية — والآلية الأساسية هي Reflection.
 
-Entity Framework بيحوّل الـ classes بتاعتك لجدول في الـ database
+---
 
-ASP.NET بيقدر يـ inject dependencies أو يـ bind الـ routes والـ controllers
+## ما هو Reflection؟
 
-AutoMapper بيعمل mapping بين كائنين مختلفين تلقائي
+Reflection في .NET يسمح بقراءة والتعامل مع ميتا بيانات التجميع (Assembly) والنوع (Type) وقت التشغيل: أسماء الـ types والـ properties والـ methods، والـ attributes، وغيرها. بمعنى آخر: يمكن للبرنامج أن يفحص البنية الداخلية للكود ويعاملها كبيانات.
 
-كل ده بيحصل من غير ما انت تحدد حاجة manual...
+---
 
-السر هنا هو: 🪞 Reflection
+## مثال: تحميل موديولات ديناميكياً
 
-💡 إيه هو Reflection باختصار؟
-
-هو الـ feature في .NET اللي بيسمحلك تقرأ وتتعامل مع الميتا داتا (Metadata) بتاعت الكود — زي أسماء الـ classes، الـ properties، والـ methods — وقت التشغيل (Runtime).
-
-بمعنى أبسط:
-
-تقدر تبص جوه الكود "وهو شغال" وتتعامل معاه كأنه data.
-
-⚙️ مثال واقعي بسيط:
-
-تخيل عندك system فيه feature اسمها Dynamic Module Loader
-
-الموديلات (Modules) بتتضاف من برّا كـ DLL files، والـ system بيقرأها ويشغلها أوتوماتيك.
+نفترض نظاماً يحمّل موديولات إضافية من ملفات DLL في مجلد معيّن، ويشغّل كل صنف ينفّذ واجهة IModule:
 
 \`\`\`csharp
 var assemblies = Directory.GetFiles("Modules", "*.dll");
@@ -41,7 +29,7 @@ foreach (var file in assemblies)
   var assembly = Assembly.LoadFrom(file);
   var types = assembly.GetTypes()
     .Where(t => typeof(IModule).IsAssignableFrom(t) && !t.IsInterface);
-  
+
   foreach (var type in types)
   {
     var instance = Activator.CreateInstance(type) as IModule;
@@ -50,72 +38,52 @@ foreach (var file in assemblies)
 }
 \`\`\`
 
-🔥 هنا Reflection هو اللي خلا الكود:
+هنا Reflection يُستخدم لـ: تحميل التجميع، استخراج الأنواع، التحقق من تطبيق IModule، ثم إنشاء مثيل وتشغيله. نفس الفكرة تُستخدم في ASP.NET عند اكتشاف الـ controllers وربطها بالـ routes.
 
-يقرأ DLLs جديدة أثناء التشغيل
+---
 
-يحدد إيه الـ classes اللي implement IModule
+## المميزات
 
-يشغّلها كأنها جزء من السيستم الأصلي
+- مرونة: كتابة كود يعمل على أنواع لم تُعرّف مسبقاً في وقت التصميم.
+- إعادة استخدام: كثير من الـ frameworks (مثل EF، ASP.NET، AutoMapper، xUnit) تعتمد على Reflection.
+- تحليل الكود: بناء أدوات مثل محلّلي كود أو مفتشين للـ metadata.
 
-وده نفس الأسلوب اللي بيستخدمه ASP.NET لما يـ load الـ Controllers بتاعتك من غير ما تكتبهم بإيدك واحد واحد.
+---
 
-⚡ مميزات Reflection:
+## العيوب والاحتياطات
 
-🔄 مرونة رهيبة: تقدر تكتب كود بيشتغل على أنواع مختلفة بدون ما يعرفها مسبقًا.
+- أداء: استدعاءات Reflection أبطأ من الاستدعاء المباشر؛ يُفضّل التخزين المؤقت لـ PropertyInfo و MethodInfo عند التكرار.
+- تصحيح الأخطاء: السلوك ديناميكي وقد لا يظهر بوضوح في وقت التصميم.
+- التغليف: الوصول إلى أعضاء private عبر Reflection قد يكسر مبدأ الإخفاء؛ يُستخدم فقط عند وجود مبرر واضح.
 
-🧱 Reusable: frameworks كتير مبنية عليه (EF, ASP.NET, AutoMapper, xUnit).
+---
 
-🧠 تحليل الكود: تستخدمه تبني tools زي analyzers أو code inspectors.
+## متى نستخدم Reflection؟
 
-⚠️ عيوب Reflection:
+يناسب Reflection عندما تحتاج سلوكاً يعتمد على البنية في وقت التشغيل، مثل:
 
-🐢 بطيء نسبيًا: كل access أو invocation بيستهلك أكتر من الكود العادي.
+- تحميل إضافات أو DLLs ديناميكياً.
+- بناء أدوات عامة (مثل serializers أو test runners).
+- قراءة الـ attributes المخصصة (مثل [Authorize] أو [HttpGet]) لاتخاذ قرارات في الإطار.
 
-🧩 صعب في الـ Debugging: لأن السلوك ديناميكي ومش واضح في الـ compile time.
+يُفضّل تجنّبه عندما يكون الأداء حرجاً (حلقات مكثفة أو APIs عالية الحمل)، أو عندما تكفي واجهات أو أنواع عامة لتحقيق المطلوب بدون فحص البنية.
 
-🔐 ممكن يفتح access لحاجات private: لو مش واخد بالك، ممكن تكسر الـ encapsulation.
+---
 
-🧠 امتى نستخدم Reflection؟
+## بدائل وتوصيات
 
-✅ لما تكون فعلاً محتاج Dynamic Behavior زي:
+- تخزين مؤقت لنتائج Reflection (مثل PropertyInfo/MethodInfo) وتجنّب استدعائها داخل حلقات ضيقة.
+- استخدام Expression Trees أو الـ delegates عند الحاجة لأداء أفضل مع الحفاظ على جزء من المرونة.
+- Source Generators في .NET: توليد كود في وقت التصميم بناءً على البنية دون الاعتماد على Reflection في وقت التشغيل عند الإمكان.
 
-Loading Plugins أو DLLs runtime
+---
 
-Building Generic Tools زي Serializers وTest Runners
+## الخاتمة
 
-Reading Custom Attributes (زي [Authorize], [HttpGet])
-
-🚫 متستخدموش لو:
-
-الأداء critical (زي loops أو APIs عالية الحمل)
-
-ممكن تستخدم Generics أو Interfaces بدل منه
-
-عايز كود واضح وسهل الصيانة
-
-⚙️ Best Practices:
-
-🧭 Cache كل حاجة (PropertyInfo, MethodInfo) — متجيبهمش كل مرة
-
-🪶 استخدم Expression Trees / Delegates لتحسين الأداء
-
-🧰 Source Generators بديل حديث بيعمل نفس الفكرة لكن وقت الـ compile
-
-📏 استخدمه باعتدال… مش علشان عندك مطرقة يبقى كل حاجة مسمار 😅
-
-🧩 خلاصة الكلام:
-
-Reflection مش مجرد feature…
-
-ده المحرك اللي ورا نص الـ frameworks اللي بنستخدمها كل يوم 🔥
-
-بس هو سلاح ذو حدين — استخدمه صح، هتبني systems مرنة وسهلة التطوير
-
-استخدمه غلط، هتفتح على نفسك performance bottlenecks مش هتخلص 😅`,
+Reflection هو الآلية التي تسمح للكثير من الـ frameworks بالتعامل مع بنية الكود دون معرفة مسبقة. استخدامه بحكمة يعطي مرونة وقوة؛ الإكثار منه في المسارات الحساسة للأداء قد يسبب مشاكل أداء يصعب حلها لاحقاً.`,
   author: 'Ahmed Ibrahim',
   date: '2024-01-20',
   category: 'Backend',
-  readTime: '12 min read',
-  image: 'https://miro.medium.com/v2/resize:fit:1200/1*6yZGUYgLFc5rRDa9ZYPl-g.png'
+  readTime: '8 min read',
+  image: 'https://miro.medium.com/v2/resize:fit:1200/1*6yZGUYgLFc5rRDa9ZYPl-g.png',
 };

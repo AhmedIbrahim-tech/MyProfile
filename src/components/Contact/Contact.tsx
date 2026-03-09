@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
-import { profileData } from '../../data/profileData';
-import './Contact.css';
+import { profileData } from '@/data/profileData';
+import Loading from '@/components/shared/Loading';
+import '@/components/Contact/Contact.css';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -282,7 +283,7 @@ const Contact = () => {
 
             {status === 'sending' && (
               <div className="form-message sending">
-                Sending your message...
+                <Loading message="Sending your message..." size="sm" />
               </div>
             )}
 

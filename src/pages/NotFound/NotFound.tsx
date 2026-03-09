@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
-import './NotFound.css';
+import '@/pages/NotFound/NotFound.css';
+import errorCover from '@/assets/error400-cover.png';
 
 const NotFound = () => {
   return (
     <div className="not-found-page">
       <div className="not-found-container">
         <div className="not-found-content">
-          <div className="not-found-number">404</div>
+          <img
+            src={errorCover}
+            alt="404 - Page not found"
+            className="not-found-illustration"
+          />
           <h1 className="not-found-title">Page Not Found</h1>
           <p className="not-found-message">
             Oops! The page you're looking for doesn't exist. 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import type { ProjectCategory } from '../types';
-import './ProjectFilters.css';
+import type { ProjectCategory } from '@/components/Projects/types';
+import '@/components/Projects/components/ProjectFilters.css';
 
 export type FilterCategory = 'all' | 'top' | ProjectCategory;
 

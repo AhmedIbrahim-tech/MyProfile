@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import './ComingSoon.css';
+import '@/pages/ComingSoon/ComingSoon.css';
 
 const STORAGE_KEY = 'comingSoonTargetDate';
 

@@ -1,12 +1,14 @@
-import { blogPosts, getBlogPostById, type BlogPost } from '../data/blogData';
+import { blogPosts, getBlogPostById, type BlogPost } from '@/data/blogData';
 
 export type { BlogPost };
 
 export const blogService = {
   getAllPosts: async (): Promise<BlogPost[]> => {
-    const sorted = [...blogPosts].sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-    );
+    const sorted = [...blogPosts].sort((a, b) => {
+      const byDate = new Date(b.date).getTime() - new Date(a.date).getTime();
+      if (byDate !== 0) return byDate;
+      return b.id - a.id;
+    });
     return sorted;
   },
 

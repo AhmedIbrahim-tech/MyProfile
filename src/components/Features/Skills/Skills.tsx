@@ -1,5 +1,5 @@
-import { profileData } from '../../../data/profileData';
-import './Skills.css';
+import { profileData } from '@/data/profileData';
+import '@/components/Features/Skills/Skills.css';
 import * as Si from 'react-icons/si';
 import * as Fa from 'react-icons/fa';
 

@@ -1,9 +1,9 @@
-import type { Repository } from "../types";
-import { getProjectCategory } from "../utils/projectCategory";
-import { generateDescription } from "../utils/projectDescription";
-import { generateFeatures } from "../utils/projectFeatures";
-import { getTechnologyTags } from "../utils/technologyTags";
-import { getProjectImage } from "../constants/projectImages";
+import type { Repository } from "@/components/Projects/types";
+import { getProjectCategory } from "@/components/Projects/utils/projectCategory";
+import { generateDescription } from "@/components/Projects/utils/projectDescription";
+import { generateFeatures } from "@/components/Projects/utils/projectFeatures";
+import { getTechnologyTags } from "@/components/Projects/utils/technologyTags";
+import { getProjectImage } from "@/components/Projects/constants/projectImages";
 
 interface ProjectCardProps {
   repo: Repository;

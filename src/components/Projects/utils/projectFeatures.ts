@@ -1,5 +1,5 @@
-import type { Repository } from "../types";
-import { getProjectCategory } from "./projectCategory";
+import type { Repository } from "@/components/Projects/types";
+import { getProjectCategory } from "@/components/Projects/utils/projectCategory";
 
 export const generateFeatures = (repo: Repository): string[] => {
   const features: string[] = [];

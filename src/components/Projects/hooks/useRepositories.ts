@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import type { Repository } from "../types";
-import { isRepoHidden } from "../utils/repoFilter";
+import type { Repository } from "@/components/Projects/types";
+import { isRepoHidden } from "@/components/Projects/utils/repoFilter";
 
 export const useRepositories = () => {
   const [repos, setRepos] = useState<Repository[]>([]);

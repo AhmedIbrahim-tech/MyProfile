@@ -49,7 +49,7 @@
 }
 
 .dock-icon:hover {
-  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  background: var(--accent-soft);
   border-color: var(--accent-primary);
   color: var(--accent-primary);
   transform: translateY(-3px) scale(1.05);
@@ -57,7 +57,7 @@
 }
 
 .dock-icon.active {
-  background: var(--accent-soft, rgba(124, 58, 237, 0.15));
+  background: var(--accent-soft);
   border-color: var(--accent-primary);
   color: var(--accent-primary);
   box-shadow: 0 2px 12px var(--card-shadow);

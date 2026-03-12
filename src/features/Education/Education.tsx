@@ -4,8 +4,8 @@ import '@/features/Education/Education.css';
 // Education icon SVG component
 const EducationIcon = () => (
   <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-    <path d="M20 5L5 12.5L20 20L35 12.5L20 5Z" fill="#7C3AED"/>
-    <path d="M5 27.5V17.5L20 25L35 17.5V27.5L20 35L5 27.5Z" fill="#7C3AED" opacity="0.6"/>
+    <path d="M20 5L5 12.5L20 20L35 12.5L20 5Z" fill="#38bdf8"/>
+    <path d="M5 27.5V17.5L20 25L35 17.5V27.5L20 35L5 27.5Z" fill="#38bdf8" opacity="0.6"/>
   </svg>
 );
 

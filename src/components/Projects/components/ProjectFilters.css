@@ -47,7 +47,7 @@
 }
 
 .clear-filters-btn:hover {
-  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  background: var(--accent-soft);
   border-color: var(--accent-primary);
   color: var(--accent-primary);
   transform: translateY(-2px);
@@ -105,7 +105,7 @@
 }
 
 .toggle-tech-btn.active {
-  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  background: var(--accent-soft);
   border-color: var(--accent-primary);
   color: var(--accent-primary);
 }
@@ -224,7 +224,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  background: var(--accent-soft);
   border: 1px solid var(--border);
   border-radius: 20px;
   color: var(--accent-primary);
@@ -248,7 +248,7 @@
 }
 
 .remove-filter-btn:hover {
-  background: var(--accent-soft, rgba(124, 58, 237, 0.15));
+  background: var(--accent-soft);
   color: var(--accent-primary);
 }
 

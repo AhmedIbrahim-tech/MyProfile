@@ -78,7 +78,7 @@
 }
 
 .current-experience {
-  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  background: var(--accent-soft);
   border: 1px solid var(--border);
   border-top: clamp(3px, 0.5vw, 4px) solid var(--accent-primary);
   box-shadow: 0 8px 24px var(--card-shadow);
@@ -91,7 +91,7 @@
 }
 
 .current-experience:hover {
-  background: var(--accent-soft, rgba(124, 58, 237, 0.15));
+  background: var(--accent-soft);
   border-color: var(--border);
   transform: translateY(-2px);
   box-shadow: 0 12px 32px var(--card-shadow);
@@ -272,14 +272,14 @@
 .responsibility-item strong {
   color: var(--app-text);
   font-weight: 600;
-  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  background: var(--accent-soft);
   padding: clamp(0.1rem, 0.2vw, 0.15rem) clamp(0.3rem, 0.6vw, 0.4rem);
   border-radius: 4px;
   transition: all 0.3s ease;
 }
 
 .responsibility-item:hover strong {
-  background: var(--accent-soft, rgba(124, 58, 237, 0.18));
+  background: var(--accent-soft);
 }
 
 .current-experience .responsibility-item::before {
@@ -334,7 +334,7 @@
 }
 
 .current-experience .tech-tag {
-  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  background: var(--accent-soft);
   border-color: var(--border);
   color: var(--app-text);
 }

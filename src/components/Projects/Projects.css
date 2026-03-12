@@ -259,7 +259,7 @@
 }
 
 .topic-tag {
-  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  background: var(--accent-soft);
   color: var(--accent-primary);
   padding: 0.25rem 0.75rem;
   border-radius: 20px;

@@ -104,7 +104,7 @@
   color: #fff;
   border-color: var(--accent-primary);
   transform: translateY(-4px) scale(1.06);
-  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+  box-shadow: var(--accent-glow);
 }
 
 .footer-social a:active,
@@ -230,7 +230,7 @@
 .footer-scroll-top:hover {
   background: var(--accent-primary-hover, color-mix(in srgb, var(--accent-primary) 85%, black));
   transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.45);
+  box-shadow: var(--accent-glow);
 }
 
 .footer-scroll-top:active {

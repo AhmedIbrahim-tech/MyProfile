@@ -82,7 +82,7 @@
 .blog-search-input:focus {
   outline: none;
   border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px var(--accent-soft, rgba(124, 58, 237, 0.15));
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .blog-filters {
@@ -113,7 +113,7 @@
   background: var(--accent-primary);
   border-color: var(--accent-primary);
   color: #fff;
-  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+  box-shadow: var(--accent-glow);
 }
 
 .filter-btn:focus-visible {
@@ -166,7 +166,7 @@
 }
 
 .blog-empty-reset:hover {
-  background: var(--accent-soft, rgba(124, 58, 237, 0.1));
+  background: var(--accent-soft);
   border-color: var(--accent-primary);
 }
 

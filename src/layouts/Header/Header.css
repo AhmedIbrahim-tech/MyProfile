@@ -175,7 +175,7 @@
 .nav a.active {
   font-weight: 600;
   color: var(--accent-primary);
-  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  background: var(--accent-soft);
 }
 
 .nav-icon {
@@ -197,8 +197,8 @@
 }
 
 .download-resume-btn {
-  background: rgba(139, 92, 246, 0.2);
-  border: 1px solid rgba(139, 92, 246, 0.4);
+  background: rgba(var(--accent-rgb), 0.2);
+  border: 1px solid rgba(var(--accent-rgb), 0.4);
   color: var(--header-text);
   text-decoration: none;
   font-weight: 500;
@@ -217,10 +217,10 @@
 }
 
 .download-resume-btn:hover {
-  background: rgba(139, 92, 246, 0.4);
-  border-color: rgba(139, 92, 246, 0.6);
+  background: rgba(var(--accent-rgb), 0.4);
+  border-color: rgba(var(--accent-rgb), 0.6);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.4);
 }
 
 .download-resume-btn:active {

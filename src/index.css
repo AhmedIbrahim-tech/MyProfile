@@ -52,9 +52,10 @@
   --padding-container-desktop: clamp(3rem, 6vw, 4rem);
 
   /* Default (dark) - used before [data-theme] is applied */
-  --app-background: #0B1120;
-  --accent: #8B5CF6;
-  --accent-hover: #7C3AED;
+  --app-background: #060b19;
+  --accent: #38bdf8;
+  --accent-hover: #0ea5e9;
+  --accent-rgb: 56, 189, 248;
 }
 
 /* ========== LIGHT THEME — Neutral base + violet accent ========== */
@@ -64,16 +65,17 @@
   background-color: #F8FAFC;
 
   /* Design tokens */
-  --bg: #F8FAFC;
-  --surface: #FFFFFF;
-  --surface-alt: #F1F5F9;
-  --border: #E2E8F0;
-  --text: #0F172A;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-alt: #f1f5f9;
+  --border: #cbd5e1;
+  --text: #0f172a;
   --text-secondary: #475569;
-  --text-muted: #64748B;
-  --accent: #7C3AED;
-  --accent-hover: #6D28D9;
-  --accent-soft: #EDE9FE;
+  --text-muted: #64748b;
+  --accent: #0284c7;
+  --accent-hover: #0369a1;
+  --accent-soft: rgba(2, 132, 199, 0.08);
+  --accent-rgb: 2, 132, 199;
 
   /* Mapped for existing components */
   --app-background: var(--bg);
@@ -89,8 +91,9 @@
   --card-bg: var(--surface);
   --card-bg-hover: var(--surface-alt);
   --card-border: var(--border);
-  --card-shadow: rgba(0, 0, 0, 0.04);
-  --card-shadow-hover: rgba(0, 0, 0, 0.08);
+  --card-shadow: 0 4px 12px rgba(148, 163, 184, 0.06);
+  --card-shadow-hover: 0 8px 24px rgba(148, 163, 184, 0.12);
+  --accent-glow: 0 0 15px rgba(2, 132, 199, 0.2);
 
   --section-bg: var(--bg);
   --section-bg-alt: var(--surface-alt);
@@ -114,7 +117,7 @@
   --accent-primary: var(--accent);
   --accent-primary-hover: var(--accent-hover);
   --accent-secondary: var(--accent-hover);
-  --accent-gradient: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  --accent-gradient: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
 
   --border-color: var(--border);
   --divider-color: var(--border);
@@ -156,16 +159,17 @@
   background-color: #0B1120;
 
   /* Design tokens */
-  --bg: #0B1120;
-  --surface: #111827;
-  --surface-alt: #1F2937;
-  --border: #334155;
-  --text: #F8FAFC;
-  --text-secondary: #CBD5E1;
-  --text-muted: #94A3B8;
-  --accent: #8B5CF6;
-  --accent-hover: #7C3AED;
-  --accent-soft: #2E1A47;
+  --bg: #060b19;
+  --surface: #0d1222;
+  --surface-alt: #161d31;
+  --border: #1e293b;
+  --text: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent: #38bdf8;
+  --accent-hover: #0ea5e9;
+  --accent-soft: rgba(56, 189, 248, 0.12);
+  --accent-rgb: 56, 189, 248;
 
   /* Mapped for existing components */
   --app-background: var(--bg);
@@ -181,8 +185,9 @@
   --card-bg: var(--surface);
   --card-bg-hover: var(--surface-alt);
   --card-border: var(--border);
-  --card-shadow: rgba(0, 0, 0, 0.2);
-  --card-shadow-hover: rgba(0, 0, 0, 0.3);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --card-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.5);
+  --accent-glow: 0 0 20px rgba(56, 189, 248, 0.25);
 
   --section-bg: var(--bg);
   --section-bg-alt: var(--surface-alt);
@@ -206,7 +211,7 @@
   --accent-primary: var(--accent);
   --accent-primary-hover: var(--accent-hover);
   --accent-secondary: var(--accent-hover);
-  --accent-gradient: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
 
   --border-color: var(--border);
   --divider-color: var(--border);
@@ -214,7 +219,7 @@
   --overlay-bg: rgba(17, 24, 39, 0.97);
   --backdrop-blur: blur(20px);
 
-  /* Hero: neutral dark overlay, minimal purple */
+  /* Hero: neutral dark overlay, minimal blue */
   --hero-overlay: linear-gradient(135deg, rgba(11, 17, 32, 0.9) 0%, rgba(31, 41, 55, 0.88) 100%);
   --hero-overlay-extra: linear-gradient(135deg, rgba(11, 17, 32, 0.85) 0%, rgba(31, 41, 55, 0.82) 100%);
 
@@ -310,12 +315,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent, #8B5CF6);
+  background: var(--accent, #38bdf8);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-hover, #7C3AED);
+  background: var(--accent-hover, #0ea5e9);
 }
 
 /* Responsive Image Base Styles */

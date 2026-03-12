@@ -79,7 +79,7 @@
 }
 
 .contact-email:hover {
-  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  background: var(--accent-soft);
   border-color: var(--accent-primary);
   color: var(--accent-primary);
   transform: translateY(-2px);
@@ -131,10 +131,10 @@
 }
 
 .btn-copy-email:hover {
-  background: var(--accent-soft, rgba(124, 58, 237, 0.12));
+  background: var(--accent-soft);
   border-color: var(--accent-primary);
   transform: translateY(-1px);
-  box-shadow: 0 3px 10px var(--card-shadow);
+  box-shadow: var(--card-shadow);
 }
 
 .btn-copy-email:hover .copy-icon {
@@ -149,9 +149,9 @@
 
 .btn-copy-email.copied {
   border-color: var(--accent-primary);
-  background: var(--accent-soft, rgba(124, 58, 237, 0.15));
+  background: var(--accent-soft);
   animation: copySuccess 0.5s ease;
-  box-shadow: 0 0 0 3px var(--accent-soft, rgba(124, 58, 237, 0.2));
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .btn-copy-email.copied .copy-icon {
@@ -240,7 +240,7 @@
   color: #fff;
   border-color: var(--accent-primary);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px var(--card-shadow);
+  box-shadow: var(--accent-glow);
 }
 
 .contact-form {
@@ -293,7 +293,7 @@
 .form-group textarea:focus {
   outline: none;
   border-color: var(--input-border-focus);
-  box-shadow: 0 0 0 3px var(--accent-soft, rgba(124, 58, 237, 0.15));
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .form-group input::placeholder,
@@ -410,7 +410,7 @@
 .btn-submit:hover {
   background: var(--accent-primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px var(--card-shadow);
+  box-shadow: var(--accent-glow);
 }
 
 .btn-submit:disabled {

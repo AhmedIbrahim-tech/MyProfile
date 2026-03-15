@@ -12,13 +12,16 @@ import ContactPage from '@/pages/ContactPage/ContactPage';
 import BlogPage from '@/pages/BlogPage/BlogPage';
 import BlogDetailsPage from '@/pages/BlogDetailsPage/BlogDetailsPage';
 import ComingSoon from '@/pages/ComingSoon/ComingSoon';
+import ProjectDetailsPage from '@/pages/ProjectDetailsPage/ProjectDetailsPage';
 import NotFound from '@/pages/NotFound/NotFound';
 import OfflinePage from '@/pages/OfflinePage/OfflinePage';
 import '@/App.css';
 
 const KNOWN_PATHS = ['/', '/projects', '/blog', '/contact', '/coming-soon'];
 const isKnownPath = (pathname: string) =>
-  KNOWN_PATHS.includes(pathname) || /^\/blog\/\d+$/.test(pathname);
+  KNOWN_PATHS.includes(pathname) || 
+  /^\/blog\/\d+$/.test(pathname) ||
+  /^\/projects\/[\w-]+$/.test(pathname);
 
 function AppLayout() {
   const isOnline = useOnlineStatus();
@@ -37,6 +40,7 @@ function AppLayout() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:id" element={<ProjectDetailsPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:id" element={<BlogDetailsPage />} />
           <Route path="/contact" element={<ContactPage />} />

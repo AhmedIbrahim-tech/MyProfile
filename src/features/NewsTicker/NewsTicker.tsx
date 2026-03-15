@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { profileData } from '@/data/profileData';
 import '@/features/NewsTicker/NewsTicker.css';
 
 const NewsTicker = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [time, setTime] = useState(new Date());
   const location = useLocation();
   const isProjectsPage = location.pathname === '/projects';
 
@@ -41,13 +43,41 @@ const NewsTicker = () => {
 
   const newsItems = isProjectsPage ? projectsNewsItems : generalNewsItems;
 
+  // Extract a small, clean subset of skills from the real data
+  const allSkills = [
+    ...profileData.technologies.frontEnd,
+    ...profileData.technologies.backEnd
+  ];
+
+  const skillMapping: Record<string, { name: string; icon: string }> = {
+    'ASP.NET Core (MVC, API)': { name: '.NET Core', icon: 'fas fa-code' },
+    // 'React.js': { name: 'React', icon: 'fab fa-react' },
+    'Next.js': { name: 'Next.js', icon: 'fas fa-layer-group' },
+    'Microsoft SQL Server': { name: 'SQL', icon: 'fas fa-database' }
+  };
+
+  const displaySkills = allSkills
+    .filter(skill => skillMapping[skill])
+    .map(skill => skillMapping[skill])
+    .slice(0, 3);
+
   useEffect(() => {
-    const interval = setInterval(() => {
+    const timeInterval = setInterval(() => setTime(new Date()), 10000);
+    const newsInterval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % newsItems.length);
     }, 4000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(timeInterval);
+      clearInterval(newsInterval);
+    };
   }, [newsItems.length]);
+
+  const formattedTime = time.toLocaleTimeString([], {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
+  });
 
   return (
     <div className="news-ticker">
@@ -64,6 +94,20 @@ const NewsTicker = () => {
           <span className="ticker-emoji">{newsItems[currentIndex].emoji}</span>
           <span className="ticker-text">{newsItems[currentIndex].text}</span>
         </div>
+      </div>
+      <div className="ticker-chips">
+        <div className="ticker-chip time-chip">
+          <span className="live-indicator"></span>
+          <i className="fas fa-clock"></i>
+          <span>{formattedTime}</span>
+        </div>
+        <div className="chip-divider"></div>
+        {displaySkills.map((skill, idx) => (
+          <div key={idx} className="ticker-chip skill-chip">
+            <i className={skill.icon}></i>
+            <span>{skill.name}</span>
+          </div>
+        ))}
       </div>
     </div>
   );

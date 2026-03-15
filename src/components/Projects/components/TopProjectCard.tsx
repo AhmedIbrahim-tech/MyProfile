@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { TopProject } from "@/components/Projects/types";
 import { getTopProjectCategory } from "@/components/Projects/utils/projectCategory";
 import { getTopProjectTags } from "@/components/Projects/utils/technologyTags";
@@ -57,22 +58,19 @@ export const TopProjectCard = ({ project }: TopProjectCardProps) => {
           </ul>
         )}
         <div className="project-actions">
+          <Link to={`/projects/${project.id}`} className="btn-view">
+            <i className="fas fa-book-open"></i>
+            Explore Case Study
+          </Link>
           <a 
             href={project.github}
             target="_blank" 
             rel="noopener noreferrer"
-            className="btn-view"
+            className="btn-view btn-view-secondary"
           >
             <i className="fab fa-github"></i>
-            View on GitHub
+            GitHub
           </a>
-          <button
-            className="btn-view btn-view-secondary btn-disabled"
-            disabled
-          >
-            <i className="fas fa-external-link-alt"></i>
-            Coming Soon
-          </button>
         </div>
       </div>
     </div>

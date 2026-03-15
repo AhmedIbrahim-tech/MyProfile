@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { Repository } from "@/components/Projects/types";
 import { getProjectCategory } from "@/components/Projects/utils/projectCategory";
 import { generateDescription } from "@/components/Projects/utils/projectDescription";
@@ -70,34 +71,19 @@ export const ProjectCard = ({ repo }: ProjectCardProps) => {
         </ul>
 
         <div className="project-actions">
+          <Link to={`/projects/${repo.name}`} className="btn-view">
+            <i className="fas fa-search-plus"></i>
+            Explore Project
+          </Link>
           <a
             href={repo.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-view"
+            className="btn-view btn-view-secondary"
           >
             <i className="fab fa-github"></i>
-            View on GitHub
+            GitHub
           </a>
-          {repo.homepage ? (
-            <a
-              href={repo.homepage}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-view btn-view-secondary"
-            >
-              <i className="fas fa-external-link-alt"></i>
-              Live Demo
-            </a>
-          ) : (
-            <button
-              className="btn-view btn-view-secondary btn-disabled"
-              disabled
-            >
-              <i className="fas fa-external-link-alt"></i>
-              Coming Soon
-            </button>
-          )}
         </div>
       </div>
     </div>

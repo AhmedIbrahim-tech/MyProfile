@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import type { TopProject } from "@/components/Projects/types";
 import { getTopProjectCategory } from "@/components/Projects/utils/projectCategory";
 import { getTopProjectTags } from "@/components/Projects/utils/technologyTags";
@@ -9,6 +9,8 @@ interface TopProjectCardProps {
 }
 
 export const TopProjectCard = ({ project }: TopProjectCardProps) => {
+  const navigate = useNavigate();
+  const caseStudyPath = `/projects/${project.id}`;
   const category = project.category || getTopProjectCategory(project);
   const imageUrl = getProjectImage(
     project.github,
@@ -19,7 +21,10 @@ export const TopProjectCard = ({ project }: TopProjectCardProps) => {
   const techTags = getTopProjectTags(project);
 
   return (
-    <div className="project-card">
+    <div
+      className="project-card project-card--clickable-case-study"
+      onClick={() => navigate(caseStudyPath)}
+    >
       <div className="project-image-container">
         <img
           src={imageUrl}
@@ -58,15 +63,21 @@ export const TopProjectCard = ({ project }: TopProjectCardProps) => {
           </ul>
         )}
         <div className="project-actions">
-          <Link to={`/projects/${project.id}`} className="btn-view">
-            <i className="fas fa-book-open"></i>
-            Explore Case Study
+          <Link
+            to={caseStudyPath}
+            className="btn-view"
+            aria-label={`${project.name} — explore project`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <i className="fas fa-search-plus"></i>
+            Explore Project
           </Link>
           <a 
             href={project.github}
             target="_blank" 
             rel="noopener noreferrer"
             className="btn-view btn-view-secondary"
+            onClick={(e) => e.stopPropagation()}
           >
             <i className="fab fa-github"></i>
             GitHub

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import type { Repository } from "@/components/Projects/types";
 import { getProjectCategory } from "@/components/Projects/utils/projectCategory";
 import { generateDescription } from "@/components/Projects/utils/projectDescription";
@@ -13,6 +13,8 @@ interface ProjectCardProps {
 export const ProjectCard = ({ repo }: ProjectCardProps) => {
   if (!repo) return null;
 
+  const navigate = useNavigate();
+  const projectPath = `/projects/${repo.name}`;
   const category = getProjectCategory(repo);
   const description = repo.description || generateDescription(repo);
   const imageUrl = getProjectImage(
@@ -24,7 +26,10 @@ export const ProjectCard = ({ repo }: ProjectCardProps) => {
   const techTags = getTechnologyTags(repo);
 
   return (
-    <div className="project-card">
+    <div
+      className="project-card project-card--clickable-case-study"
+      onClick={() => navigate(projectPath)}
+    >
       <div className="project-image-container">
         <img
           src={imageUrl}
@@ -71,7 +76,12 @@ export const ProjectCard = ({ repo }: ProjectCardProps) => {
         </ul>
 
         <div className="project-actions">
-          <Link to={`/projects/${repo.name}`} className="btn-view">
+          <Link
+            to={projectPath}
+            className="btn-view"
+            aria-label={`${repo.name.replace(/-/g, " ")} — explore project`}
+            onClick={(e) => e.stopPropagation()}
+          >
             <i className="fas fa-search-plus"></i>
             Explore Project
           </Link>
@@ -80,6 +90,7 @@ export const ProjectCard = ({ repo }: ProjectCardProps) => {
             target="_blank"
             rel="noopener noreferrer"
             className="btn-view btn-view-secondary"
+            onClick={(e) => e.stopPropagation()}
           >
             <i className="fab fa-github"></i>
             GitHub

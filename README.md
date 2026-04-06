@@ -137,7 +137,7 @@ To enable email functionality in the contact form:
 To customize the portfolio with your own information:
 
 1. Update `src/data/profileData.ts` with your personal information, experience, education, and skills
-2. Change the GitHub username in `src/components/Projects.tsx` (line 26)
+2. Change the GitHub username in `src/features/projects/Projects.tsx` (line 26)
 3. Update contact information and social links throughout the components
 
 ## License

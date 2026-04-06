@@ -19,7 +19,7 @@ export const profileData = {
 
   education: {
     institution: "Thebes Academy",
-    degree: "Bachelor of Computer Science, 2016 – 2020",
+    degree: "Bachelor of Computer Science, 2016 - 2020",
     grade: "Very Good",
     project: "School Management System (Grade: Excellent)",
     projectDescription: "Web platform for schools, students, and parents to manage attendance, grades, and communication."
@@ -29,8 +29,8 @@ export const profileData = {
     {
       title: "Full Stack Developer (.NET Core & React)",
       company: "HUED Company",
-      location: "Remote - Saudi Arabia",
-      period: "May 2025 - Present",
+      location: "Remote - Riyadh, Saudi Arabia",
+      period: "June 2025 - Present",
       responsibilities: [
         "Develop and deliver full-stack solutions for clients across healthcare, education, and agriculture sectors.",
         "Design and implement responsive React/TypeScript frontends with seamless .NET Core API integration.",
@@ -41,7 +41,8 @@ export const profileData = {
     {
       title: "ASP.NET Core Developer",
       company: "Halan Company",
-      period: "October 2024 - May 2025",
+      location: "Onsite - Mall of Arabia, 6th of October, Cairo",
+      period: "October 2024 - June 2025",
       responsibilities: [
         "Architect and develop B2B/B2C order management and ERP modules for retail operations.",
         "Optimize inventory and logistics workflows through high-performance API development.",
@@ -52,6 +53,7 @@ export const profileData = {
     {
       title: "ASP.NET Core Developer",
       company: "Oasis Computer Systems Company",
+      location: "Onsite - Nasr City, Cairo, Egypt",
       period: "April 2022 - October 2024",
       responsibilities: [
         "Develop comprehensive insurance, account management, and e-billing systems.",
@@ -136,7 +138,6 @@ export const profileData = {
         "Server-side rendering (SSR), real-time inventory tracking, Stripe payments, and advanced search."
       ],
       github: "https://github.com/AhmedIbrahim-tech/E-Commerce-Platform",
-      liveDemo: "https://ecommerce-platform-demo.com",
       role: "Lead Full Stack Developer",
       techStack: [".NET Core 8", "Next.js 14", "Tailwind CSS", "SQL Server", "Redis", "Stripe API"],
       architecture: [

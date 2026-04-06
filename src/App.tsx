@@ -1,21 +1,21 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { useOnlineStatus } from '@/hooks/useOnlineStatus';
-import Header from '@/layouts/Header/Header';
-import Footer from '@/layouts/Footer/Footer';
-import IconDock from '@/features/IconDock/IconDock';
-import NewsTicker from '@/features/NewsTicker/NewsTicker';
-import ScrollNavigation from '@/features/ScrollNavigation/ScrollNavigation';
-import Home from '@/pages/Home/Home';
-import ProjectsPage from '@/pages/ProjectsPage/ProjectsPage';
-import ContactPage from '@/pages/ContactPage/ContactPage';
-import BlogPage from '@/pages/BlogPage/BlogPage';
-import BlogDetailsPage from '@/pages/BlogDetailsPage/BlogDetailsPage';
-import ComingSoon from '@/pages/ComingSoon/ComingSoon';
-import ProjectDetailsPage from '@/pages/ProjectDetailsPage/ProjectDetailsPage';
-import NotFound from '@/pages/NotFound/NotFound';
-import OfflinePage from '@/pages/OfflinePage/OfflinePage';
-import '@/App.css';
+import Header from '@/layouts/Header';
+import Footer from '@/layouts/Footer';
+import IconDock from '@/features/IconDock';
+import NewsTicker from '@/features/NewsTicker';
+import ScrollNavigation from '@/features/ScrollNavigation';
+import Home from '@/pages/Home';
+import ProjectsPage from '@/pages/ProjectsPage';
+import ContactPage from '@/pages/ContactPage';
+import BlogPage from '@/pages/BlogPage';
+import BlogDetailsPage from '@/pages/BlogDetailsPage';
+import ComingSoon from '@/pages/ComingSoon';
+import ProjectDetailsPage from '@/pages/ProjectDetailsPage';
+import NotFound from '@/pages/NotFound';
+import OfflinePage from '@/pages/OfflinePage';
+import '@/assets/styles/App.css';
 
 const KNOWN_PATHS = ['/', '/projects', '/blog', '/contact', '/coming-soon'];
 const isKnownPath = (pathname: string) =>

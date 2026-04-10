@@ -12,8 +12,8 @@ export const profileData = {
   whatsapp: "https://wa.me/201007691743",
 
   about: [
-    "Full-stack developer with 3+ years of experience building scalable web applications and enterprise systems",
-    "Specializing in .NET Core backend and React frontend architecture",
+    "Full-stack developer with 4+ years of experience building scalable web applications and enterprise systems",
+    "Specializing in .NET Core & React architecture",
     "Currently working remotely with HUED, a Saudi-based software house"
   ],
 

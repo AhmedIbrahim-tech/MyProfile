@@ -3,6 +3,13 @@ import { Link, useLocation } from 'react-router-dom';
 import resumePdf from '@/assets/Ahmed Eprahim Resume.pdf';
 import { sectionConfig } from '@/data/sectionConfig';
 import ThemeToggle from '@/components/ThemeToggle';
+import {
+  HiOutlineHome,
+  HiOutlineCode,
+  HiOutlinePencilAlt,
+  HiOutlineMail,
+  HiOutlineDownload,
+} from 'react-icons/hi';
 import '@/assets/styles/layouts/Header.css';
 
 const Header = () => {
@@ -56,24 +63,24 @@ const Header = () => {
 
         <nav className={`nav ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
           <Link to="/" className={isActive('/')} onClick={closeMobileMenu}>
-            <span className="nav-icon">🏠</span>
+            <span className="nav-icon"><HiOutlineHome /></span>
             <span>Home</span>
           </Link>
           {sectionConfig.projects && (
             <Link to="/projects" className={isActive('/projects')} onClick={closeMobileMenu}>
-              <span className="nav-icon">💼</span>
+              <span className="nav-icon"><HiOutlineCode /></span>
               <span>Projects</span>
             </Link>
           )}
           {sectionConfig.blog && (
             <Link to="/blog" className={isActive('/blog')} onClick={closeMobileMenu}>
-              <span className="nav-icon"><i className="fas fa-blog"></i></span>
+              <span className="nav-icon"><HiOutlinePencilAlt /></span>
               <span>Blog</span>
             </Link>
           )}
           {sectionConfig.contact && (
             <Link to="/contact" className={isActive('/contact')} onClick={closeMobileMenu}>
-              <span className="nav-icon">📧</span>
+              <span className="nav-icon"><HiOutlineMail /></span>
               <span>Contact</span>
             </Link>
           )}
@@ -82,7 +89,7 @@ const Header = () => {
         <div className="header-actions">
           <ThemeToggle />
           <button className="download-resume-btn" onClick={handleDownloadResume} aria-label="Download resume (PDF)">
-            <span className="nav-icon"><i className="fas fa-download"></i></span>
+            <span className="nav-icon"><HiOutlineDownload /></span>
             <span className="btn-text">Download Resume</span>
           </button>
         </div>

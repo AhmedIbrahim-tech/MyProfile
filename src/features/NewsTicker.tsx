@@ -14,7 +14,7 @@ const NewsTicker = () => {
     { emoji: '💼', text: 'Open to remote opportunities worldwide' },
     { emoji: '✨', text: 'Specialized in .NET Core and React development' },
     { emoji: '🎯', text: 'Building scalable web applications and enterprise systems' },
-    { emoji: '🌟', text: '3+ years of professional experience' },
+    { emoji: '🌟', text: '4+ years of professional experience' },
     { emoji: '🔐', text: 'Expert in secure authentication and authorization systems' },
     { emoji: '⚡', text: 'Performance optimization and code quality enthusiast' },
     { emoji: '🤝', text: 'Collaborative team player with strong communication skills' },

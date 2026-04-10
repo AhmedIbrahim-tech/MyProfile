@@ -25,7 +25,7 @@ const Hero = () => {
                 // Line 1: experience; Line 2: stack; Line 3: company name
                 if (index === 0) {
                   highlighted = highlighted.replace(
-                    /(3\+ years of experience)/gi,
+                    /(4\+ years of experience)/gi,
                     '<span class="highlight">$1</span>'
                   );
                 } else if (index === 1) {

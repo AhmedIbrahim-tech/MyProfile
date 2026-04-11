@@ -1,68 +1,201 @@
 import { profileData } from '@/data/profileData';
 import '@/assets/styles/features/Skills.css';
-import * as Si from 'react-icons/si';
-import * as Fa from 'react-icons/fa';
+import type { SvgIconProps } from '@thesvg/react';
+import type { ForwardRefExoticComponent, RefAttributes } from 'react';
+import type { IconType } from 'react-icons';
+import {
+  FaBroadcastTower,
+  FaCheckCircle,
+  FaClock,
+  FaCodeBranch,
+  FaCreditCard,
+  FaExchangeAlt,
+  FaFileAlt,
+  FaKey,
+  FaNetworkWired,
+  FaProjectDiagram,
+  FaShapes,
+  FaSitemap,
+  FaSyncAlt,
+  FaTachometerAlt,
+  FaUserShield
+} from 'react-icons/fa';
+import {
+  SiAngular,
+  SiDocker,
+  SiDotnet,
+  SiGithub,
+  SiJira,
+  SiPostman,
+  SiRedis
+} from 'react-icons/si';
 
-const getSkillIcon = (skill: string) => {
+import AntDesign from '@thesvg/react/ant-design';
+import Angular from '@thesvg/react/angular';
+import Bootstrap from '@thesvg/react/bootstrap';
+import Css from '@thesvg/react/css';
+import Csharp from '@thesvg/react/csharp';
+import Docker from '@thesvg/react/docker';
+import Dotnet from '@thesvg/react/dotnet';
+import Github from '@thesvg/react/github';
+import GithubActions from '@thesvg/react/github-actions';
+import Git from '@thesvg/react/git';
+import Graylog from '@thesvg/react/graylog';
+import Html5 from '@thesvg/react/html5';
+import Jest from '@thesvg/react/jest';
+import Jira from '@thesvg/react/jira';
+import Jquery from '@thesvg/react/jquery';
+import Jwt from '@thesvg/react/jwt';
+import Javascript from '@thesvg/react/javascript';
+import Kafka from '@thesvg/react/kafka';
+import Kubernetes from '@thesvg/react/kubernetes';
+import Lighthouse from '@thesvg/react/lighthouse';
+import Mermaid from '@thesvg/react/mermaid';
+import Microsoft from '@thesvg/react/microsoft';
+import MicrosoftAzure from '@thesvg/react/microsoft-azure';
+import MicrosoftSqlServer from '@thesvg/react/microsoft-sql-server';
+import Mui from '@thesvg/react/mui';
+import Nuget from '@thesvg/react/nuget';
+import NextJsIcon from '@/components/icons/NextJsIcon';
+import Postman from '@thesvg/react/postman';
+import Rabbitmq from '@thesvg/react/rabbitmq';
+import BrandReact from '@thesvg/react/react';
+import Redis from '@thesvg/react/redis';
+import Redux from '@thesvg/react/redux';
+import Sass from '@thesvg/react/sass';
+import Stripe from '@thesvg/react/stripe';
+import Swagger from '@thesvg/react/swagger';
+import TailwindCss from '@thesvg/react/tailwind-css';
+import Temporal from '@thesvg/react/temporal';
+import Typescript from '@thesvg/react/typescript';
+import VisualStudio from '@thesvg/react/visual-studio';
+import VisualStudioCode from '@thesvg/react/visual-studio-code';
+import Vite from '@thesvg/react/vite';
+
+type SkillIconComponent = ForwardRefExoticComponent<SvgIconProps & RefAttributes<SVGSVGElement>>;
+
+/** react-icons for Technical Knowledge, Libraries & Familiar With — reliable on dark UI */
+const TECH_LIB_FAMILIAR_ICONS: Record<string, IconType> = {
+  'Agile & Scrum Methodologies': SiJira,
+  'SignalR for Real-Time Communication': FaBroadcastTower,
+  'Version Controls (GitHub, Azure)': SiGithub,
+  'Repository Pattern with Unit of Work': FaCodeBranch,
+  'CQRS and Mediator Patterns': FaExchangeAlt,
+  'SOLID Principles': FaShapes,
+  'Clean Architecture': FaSitemap,
+  'Design Patterns': FaProjectDiagram,
+  'Performance Optimization': FaTachometerAlt,
+  MediatR: SiDotnet,
+  Serilog: FaFileAlt,
+  FluentValidation: FaCheckCircle,
+  AutoMapper: FaSyncAlt,
+  'JWT Authentication': FaKey,
+  'Identity Framework': FaUserShield,
+  Redis: SiRedis,
+  Hangfire: FaClock,
+  Angular: SiAngular,
+  Docker: SiDocker,
+  'Microservices Architecture': FaNetworkWired,
+  'Postman & API Testing': SiPostman,
+  'Payment Gateway Integration': FaCreditCard,
+  // Aliases if strings change in profileData
+  'Angular Framework': SiAngular,
+  'Docker Basics for Development & Deployment': SiDocker,
+  'Version Controls (GitHub, Azure DevOps)': SiGithub
+};
+
+/** Only Next.js needs a custom SVG (theSVG package ids break in-browser) */
+const SKILL_ICON_BY_LABEL: Record<string, SkillIconComponent> = {
+  'Next.js': NextJsIcon
+};
+
+const skillIconSvgClass = (skill: string): string => {
+  const base = 'skill-icon-thesvg';
+  if (skill === 'Next.js') return `${base} skill-icon-next`;
+  return base;
+};
+
+/**
+ * Order matters: avoid false positives (e.g. "bootstrap" contains "ts",
+ * "react.js" / "next.js" contain "js") and match specific phrases before broad ones.
+ */
+const getSkillIcon = (skill: string): SkillIconComponent => {
+  const exact = SKILL_ICON_BY_LABEL[skill];
+  if (exact) return exact;
+
   const skillLower = skill.toLowerCase();
 
-  if (skillLower.includes('typescript') || skillLower.includes('ts')) return Si.SiTypescript;
-  if (skillLower.includes('javascript') || skillLower.includes('js')) return Si.SiJavascript;
-  if (skillLower.includes('c#') || skillLower.includes('csharp')) return Si.SiSharp;
-  if (skillLower.includes('.net') || skillLower.includes('asp.net')) return Si.SiDotnet;
-  if (skillLower.includes('angular')) return Si.SiAngular;
+  // --- Front end & brands (before generic "js" / "ts") ---
+  if (skillLower.includes('next.js') || skillLower.includes('nextjs')) return NextJsIcon;
+  if (skillLower.includes('react')) return BrandReact;
+  if (skillLower.includes('bootstrap')) return Bootstrap;
+  if (skillLower.includes('tailwind')) return TailwindCss;
+  if (skillLower.includes('vite')) return Vite;
+  if (skillLower.includes('redux') || skillLower.includes('state management')) return Redux;
+  if (skillLower.includes('jquery')) return Jquery;
+  if (skillLower.includes('material ui')) return Mui;
+  if (skillLower.includes('ant design')) return AntDesign;
+  if (skillLower.includes('angular')) return Angular;
 
-  if (skillLower.includes('next.js') || skillLower.includes('next')) return Si.SiNextdotjs;
-  if (skillLower.includes('react.js') || skillLower.includes('react')) return Si.SiReact;
-  if (skillLower.includes('vite')) return Si.SiVite;
-  if (skillLower.includes('redux') || skillLower.includes('state management')) return Si.SiRedux;
-  if (skillLower.includes('jquery')) return Si.SiJquery;
-  if (skillLower.includes('material ui')) return Si.SiMui;
-  if (skillLower.includes('ant design')) return Si.SiMui;
+  if (skillLower.includes('typescript')) return Typescript;
+  if (skillLower.includes('javascript')) return Javascript;
 
-  if (skillLower.includes('tailwind css') || skillLower.includes('tailwind')) return Si.SiTailwindcss;
-  if (skillLower.includes('bootstrap framework') || skillLower.includes('bootstrap')) return Si.SiBootstrap;
-  if (skillLower.includes('html')) return Si.SiHtml5;
-  if (skillLower.includes('css') && !skillLower.includes('scss') && !skillLower.includes('sass') && !skillLower.includes('tailwind')) return Si.SiCss3;
-  if (skillLower.includes('sass') || skillLower.includes('scss')) return Si.SiSass;
+  if (skillLower.includes('html')) return Html5;
+  if (skillLower.includes('css') && !skillLower.includes('scss') && !skillLower.includes('sass') && !skillLower.includes('tailwind')) return Css;
+  if (skillLower.includes('sass') || skillLower.includes('scss')) return Sass;
 
-  if (skillLower.includes('entity framework core') || skillLower.includes('entity framework') || skillLower.includes('ef core')) return Si.SiDotnet;
-  if (skillLower.includes('microsoft sql') || skillLower.includes('sql server')) return Fa.FaDatabase;
-  if (skillLower.includes('dapper') || skillLower.includes('orm')) return Fa.FaDatabase;
-  if (skillLower.includes('sql') || skillLower.includes('database')) return Fa.FaDatabase;
-  if (skillLower.includes('linq')) return Fa.FaDatabase;
+  // --- .NET / back end ---
+  if (skillLower.includes('c#') || skillLower.includes('csharp')) return Csharp;
+  if (skillLower.includes('.net') || skillLower.includes('asp.net')) return Dotnet;
+  if (skillLower.includes('entity framework') || skillLower.includes('ef core')) return Dotnet;
+  if (skillLower.includes('linq')) return Dotnet;
 
-  if (skillLower.includes('api') || skillLower.includes('restful') || skillLower.includes('minimal api')) return Fa.FaPlug;
-  if (skillLower.includes('signalr') || skillLower.includes('websocket') || skillLower.includes('real-time')) return Fa.FaBroadcastTower;
-  if (skillLower.includes('postman')) return Si.SiPostman;
-  if (skillLower.includes('payment') || skillLower.includes('gateway')) return Fa.FaCreditCard;
+  if (skillLower.includes('microsoft sql') || skillLower.includes('sql server')) return MicrosoftSqlServer;
+  if (skillLower.includes('dapper')) return MicrosoftSqlServer;
+  if ((skillLower.includes('sql') || skillLower.includes('database')) && !skillLower.includes('signal')) return MicrosoftSqlServer;
 
-  if (skillLower.includes('github')) return Si.SiGithub;
-  if (skillLower.includes('git') || skillLower.includes('azure devops') || skillLower.includes('version control')) return Si.SiGithub;
-  if (skillLower.includes('docker')) return Si.SiDocker;
-  if (skillLower.includes('ci/cd') || skillLower.includes('pipeline')) return Fa.FaTasks;
+  if (skillLower.includes('signalr') || skillLower.includes('websocket') || skillLower.includes('real-time')) return VisualStudio;
 
-  if (skillLower.includes('architecture') || skillLower.includes('microservices') || skillLower.includes('clean architecture')) return Fa.FaSitemap;
-  if (skillLower.includes('pattern') || skillLower.includes('repository') || skillLower.includes('cqrs') || skillLower.includes('mediator') || skillLower.includes('solid')) return Fa.FaProjectDiagram;
-  if (skillLower.includes('design pattern')) return Fa.FaShapes;
+  if (skillLower.includes('postman')) return Postman;
+  if (skillLower.includes('swagger') || skillLower.includes('openapi')) return Swagger;
+  if (skillLower.includes('restful')) return Swagger;
+  if (skillLower.includes('minimal api')) return Dotnet;
+  if (skillLower.includes('api')) return Swagger;
 
-  if (skillLower.includes('serilog')) return Fa.FaFileAlt;
-  if (skillLower.includes('fluentvalidation') || skillLower.includes('fluent validation')) return Fa.FaCheckCircle;
-  if (skillLower.includes('mediatr') || skillLower.includes('mediator')) return Fa.FaExchangeAlt;
-  if (skillLower.includes('automapper') || skillLower.includes('auto mapper')) return Fa.FaSyncAlt;
-  if (skillLower.includes('swagger') || skillLower.includes('openapi')) return Fa.FaBookOpen;
-  if (skillLower.includes('jwt') || skillLower.includes('authentication')) return Fa.FaKey;
-  if (skillLower.includes('identity framework') || skillLower.includes('identity')) return Fa.FaUserShield;
-  if (skillLower.includes('redis')) return Si.SiRedis;
-  if (skillLower.includes('rabbitmq') || skillLower.includes('rabbit mq')) return Fa.FaExchangeAlt;
-  if (skillLower.includes('hangfire')) return Fa.FaClock;
-  if (skillLower.includes('xunit') || skillLower.includes('moq') || skillLower.includes('unit test')) return Fa.FaVial;
+  if (skillLower.includes('payment') || skillLower.includes('gateway')) return Stripe;
 
-  if (skillLower.includes('agile') || skillLower.includes('scrum')) return Fa.FaUsers;
-  if (skillLower.includes('testing') || skillLower.includes('integration test')) return Fa.FaVial;
-  if (skillLower.includes('performance') || skillLower.includes('optimization')) return Fa.FaTachometerAlt;
+  if (skillLower.includes('github')) return Github;
+  if (skillLower.includes('azure')) return MicrosoftAzure;
+  if (skillLower.includes('git') || skillLower.includes('version control')) return Git;
+  if (skillLower.includes('docker')) return Docker;
+  if (skillLower.includes('ci/cd') || skillLower.includes('pipeline')) return GithubActions;
 
-  return Fa.FaCode;
+  // --- Architecture & patterns (specific before broad) ---
+  if (skillLower.includes('clean architecture')) return Dotnet;
+  if (skillLower.includes('design patterns') || skillLower.includes('design pattern')) return Mermaid;
+  if (skillLower.includes('repository')) return Git;
+  if (skillLower.includes('cqrs') || skillLower.includes('mediator patterns')) return Kafka;
+  if (skillLower.includes('microservices')) return Kubernetes;
+  if (skillLower.includes('architecture')) return Mermaid;
+
+  if (skillLower.includes('solid')) return Csharp;
+
+  if (skillLower.includes('serilog')) return Graylog;
+  if (skillLower.includes('fluentvalidation') || skillLower.includes('fluent validation')) return Nuget;
+  if (skillLower.includes('mediatr')) return Dotnet;
+  if (skillLower.includes('automapper') || skillLower.includes('auto mapper')) return Nuget;
+  if (skillLower.includes('jwt') || skillLower.includes('authentication')) return Jwt;
+  if (skillLower.includes('identity framework')) return Microsoft;
+  if (skillLower.includes('redis')) return Redis;
+  if (skillLower.includes('rabbitmq') || skillLower.includes('rabbit mq')) return Rabbitmq;
+  if (skillLower.includes('hangfire')) return Temporal;
+  if (skillLower.includes('xunit') || skillLower.includes('moq') || skillLower.includes('unit test')) return Jest;
+
+  if (skillLower.includes('agile') || skillLower.includes('scrum')) return Jira;
+  if (skillLower.includes('testing') || skillLower.includes('integration test')) return Jest;
+  if (skillLower.includes('performance') || skillLower.includes('optimization')) return Lighthouse;
+
+  return VisualStudioCode;
 };
 
 const Skills = () => {
@@ -99,7 +232,9 @@ const Skills = () => {
       <div className="skills-container">
         <h2 className="section-title">
           <i className="fas fa-lightbulb"></i>
-          <span>Some of My <strong>Skills</strong></span>
+          <span>
+            Some of My <strong>Skills</strong>
+          </span>
         </h2>
 
         <div className="skills-categories">
@@ -111,11 +246,22 @@ const Skills = () => {
               </h3>
               <div className="skills-grid">
                 {category.skills.map((skill, skillIndex) => {
+                  const ReactIcon = TECH_LIB_FAMILIAR_ICONS[skill];
+                  if (ReactIcon) {
+                    return (
+                      <div key={skillIndex} className="skill-card">
+                        <div className="skill-icon">
+                          <ReactIcon className="skill-icon-ri" aria-hidden />
+                        </div>
+                        <span className="skill-name">{skill}</span>
+                      </div>
+                    );
+                  }
                   const IconComponent = getSkillIcon(skill);
                   return (
                     <div key={skillIndex} className="skill-card">
                       <div className="skill-icon">
-                        <IconComponent />
+                        <IconComponent className={skillIconSvgClass(skill)} aria-hidden />
                       </div>
                       <span className="skill-name">{skill}</span>
                     </div>
@@ -131,4 +277,3 @@ const Skills = () => {
 };
 
 export default Skills;
-

@@ -50,7 +50,7 @@ const NewsTicker = () => {
   ];
 
   const skillMapping: Record<string, { name: string; icon: string }> = {
-    'ASP.NET Core (MVC, API)': { name: '.NET Core', icon: 'fas fa-code' },
+    '.NET Core (MVC, API, Minimal APIs)': { name: '.NET Core', icon: 'fas fa-code' },
     // 'React.js': { name: 'React', icon: 'fab fa-react' },
     'Next.js': { name: 'Next.js', icon: 'fas fa-layer-group' },
     'Microsoft SQL Server': { name: 'SQL', icon: 'fas fa-database' }

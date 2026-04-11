@@ -128,13 +128,35 @@
   flex-shrink: 0;
 }
 
-.skill-icon i,
-.skill-icon svg {
+.skill-icon i {
   font-size: clamp(1.1rem, 1.8vw, 1.4rem);
   width: clamp(1.1rem, 1.8vw, 1.4rem);
   height: clamp(1.1rem, 1.8vw, 1.4rem);
   color: var(--text-muted, var(--app-text-secondary));
+}
+
+/* react-icons (Technical / Libraries / Familiar) — consistent size & theme color */
+.skill-icon svg.skill-icon-ri {
+  width: clamp(1.1rem, 1.8vw, 1.4rem);
+  height: clamp(1.1rem, 1.8vw, 1.4rem);
+  flex-shrink: 0;
+  display: block;
+  color: var(--text-muted, var(--app-text-secondary));
   fill: currentColor;
+}
+
+.skill-icon svg.skill-icon-thesvg {
+  width: clamp(1.1rem, 1.8vw, 1.4rem);
+  height: clamp(1.1rem, 1.8vw, 1.4rem);
+  flex-shrink: 0;
+  display: block;
+}
+
+.skill-icon svg.skill-icon-thesvg.skill-icon-next {
+  background: #f0f0f0;
+  border-radius: 6px;
+  box-sizing: content-box;
+  padding: 3px;
 }
 
 .skill-name {
@@ -248,11 +270,26 @@
     height: clamp(28px, 6vw, 32px);
   }
 
-  .skill-icon i,
-  .skill-icon svg {
+  .skill-icon i {
     font-size: clamp(1.1rem, 2.5vw, 1.25rem);
     width: clamp(1.1rem, 2.5vw, 1.25rem);
     height: clamp(1.1rem, 2.5vw, 1.25rem);
+  }
+
+  .skill-icon svg.skill-icon-ri {
+    width: clamp(1.1rem, 2.5vw, 1.25rem);
+    height: clamp(1.1rem, 2.5vw, 1.25rem);
+  }
+
+  .skill-icon svg.skill-icon-thesvg {
+    width: clamp(1.1rem, 2.5vw, 1.25rem);
+    height: clamp(1.1rem, 2.5vw, 1.25rem);
+  }
+
+  .skill-icon svg.skill-icon-thesvg.skill-icon-next {
+    padding: 2px;
+    border-radius: 5px;
+    background: #f0f0f0;
   }
 
   .skill-name {

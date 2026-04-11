@@ -78,13 +78,13 @@ export const profileData = {
   technologies: {
     backEnd: [
       "C# Programming Language",
-      "ASP.NET Core (MVC, API)",
+      ".NET Core (MVC, API)",
       "Minimal APIs",
       "Razor Pages",
       "Microsoft SQL Server",
       "Entity Framework Core",
       "Dapper (Micro ORM)",
-      "Language-Integrated Query (LINQ)"
+      "LINQ"
     ],
     frontEnd: [
       "HTML5, CSS3",
@@ -95,27 +95,27 @@ export const profileData = {
       "Vite",
       "Redux State Management",
       "JavaScript and TypeScript",
-      "jQuery Library",
       "Tailwind CSS",
       "Material UI / Ant Design"
     ],
     technicalKnowledge: [
-      "Agile & Scrum Methodologies",
-      "SignalR for Real-Time Communication",
-      "Version Controls (GitHub, Azure)",
+      "Clean Architecture",
+      "SOLID Principles",
+      "Design Patterns",
       "Repository Pattern with Unit of Work",
       "CQRS and Mediator Patterns",
-      "SOLID Principles",
-      "Clean Architecture",
-      "Design Patterns",
+      "SignalR for Real-Time Communication",
+      "Agile & Scrum Methodologies",
+      "Version Controls (GitHub, Azure)",
       "Performance Optimization"
     ],
     familiarWith: [
-      "Angular Framework",
-      "Docker Basics for Development & Deployment",
+      "Angular",
+      "Docker",
       "Microservices Architecture",
       "Postman & API Testing",
-      "Payment Gateway Integration"
+      "Payment Gateway Integration",
+      "jQuery Library"
     ],
     libraries: [
       "MediatR",

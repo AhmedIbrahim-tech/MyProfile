@@ -19,6 +19,7 @@ import { post as post23 } from '@/data/blog/post-23-ddd';
 import { post as post24 } from '@/data/blog/post-24-ddd-tactical';
 import { post as post25 } from '@/data/blog/post-25-ddd-aspnet';
 import { post as post26 } from '@/data/blog/post-26-recursion';
+import { post as post27 } from '@/data/blog/post-27-cicd-github-actions';
 
 export type { BlogPost };
 
@@ -43,6 +44,7 @@ const blogPosts: BlogPost[] = [
   post24,
   post25,
   post26,
+  post27,
 ];
 
 export { blogPosts };

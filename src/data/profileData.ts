@@ -2,7 +2,7 @@
 
 export const profileData = {
   name: "Ahmed Ibrahim Ahmed",
-  title: "Full Stack (.NET Core & React) Developer",
+  title: "Full Stack (.NET & React) Developer",
   location: "Mit-Ghamr, Dakahlia, Egypt",
   phone: "01007691743",
   email: "ahmedeprahim.official@gmail.com",
@@ -20,7 +20,7 @@ export const profileData = {
   education: {
     institution: "Thebes Academy",
     degree: "Bachelor of Computer Science, 2016 - 2020",
-    grade: "Very Good",
+    grade: "Good",
     project: "School Management System (Grade: Excellent)",
     projectDescription: "Web platform for schools, students, and parents to manage attendance, grades, and communication."
   },
@@ -30,11 +30,11 @@ export const profileData = {
       title: "Full Stack Developer (.NET Core & React)",
       company: "HUED Company",
       location: "Remote - Riyadh, Saudi Arabia",
-      period: "June 2025 - Present",
+      period: "May 2025 - Present",
       responsibilities: [
-        "Develop and deliver full-stack solutions for clients across healthcare, education, and agriculture sectors.",
-        "Design and implement responsive React/TypeScript frontends with seamless .NET Core API integration.",
-        "Participate in Agile ceremonies, conduct code reviews, and manage CI/CD deployment pipelines."
+        "Delivered multiple client projects across healthcare, education, and agriculture sectors.",
+        "Built interactive UIs with React and TypeScript, integrating with robust .NET Core APIs.",
+        "Collaborated in Agile teams, contributing to sprint planning, code reviews, and deployments."
       ],
       technologies: ["React.js", "TypeScript", ".NET Core", "C#", "SQL Server", "Entity Framework Core", "Git", "Agile"]
     },
@@ -42,11 +42,11 @@ export const profileData = {
       title: "ASP.NET Core Developer",
       company: "Halan Company",
       location: "Onsite - Mall of Arabia, 6th of October, Cairo",
-      period: "October 2024 - June 2025",
+      period: "October 2024 - May 2025",
       responsibilities: [
-        "Architect and develop B2B/B2C order management and ERP modules for retail operations.",
-        "Optimize inventory and logistics workflows through high-performance API development.",
-        "Build scalable web applications leveraging .NET Core, Entity Framework Core, and SQL Server."
+        "Developed B2B/B2C order management and ERP modules for retailers.",
+        "Improved inventory and logistics processes through optimized APIs.",
+        "Built scalable web solutions using .NET Core, EF Core, and SQL Server."
       ],
       technologies: [".NET Core", "C#", "ASP.NET Core API", "SQL Server", "Entity Framework Core", "LINQ"]
     },
@@ -56,10 +56,10 @@ export const profileData = {
       location: "Onsite - Nasr City, Cairo, Egypt",
       period: "April 2022 - October 2024",
       responsibilities: [
-        "Develop comprehensive insurance, account management, and e-billing systems.",
-        "Integrate secure third-party payment gateways into web-based platforms.",
-        "Enhance client registration, customer services, sales leads, and user account management features.",
-        "Optimize client, sales, and service modules using Dapper ORM with .NET Core."
+        "Developed insurance document management and e-billing systems.",
+        "Migrated legacy desktop apps to modern web-based platforms.",
+        "Enhanced functionalities for client registration, customer services, sales leads, and user account departments.",
+        "Enhanced client, sales, and service modules using Dapper and .NET Core."
       ],
       technologies: [".NET Core", "C#", "ASP.NET Core MVC", "SQL Server", "Dapper", "Payment Gateways"]
     },
@@ -94,6 +94,7 @@ export const profileData = {
       "Next.js",
       "Vite",
       "Redux State Management",
+      "React Query",
       "JavaScript and TypeScript",
       "Tailwind CSS",
       "Material UI / Ant Design"
@@ -106,12 +107,12 @@ export const profileData = {
       "CQRS and Mediator Patterns",
       "SignalR for Real-Time Communication",
       "Agile & Scrum Methodologies",
-      "Version Controls (GitHub, Azure)",
+      "Version Controls (GitHub, Azure DevOps)",
       "Performance Optimization"
     ],
     familiarWith: [
       "Angular",
-      "Docker",
+      "Docker for Development & Deployment",
       "Microservices Architecture",
       "Postman & API Testing",
       "Payment Gateway Integration",

@@ -8,4 +8,6 @@ export interface BlogPost {
   category: string;
   readTime: string;
   image: string;
+  /** Only set when the article is explicitly marked as featured. Omitted or false = not featured. */
+  featured?: boolean;
 }

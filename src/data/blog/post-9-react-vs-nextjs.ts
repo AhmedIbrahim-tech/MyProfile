@@ -1,78 +1,241 @@
 import type { BlogPost } from '@/types/blog';
-import reactVsNextImage from '@/assets/blog/Nextjs-vs-React-scalability.jpg';
+import reactVsNextImage from '@/assets/blog/react-vs-nextjs.jpg';
 
 export const post: BlogPost = {
   id: 9,
   title: 'React vs Next.js: Which to Choose?',
   excerpt:
-    'الفرق بين React كمكتبة وNext.js كإطار عمل: الرندرينج، الـ SEO، وتجربة المطور. دليل مختصر لاختيار الأنسب حسب نوع المشروع.',
-  content: `# React أم Next.js؟
+    'مش منافسة. Next.js مبني فوق React. React بتبني الـ UI بحرية، وNext.js بيضيف Routing وRendering وSEO. الاختيار حسب المشروع مش حسب الترند.',
+  content: `# React vs Next.js — الفرق الحقيقي ومتى تختار كل واحد؟
 
-سؤال يتكرر كثيراً: أتعلم React فقط أم أبدأ مباشرة بـ Next.js؟ الإجابة تعتمد على نوع المشروع الذي تبنيه. هذا المقال يوضح الفرق بين الاثنين ومتى يفضّل استخدام كل منهما.
+من أكثر الأسئلة المنتشرة عند Frontend Developers: أتعلم React فقط؟ أم أبدأ مباشرة بـ Next.js؟
 
----
+والإجابة ليست "واحد أفضل من الآخر." لأن React وNext.js ليسا منافسين بالمعنى التقليدي.
 
-## الفكرة الأساسية
+الحقيقة: **Next.js مبني فوق React.** React هي الأساس. وNext.js يضيف حولها Routing وRendering Strategies وServer Features وPerformance Optimizations وProject Structure.
 
-### React
-
-React مكتبة لبناء واجهة المستخدم (UI). توفّر لك المكوّنات وإدارة الحالة، بينما تبقى أنت مسؤولاً عن اختيار التوجيه (Routing)، طريقة جلب البيانات، وتنظيم المشروع. النتيجة: مرونة عالية مع مسؤولية أكبر في الاختيارات والهيكلة.
-
-### Next.js
-
-Next.js إطار عمل مبني فوق React. يقدّم هيكلة جاهزة، توجيهاً تلقائياً يعتمد على المجلدات، خيارات متعددة للرندرينج، وإمكانية إنشاء API داخل نفس المشروع. باختصار: React مع نظام منظم حولها.
+Same foundation. Different goals. React gives you the tools to build UI. Next.js gives you a complete framework.
 
 ---
 
-## الرندرينج (أهم فرق عملي)
+## ما هي React؟
 
-### React: الاعتماد غالباً على CSR
+React هي **JavaScript Library لبناء User Interfaces**. فكرتها الأساسية: تقسيم الواجهة إلى Components.
 
-في التطبيقات التقليدية المعتمدة على React وحدها، الصفحة تُحمّل أولاً كـ HTML فارغ أو بسيط، ثم JavaScript يعمل في المتصفح ويُظهر المحتوى ويجلب البيانات. هذا يسمى Client-Side Rendering (CSR). التحميل الأول قد يكون أبطأ، والمحتوى قد لا يظهر لمحركات البحث حتى ينفّذ المتصفح السكربت.
+\`\`\`jsx
+function Button() {
+  return <button>Save</button>;
+}
+\`\`\`
 
-### Next.js: خيارات أوسع
+كل Component مسؤول عن جزء من الـ UI. React تهتم بـ Components وState Management وUI Updates.
 
-- SSR (Server-Side Rendering): الصفحة تُبنى على الخادم عند كل طلب، فيصل المستخدم ومحركات البحث إلى HTML جاهز مع بيانات محدثة.
-- SSG (Static Site Generation): الصفحات تُولَّد عند البناء (Build)، فتكون سريعة جداً ومناسبة للمحتوى الثابت أو شبه الثابت.
-- ISR (Incremental Static Regeneration): تحديث تلقائي لصفحات ثابتة دون إعادة بناء الموقع بالكامل.
+لكنها لا تفرض عليك طريقة Routing ولا Fetching Data ولا Folder Structure ولا Backend Architecture.
 
----
+في React أنت قد تحتاج تختار:
 
-## الـ SEO
+- Routing: React Router
+- State: Redux أو Zustand أو Context API
+- Data Fetching: Axios أو React Query أو Fetch
 
-إذا كان مشروعك يحتاج ظهوراً قوياً في محركات البحث (مثل موقع تسويقي أو متجر)، React وحده مع CSR ليس دائماً الخيار الأفضل: المحتوى يصل لمحركات البحث بعد تنفيذ JavaScript. Next.js يقدّم HTML مُعدّ مسبقاً (عبر SSR أو SSG)، مما يساعد محركات البحث على فهم المحتوى أسرع وأدق.
-
----
-
-## تجربة المطور
-
-- في React: تستخدم مكتبات مثل React Router للتوجيه، وتضبط الإعدادات والبنية بنفسك.
-- في Next.js: التوجيه يعتمد على بنية المجلدات داخل مجلد معيّن (مثل \`app\` أو \`pages\`)، ويمكنك استخدام API Routes لإنشاء نقاط نهاية خلفية داخل نفس المشروع، فيصبح بإمكانك بناء واجهة وواجهة برمجية بالـ JavaScript فقط.
+وهذا يعطيك مرونة كبيرة. لكن يحتاج قرارات أكثر.
 
 ---
 
-## متى تختار ماذا؟
+## ما هو Next.js؟
 
-اختر React عندما:
+Next.js هو **React Framework**. يأخذ React ويضيف طبقة كاملة حولها: File-based Routing وServer Rendering وAPI Routes وServer Components وImage Optimization وMetadata Handling.
 
-- تبني لوحة تحكم داخلية (Admin Dashboard) أو أداة لا تحتاج ظهوراً في البحث.
-- المشروع داخلي أو SEO غير مهم.
-- تريد مرونة كاملة واختيار كل المكتبات والهيكلة بنفسك.
+بدل أن تبدأ مشروع React وتختار كل شيء، Next.js يعطيك Structure جاهز. Convention over Configuration.
 
-اختر Next.js عندما:
+Routing في React:
 
-- تبني صفحة هبوط (Landing Page)، متجر إلكتروني، أو موقع محتوى يحتاج SEO.
-- تريد أداء تحميل أولي أفضل ومحتوى جاهز للفهرسة.
-- تريد الجمع بين الواجهة الأمامية وواجهة API في مشروع واحد بـ JavaScript/TypeScript.
+\`\`\`jsx
+<Route path="/products" />
+\`\`\`
+
+في Next.js تنشئ \`app/products/page.tsx\` والصفحة تصبح \`/products\` تلقائيًا.
 
 ---
 
-## الخاتمة
+## الفرق الأكبر: أين يتم تنفيذ الكود؟
 
-Next.js ليس بديلاً عن React؛ بل هو React مضافاً إليه هيكلة ورندرينج وأدوات جاهزة. إذا كنت تبدأ من الصفر، تعلّم React أولاً لفهم الأساسيات، ثم الانتقال إلى Next.js سيكون ترقية طبيعية عندما تحتاج هيكلة جاهزة، أداءاً أفضل، أو تحكماً أفضل في الـ SEO.`,
+### React التقليدية غالبًا Client-Side Rendering
+
+\`\`\`text
+Browser
+    ↓
+HTML بسيط (<div id="root"></div>)
+    ↓
+Download JavaScript
+    ↓
+React builds UI
+    ↓
+Display Page
+\`\`\`
+
+ممتاز لـ Dashboards وAdmin Panels وInternal Tools. لكن التحميل الأولي أكبر، وJavaScript أكتر، وSEO أصعب في بعض الحالات.
+
+---
+
+## Next.js يقدم أكثر من طريقة Rendering
+
+**SSR — Server-Side Rendering:** الصفحة تُبنى على السيرفر مع كل Request. المستخدم يستلم HTML جاهز. مفيد لـ E-commerce وNews وMarketing.
+
+**SSG — Static Site Generation:** الصفحات تُبنى وقت الـ Build. سريعة جدًا، وضغط أقل على السيرفر. مثالية للـ Blogs والمحتوى الثابت.
+
+**ISR — Incremental Static Regeneration:** الصفحات Static، لكن تقدر تتحدث بعد فترة من غير إعادة بناء الموقع كله. مثال: سعر منتج اتغيّر.
+
+**Server Components:** بعض الـ Components تشتغل على السيرفر مش في المتصفح. JavaScript أقل في الـ Browser، ووصول مباشر للبيانات، وPerformance أفضل في حالات كتير.
+
+---
+
+## SEO: هل React سيئة؟
+
+ليس بالضرورة. React يمكن استخدامها مع SEO جيد باستخدام حلول مختلفة.
+
+لكن في التطبيقات التي تعتمد على CSR فقط، محركات البحث تحتاج تنفيذ JavaScript لرؤية المحتوى. أما Next.js فيسهل إرسال HTML جاهز. لذلك Next.js غالبًا أسهل للمواقع التي تعتمد على SEO.
+
+---
+
+## Data Fetching
+
+في React الطلب غالبًا يحدث في المتصفح:
+
+\`\`\`javascript
+useEffect(() => {
+  fetch('/api/products');
+}, []);
+\`\`\`
+
+في Next.js تقدر تجيب البيانات على السيرفر:
+
+\`\`\`javascript
+async function ProductsPage() {
+  const products = await getProducts();
+  return <ProductList products={products} />;
+}
+\`\`\`
+
+السؤال: هل البيانات تحتاج أن تصل للمستخدم جاهزة؟ أم يمكن جلبها بعد تحميل الصفحة؟
+
+---
+
+## Architecture Difference
+
+**React Application** — أنت تصمم الـ Architecture. حرية أكبر، وقرارات أكتر:
+
+\`\`\`text
+src/
+├── components/
+├── pages/
+├── hooks/
+├── services/
+├── store/
+└── utils/
+\`\`\`
+
+**Next.js (App Router)** — Structure مقترح. File-based routing، Setup أقل، إنتاجية أعلى:
+
+\`\`\`text
+app/
+├── layout.tsx
+├── products/
+│   └── page.tsx
+├── api/
+└── components/
+\`\`\`
+
+---
+
+## أمثلة واقعية
+
+**Admin Dashboard:** جدول مستخدمين وCharts وForms ونظام داخلي. هل تحتاج SEO؟ لا. غالبًا React كافية جدًا.
+
+**متجر إلكتروني:** صفحات منتجات وGoogle Search ومشاركة روابط. هنا Next.js غالبًا مناسب لأن SEO وPerformance مهمان.
+
+**SaaS Application:** CRM أو Project Management. ممكن React جوّه التطبيق، أو Next.js لو عايز Marketing Website وDashboard وAPI وAuthentication في مشروع واحد.
+
+---
+
+## هل Next.js يغني عن Backend؟
+
+ليس تمامًا. نعم يوجد API Routes، لكن هذا لا يعني أنه بديل دائمًا عن Backend كامل.
+
+في الأنظمة الكبيرة قد يكون لديك:
+
+\`\`\`text
+Next.js → ASP.NET Core API → Database
+\`\`\`
+
+أو:
+
+\`\`\`text
+Next.js → Node API → Database
+\`\`\`
+
+حسب الـ Architecture.
+
+---
+
+## أخطاء شائعة
+
+- **Next.js أفضل دائمًا.** لا. لو عندك Dashboard بسيطة، ممكن تضيف تعقيدًا بدون فائدة.
+- **React انتهت بسبب Next.js.** غير صحيح. Next.js مبني على React. فهم React أساس مهم.
+- **SSR يحل كل مشاكل الأداء.** ليس دائمًا. الأداء يعتمد على Database وAPI وNetwork وImages وCaching.
+
+---
+
+## ماذا أتعلم أولًا؟
+
+أفضل طريق:
+
+\`\`\`text
+JavaScript
+    ↓
+React Fundamentals
+    ↓
+Components / State / Hooks
+    ↓
+Routing
+    ↓
+Next.js
+\`\`\`
+
+لأن Next.js يخفي تفاصيل كثيرة لو لم تفهم React جيدًا. Learn React to understand the foundation. Use Next.js when you need the full power.
+
+---
+
+## مقارنة سريعة
+
+- **النوع:** React Library. Next.js Framework.
+- **Routing:** في React تحتاج إضافة. في Next.js Built-in.
+- **Rendering:** React غالبًا CSR. Next.js: CSR + SSR + SSG + ISR + Server Components.
+- **SEO:** React يحتاج اهتمام. Next.js أسهل.
+- **Structure:** React حرية أكبر. Next.js Convention.
+- **Flexibility:** React أعلى. Next.js أقل لكن منظم.
+- **Server Features:** في React محدودة. في Next.js موجودة.
+
+---
+
+## الخلاصة
+
+React وNext.js ليسا اختيارين متنافسين.
+
+React تعطيك **حرية بناء الواجهة بالطريقة التي تريدها.** Next.js يعطيك **نظام كامل حول React مع حلول جاهزة للأداء والتنظيم والـ SEO.**
+
+اختيارك يعتمد على نوع المشروع:
+
+- Dashboard / Internal App → React غالبًا كافية.
+- E-commerce / Content / SEO → Next.js غالبًا مناسب.
+- Large SaaS → الاثنين ممكن حسب الـ Architecture.
+
+الأهم: لا تتعلم Next.js كبديل عن React. تعلم React كقاعدة… ثم استخدم Next.js عندما تحتاج القوة الإضافية.
+
+Right tool. Right project. Better results.`,
   author: 'Ahmed Ibrahim',
   date: '2025-03-09',
   category: 'Frontend',
-  readTime: '6 min read',
+  readTime: '10 min read',
   image: reactVsNextImage,
 };

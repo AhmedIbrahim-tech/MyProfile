@@ -157,6 +157,13 @@
   transition: color 0.25s ease;
 }
 
+.footer-featured-star {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  color: #f59e0b;
+  margin-inline-start: 0.15rem;
+}
+
 .footer-section ul li a:hover .footer-link-icon,
 .footer-links a:hover .footer-link-icon {
   color: #fff;

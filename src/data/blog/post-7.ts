@@ -1,89 +1,292 @@
 import type { BlogPost } from '@/types/blog';
+import reflectionImage from '@/assets/blog/reflection-in-csharp.jpg';
 
 export const post: BlogPost = {
   id: 7,
   title: 'Reflection in C# — How Frameworks Work Behind the Scenes',
   excerpt:
-    'كيف تقرأ Entity Framework وASP.NET وAutoMapper بنيات الكود وتتعامل معها دون معرفة مسبقة؟ الجواب في Reflection والـ Metadata وقت التشغيل.',
-  content: `# Reflection في C#
+    'كيف يعرف EF Core إن الـ Class ده Table؟ وإزاي ASP.NET بيحوّل Controller لـ Endpoint من غير ما تكتب الـ Routing بإيدك؟ الإجابة غالبًا: Reflection.',
+  content: `# Reflection في C# — كيف تعمل Frameworks خلف الكواليس؟
 
-كيف تحوّل Entity Framework الـ classes إلى جداول؟ كيف يربط ASP.NET الـ routes بالـ controllers؟ كيف ينشئ AutoMapper التعيين بين نوعين مختلفين؟ كل هذا يحدث دون أن تكتب بنفسك الكود الذي يفحص البنية — والآلية الأساسية هي Reflection.
+هل تساءلت يومًا:
+
+- كيف يعرف Entity Framework أن هذا الـ Class يمثل Table؟
+- كيف يعرف ASP.NET Core أن هذا الـ Method هو API Endpoint؟
+- كيف يستطيع AutoMapper معرفة أن هذه الـ Property تقابل تلك الـ Property؟
+- كيف يستطيع Dependency Injection إنشاء Objects لم تكتب أنت كود إنشائها؟
+
+الإجابة غالبًا تكون: **Reflection**.
+
+Reflection هي واحدة من أهم الآليات الموجودة داخل .NET، وهي السبب الذي يجعل الكثير من الـ Frameworks قادرة على قراءة الكود الخاص بك وفهمه وقت التشغيل بدون أن تخبرها بكل التفاصيل يدويًا.
+
+It's not magic. It's Reflection.
+
+---
+
+## أولًا: كيف يعمل الكود في C#؟
+
+قبل أن نفهم Reflection، نحتاج أن نفهم رحلة الكود.
+
+عندما تكتب:
+
+\`\`\`csharp
+public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+}
+\`\`\`
+
+الـ Compiler لا يحتفظ فقط بالكود. هو يحوله إلى IL، ثم Assembly، ثم Runtime:
+
+\`\`\`text
+C# Code (.cs)
+    ↓
+Compiler (Roslyn) → IL (MSIL)
+    ↓
+Assembly (.dll) = IL + Metadata
+    ↓
+Runtime Execution
+\`\`\`
+
+داخل الـ Assembly توجد معلومات إضافية اسمها **Metadata**: أسماء الـ Classes والـ Properties والـ Methods والـ Attributes والـ Interfaces والعلاقات بينها.
+
+وهذه الـ Metadata هي التي يقرأها Reflection وقت التشغيل.
 
 ---
 
 ## ما هو Reflection؟
 
-Reflection في .NET يسمح بقراءة والتعامل مع ميتا بيانات التجميع (Assembly) والنوع (Type) وقت التشغيل: أسماء الـ types والـ properties والـ methods، والـ attributes، وغيرها. بمعنى آخر: يمكن للبرنامج أن يفحص البنية الداخلية للكود ويعاملها كبيانات.
+Reflection هو قدرة البرنامج على فحص الكود أثناء التشغيل: معرفة أنواع الـ Objects، قراءة الـ Properties والـ Methods، إنشاء Objects بشكل ديناميكي، وقراءة الـ Attributes.
+
+بمعنى آخر: الكود يصبح قادرًا على قراءة نفسه.
+
+\`\`\`csharp
+Type type = typeof(Product);
+var props = type.GetProperties();
+
+foreach (var p in props)
+    Console.WriteLine(p.Name);
+\`\`\`
+
+Inspect types. Read properties. Read methods. Read attributes. Create instances. Invoke members.
 
 ---
 
-## مثال: تحميل موديولات ديناميكياً
+## الفرق بين الطريقة التقليدية و Reflection
 
-نفترض نظاماً يحمّل موديولات إضافية من ملفات DLL في مجلد معيّن، ويشغّل كل صنف ينفّذ واجهة IModule:
+بدون Reflection أنت تعرف النوع مسبقًا:
 
 \`\`\`csharp
-var assemblies = Directory.GetFiles("Modules", "*.dll");
+var customer = new Customer();
+customer.Name = "Ahmed";
+\`\`\`
 
-foreach (var file in assemblies)
+لكن Reflection يسمح لك أن تتعامل مع Type لا تعرفه أثناء كتابة الكود:
+
+\`\`\`csharp
+Type type = typeof(Customer);
+Console.WriteLine(type.Name); // Customer
+\`\`\`
+
+---
+
+## أهم عناصر Reflection
+
+**Assembly:** ملف الـ DLL أو EXE الذي يحتوي على الكود.
+
+\`\`\`csharp
+Assembly assembly = typeof(Customer).Assembly;
+\`\`\`
+
+**Type:** يمثل الـ Class أو Interface. يمكنك معرفة \`type.Name\` و\`type.FullName\` و\`type.BaseType\`.
+
+**PropertyInfo:** يمثل Property داخل Class.
+
+\`\`\`csharp
+var properties = type.GetProperties();
+
+foreach (var property in properties)
+    Console.WriteLine(property.Name);
+// Id
+// Name
+\`\`\`
+
+**MethodInfo:** يمثل Method عبر \`type.GetMethods()\`.
+
+**Attribute:** Metadata تضيفها أنت للكود. Reflection يستطيع قراءة \`[Table("Customers")]\` ومعرفة اسم الجدول.
+
+---
+
+## كيف يستخدم Entity Framework Reflection؟
+
+عندما تكتب Class \`Product\` فيه \`Id\` و\`Name\`، EF Core يحتاج أن يعرف اسم الـ Entity والـ Properties والـ Keys والعلاقات والـ Attributes.
+
+كيف يعرف؟ عن طريق Reflection. مثال مبسط:
+
+\`\`\`csharp
+Type type = typeof(Product);
+var properties = type.GetProperties();
+
+foreach (var property in properties)
+    Console.WriteLine(property.Name);
+\`\`\`
+
+ثم يبني Table وColumns وRelationships. Your classes → EF Core (Reflection) → Database.
+
+---
+
+## كيف يعمل ASP.NET Core بالـ Reflection؟
+
+\`\`\`csharp
+[ApiController]
+[Route("api/products")]
+public class ProductsController : ControllerBase
 {
-  var assembly = Assembly.LoadFrom(file);
-  var types = assembly.GetTypes()
-    .Where(t => typeof(IModule).IsAssignableFrom(t) && !t.IsInterface);
-
-  foreach (var type in types)
-  {
-    var instance = Activator.CreateInstance(type) as IModule;
-    instance?.Run();
-  }
+    [HttpGet]
+    public IActionResult Get() => Ok();
 }
 \`\`\`
 
-هنا Reflection يُستخدم لـ: تحميل التجميع، استخراج الأنواع، التحقق من تطبيق IModule، ثم إنشاء مثيل وتشغيله. نفس الفكرة تُستخدم في ASP.NET عند اكتشاف الـ controllers وربطها بالـ routes.
+ASP.NET Core يحتاج أن يعرف: هذا Controller؟ ما الـ Routes؟ ما الـ HTTP Methods؟ فيبحث داخل الـ Assembly:
+
+\`\`\`text
+Find Classes
+    ↓
+Check ApiController Attribute
+    ↓
+Find Methods
+    ↓
+Read HttpGet / HttpPost Attribute
+    ↓
+Create Endpoint
+\`\`\`
+
+Your controllers → Reflection → API Endpoints. Route Table: \`GET /api/products\` و\`POST /api/products\` و\`PUT /api/products/{id}\`.
+
+\`[Authorize]\` نفس الفكرة: ASP.NET يرى \`AuthorizeAttribute\` ويقرر قبل تنفيذ الـ Method لازم Authentication.
 
 ---
 
-## المميزات
+## Dependency Injection و Reflection
 
-- مرونة: كتابة كود يعمل على أنواع لم تُعرّف مسبقاً في وقت التصميم.
-- إعادة استخدام: كثير من الـ frameworks (مثل EF، ASP.NET، AutoMapper، xUnit) تعتمد على Reflection.
-- تحليل الكود: بناء أدوات مثل محلّلي كود أو مفتشين للـ metadata.
+عندما تكتب:
 
----
+\`\`\`csharp
+services.AddScoped<IEmailService, EmailService>();
+\`\`\`
 
-## العيوب والاحتياطات
+أنت تخبر الـ Container بالعلاقة. لكن الـ Container يحتاج أن يعرف Constructor وDependencies.
 
-- أداء: استدعاءات Reflection أبطأ من الاستدعاء المباشر؛ يُفضّل التخزين المؤقت لـ PropertyInfo و MethodInfo عند التكرار.
-- تصحيح الأخطاء: السلوك ديناميكي وقد لا يظهر بوضوح في وقت التصميم.
-- التغليف: الوصول إلى أعضاء private عبر Reflection قد يكسر مبدأ الإخفاء؛ يُستخدم فقط عند وجود مبرر واضح.
+\`\`\`csharp
+public class OrderService
+{
+    private readonly IEmailService _email;
 
----
+    public OrderService(IEmailService email)
+    {
+        _email = email;
+    }
+}
+\`\`\`
 
-## متى نستخدم Reflection؟
-
-يناسب Reflection عندما تحتاج سلوكاً يعتمد على البنية في وقت التشغيل، مثل:
-
-- تحميل إضافات أو DLLs ديناميكياً.
-- بناء أدوات عامة (مثل serializers أو test runners).
-- قراءة الـ attributes المخصصة (مثل [Authorize] أو [HttpGet]) لاتخاذ قرارات في الإطار.
-
-يُفضّل تجنّبه عندما يكون الأداء حرجاً (حلقات مكثفة أو APIs عالية الحمل)، أو عندما تكفي واجهات أو أنواع عامة لتحقيق المطلوب بدون فحص البنية.
+الـ DI Container يقرأ الـ Constructor باستخدام Reflection، يعرف إن الـ Class يحتاج \`IEmailService\`، ثم ينشئ الـ Object ويدير الـ Lifetime (Scoped وSingleton وTransient). Your services → Reflection → Working objects.
 
 ---
 
-## بدائل وتوصيات
+## مثال عملي: Plugin System
 
-- تخزين مؤقت لنتائج Reflection (مثل PropertyInfo/MethodInfo) وتجنّب استدعائها داخل حلقات ضيقة.
-- استخدام Expression Trees أو الـ delegates عند الحاجة لأداء أفضل مع الحفاظ على جزء من المرونة.
-- Source Generators في .NET: توليد كود في وقت التصميم بناءً على البنية دون الاعتماد على Reflection في وقت التشغيل عند الإمكان.
+لنفترض عندك نظام يدعم Plugins. كل Plugin يطبق:
+
+\`\`\`csharp
+public interface IPlugin
+{
+    void Execute();
+}
+\`\`\`
+
+وفي المستقبل ستضيف DLLs بدون تعديل الكود الأساسي:
+
+\`\`\`csharp
+var files = Directory.GetFiles("Plugins", "*.dll");
+
+foreach (var file in files)
+{
+    var assembly = Assembly.LoadFrom(file);
+
+    var plugins = assembly.GetTypes()
+        .Where(t => typeof(IPlugin).IsAssignableFrom(t) && !t.IsInterface);
+
+    foreach (var plugin in plugins)
+    {
+        var instance = Activator.CreateInstance(plugin) as IPlugin;
+        instance?.Execute();
+    }
+}
+\`\`\`
+
+النظام اكتشف Plugins جديدة بدون معرفة مسبقة بها.
 
 ---
 
-## الخاتمة
+## مميزات Reflection
 
-Reflection هو الآلية التي تسمح للكثير من الـ frameworks بالتعامل مع بنية الكود دون معرفة مسبقة. استخدامه بحكمة يعطي مرونة وقوة؛ الإكثار منه في المسارات الحساسة للأداء قد يسبب مشاكل أداء يصعب حلها لاحقاً.`,
+- **Flexibility:** أنظمة ديناميكية زي Plugins وSerializers وORMs.
+- **Framework Development:** EF Core وASP.NET Core وxUnit وAutoMapper كلهم بيعتمدوا عليه.
+- **Metadata Driven Programming:** الـ Attributes تتحكم في السلوك. \`[Required]\` على Property والـ Framework يقرأها ويطبّق Validation.
+
+---
+
+## عيوب Reflection
+
+- **Performance:** أبطأ من Direct Calls. \`customer.Name\` أسرع من \`property.SetValue(customer, "value")\`. عشان كده Frameworks بتعمل Caching.
+- **Runtime Errors:** بدل خطأ Compile، ممكن يفشل وقت التشغيل لو الاسم اتغيّر.
+- **وضوح الكود:** الكود الديناميكي أحيانًا يخلي فهم التدفق أصعب.
+
+---
+
+## كيف نحسن أداء Reflection؟
+
+Cache Metadata بدل \`GetProperties()\` كل مرة:
+
+\`\`\`csharp
+Dictionary<Type, PropertyInfo[]> cache;
+\`\`\`
+
+حوّل العملية إلى Delegate أسرع بدل استدعاء Reflection كل مرة.
+
+وفي .NET الحديث استخدم **Source Generators**: توليد الكود وقت الـ Compile بدل Runtime Reflection، خصوصًا في Serialization.
+
+---
+
+## Reflection مقابل Source Generators
+
+**Reflection (Runtime):** مرن جدًا، مناسب للسيناريوهات الديناميكية، بس أبطأ والأخطاء تظهر وقت التشغيل.
+
+**Source Generators (Compile Time):** أداء أعلى، الأخطاء تظهر بدري، أقل مرونة. أفضل لما السيناريو معروف مسبقًا زي Serialization.
+
+---
+
+## متى تستخدم Reflection؟
+
+استخدمه مع Plugins والتحميل الديناميكي، قراءة Attributes مخصصة، بناء أدوات عامة (ORMs وmappers وserializers)، وتطوير Frameworks وأدوات اختبار.
+
+لا تستخدمه لما فيه طريقة مباشرة أبسط، أو جوّه Loop ضخمة جدًا، أو Performance حساس جدًا، أو تقدر تستخدم Source Generators بدلًا منه.
+
+---
+
+## الخلاصة
+
+Reflection هو أحد الأسباب التي تجعل .NET Framework Ecosystem قويًا. هو الذي يسمح للـ Frameworks بأن تقول: أعطني الكود الخاص بك… وسأفهمه.
+
+لكن القوة تأتي مع مسؤولية. الاستخدام الصحيح يعطيك مرونة كبيرة ويسمح ببناء Frameworks قوية. الاستخدام الخاطئ يسبب مشاكل أداء ويخلي Debugging أصعب.
+
+Developer قوي لا يحفظ فقط استخدام Frameworks… بل يفهم الآليات التي تجعلها تعمل خلف الكواليس.
+
+Reflection turns code into data — and that's where the real power begins.`,
   author: 'Ahmed Ibrahim',
   date: '2024-01-20',
   category: 'Backend',
-  readTime: '8 min read',
-  image: 'https://miro.medium.com/v2/resize:fit:1200/1*6yZGUYgLFc5rRDa9ZYPl-g.png',
+  readTime: '11 min read',
+  image: reflectionImage,
 };

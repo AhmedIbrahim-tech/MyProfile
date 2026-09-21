@@ -1,9 +1,51 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { createElement, useMemo, Fragment, type ReactNode } from 'react';
+import { createElement, useCallback, useEffect, useMemo, useRef, useState, Fragment, type ReactNode } from 'react';
 import { useBlogPost, useBlogPosts } from '@/hooks/useBlogPosts';
 import Loading from '@/shared/Loading';
+import FeaturedStarBadge from '@/components/FeaturedStarBadge';
 import userAvatar from '@/assets/user.jpg';
 import '@/assets/styles/pages/BlogDetailsPage.css';
+
+function fallbackCopyText(text: string): boolean {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.top = '0';
+  textarea.style.left = '0';
+  textarea.style.width = '1px';
+  textarea.style.height = '1px';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  textarea.setSelectionRange(0, textarea.value.length);
+  const ok = document.execCommand('copy');
+  document.body.removeChild(textarea);
+  return ok;
+}
+
+async function copyTextToClipboard(text: string): Promise<boolean> {
+  window.focus();
+  if (navigator.clipboard?.writeText && document.hasFocus()) {
+    try {
+      await Promise.race([
+        navigator.clipboard.writeText(text),
+        new Promise<never>((_, reject) => {
+          window.setTimeout(() => reject(new Error('clipboard timeout')), 400);
+        }),
+      ]);
+      return true;
+    } catch {
+      // Fall through to execCommand fallback.
+    }
+  }
+  try {
+    return fallbackCopyText(text);
+  } catch {
+    return false;
+  }
+}
 
 const containsArabic = (text: string): boolean => /[\u0600-\u06FF]/.test(text);
 
@@ -47,13 +89,37 @@ function parseInlineCodeAndText(node: ReactNode): ReactNode {
   if (typeof node !== 'string') return node;
   const parts: ReactNode[] = [];
   let lastIndex = 0;
-  const re = /`([^`]+)`/g;
+  const re = /(`[^`]+`)|(\[([^\]]+)\]\((https?:\/\/[^\s)]+)\))|(\*\*([^*]+)\*\*)/g;
   let m: RegExpExecArray | null;
   while ((m = re.exec(node)) !== null) {
     if (m.index > lastIndex) {
       parts.push(node.slice(lastIndex, m.index));
     }
-    parts.push(<code key={m.index} className="content-inline-code">{m[1]}</code>);
+    if (m[1]) {
+      parts.push(
+        <code key={m.index} className="content-inline-code">
+          {m[1].slice(1, -1)}
+        </code>
+      );
+    } else if (m[2]) {
+      parts.push(
+        <a
+          key={m.index}
+          href={m[4]}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="content-inline-link"
+        >
+          {m[3]}
+        </a>
+      );
+    } else {
+      parts.push(
+        <strong key={m.index} className="content-inline-strong">
+          {m[6]}
+        </strong>
+      );
+    }
     lastIndex = m.index + m[0].length;
   }
   if (lastIndex < node.length) parts.push(node.slice(lastIndex));
@@ -66,6 +132,39 @@ const BlogDetailsPage = () => {
   const postId = id ? parseInt(id) : undefined;
   const { post, loading, error } = useBlogPost(postId);
   const { posts } = useBlogPosts();
+  const [copied, setCopied] = useState(false);
+  const copiedTimeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    setCopied(false);
+    if (copiedTimeoutRef.current !== null) {
+      window.clearTimeout(copiedTimeoutRef.current);
+      copiedTimeoutRef.current = null;
+    }
+  }, [postId]);
+
+  useEffect(() => {
+    return () => {
+      if (copiedTimeoutRef.current !== null) {
+        window.clearTimeout(copiedTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleCopyArticle = useCallback(async () => {
+    if (!post) return;
+    const text = [post.title, post.excerpt, post.content.trim()].filter(Boolean).join('\n\n');
+    const ok = await copyTextToClipboard(text);
+    if (!ok) return;
+    setCopied(true);
+    if (copiedTimeoutRef.current !== null) {
+      window.clearTimeout(copiedTimeoutRef.current);
+    }
+    copiedTimeoutRef.current = window.setTimeout(() => {
+      setCopied(false);
+      copiedTimeoutRef.current = null;
+    }, 2000);
+  }, [post]);
 
   const relatedPosts = useMemo(() => {
     if (!post || !posts.length) return [];
@@ -293,11 +392,37 @@ const BlogDetailsPage = () => {
                 width={44}
                 height={44}
               />
-              <span className="blog-details-read-time-pill">{post.readTime}</span>
-              <span className="blog-details-category-badge">{post.category}</span>
+              <span className="blog-details-read-time-pill" dir="ltr">{post.readTime}</span>
+              {post.featured && <FeaturedStarBadge className="blog-details-featured-badge" />}
+              <span className="blog-details-category-badge" dir="ltr">{post.category}</span>
             </div>
             <div className="blog-details-header-content">
-              <h1 className={`blog-details-title ${isArabic ? 'rtl' : ''}`}>{post.title}</h1>
+              <div className="blog-details-title-row">
+                <h1 className={`blog-details-title ${isArabic ? 'rtl' : ''}`}>
+                  {post.featured && (
+                    <i className="fas fa-star blog-details-title-star" aria-hidden="true"></i>
+                  )}
+                  {post.title}
+                </h1>
+                <button
+                  type="button"
+                  className={`blog-details-copy-btn ${copied ? 'copied' : ''}`}
+                  onClick={handleCopyArticle}
+                  aria-label={isArabic ? 'نسخ المقالة' : 'Copy article'}
+                  title={isArabic ? 'نسخ المقالة' : 'Copy article'}
+                >
+                  <i className={`fas ${copied ? 'fa-check' : 'fa-copy'}`} aria-hidden="true"></i>
+                  <span>
+                    {copied
+                      ? isArabic
+                        ? 'تم النسخ'
+                        : 'Copied'
+                      : isArabic
+                        ? 'نسخ المقالة'
+                        : 'Copy article'}
+                  </span>
+                </button>
+              </div>
               <div className={`blog-details-meta blog-details-meta--split ${isArabic ? 'rtl' : ''}`}>
                 <span className="blog-details-meta-left">
                   <span className="blog-details-read-time">
@@ -374,11 +499,17 @@ const BlogDetailsPage = () => {
                           }}
                         />
                         <span className="blog-details-related-card-meta" dir="ltr">
+                          {p.featured && <i className="fas fa-star" aria-hidden="true"></i>}
                           {p.category} · {p.readTime}
                         </span>
                       </div>
                       <div className="blog-details-related-card-body">
-                        <h3 className="blog-details-related-card-title">{p.title}</h3>
+                        <h3 className="blog-details-related-card-title">
+                          {p.featured && (
+                            <i className="fas fa-star blog-details-title-star" aria-hidden="true"></i>
+                          )}
+                          {p.title}
+                        </h3>
                         <span className="blog-details-related-card-cta">
                           Read article
                           <i className="fas fa-arrow-right" aria-hidden="true"></i>
@@ -397,7 +528,7 @@ const BlogDetailsPage = () => {
                 {prevPost ? (
                   <Link
                     to={`/blog/${prevPost.id}`}
-                    className={`blog-details-nav-link prev ${isArabic ? 'rtl' : ''}`}
+                    className="blog-details-nav-link prev"
                     rel="prev"
                   >
                     <i className="fas fa-arrow-left" aria-hidden="true"></i>
@@ -408,22 +539,15 @@ const BlogDetailsPage = () => {
                   <span className="blog-details-nav-placeholder" aria-hidden="true" />
                 )}
               </div>
-              <Link to="/blog" className={`blog-details-nav-all ${isArabic ? 'rtl' : ''}`}>
-                {isArabic ? (
-                  <>
-                    All posts <i className="fas fa-arrow-right" aria-hidden="true"></i>
-                  </>
-                ) : (
-                  <>
-                    <i className="fas fa-arrow-left" aria-hidden="true"></i> All posts
-                  </>
-                )}
+              <Link to="/blog" className="blog-details-nav-all">
+                <i className="fas fa-arrow-left" aria-hidden="true"></i>
+                All posts
               </Link>
               <div className="blog-details-nav-group blog-details-nav-next">
                 {nextPost ? (
                   <Link
                     to={`/blog/${nextPost.id}`}
-                    className={`blog-details-nav-link next ${isArabic ? 'rtl' : ''}`}
+                    className="blog-details-nav-link next"
                     rel="next"
                   >
                     <span className="blog-details-nav-link-label">Next post</span>

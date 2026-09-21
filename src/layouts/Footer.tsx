@@ -159,6 +159,9 @@ function FooterRecentPosts() {
                 <Icon className="footer-link-icon" aria-hidden />
               </span>
               <span>{post.title}</span>
+              {post.featured && (
+                <i className="fas fa-star footer-featured-star" title="Featured article" aria-hidden />
+              )}
             </Link>
           </li>
         ))}

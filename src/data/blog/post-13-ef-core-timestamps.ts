@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import efCoreTimestampsImage from '@/assets/blog/ef-core-timestamps.jpg';
 
 export const post: BlogPost = {
-  id: 22,
+  id: 13,
   title: 'Automating Timestamps with EF Core ChangeTracker',
   excerpt:
     'CreatedAt وUpdatedAt مش Business Logic. خلي ChangeTracker والـ Interceptor يكتبوا الـ Timestamps مرة واحدة، بدل ما كل Service تكرر نفس الكود وتنساه.',

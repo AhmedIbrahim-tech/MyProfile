@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import processVsThreadImage from '@/assets/blog/process-vs-thread.jpg';
 
 export const post: BlogPost = {
-  id: 12,
+  id: 1,
   title: 'الفرق بين الـ Process والـ Thread في الـ Production',
   excerpt:
     'الإجابة المحفوظة صحيحة: الـ Process أثقل ومعزولة، والـ Threads أخف وبتتشارك الذاكرة. في الـ Production، الفرق ده ممكن يكون الفرق بين Bug صغير وServer كامل يقع.',

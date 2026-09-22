@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import healthCheckImage from '@/assets/blog/health-check-healthy-broken.jpg';
 
 export const post: BlogPost = {
-  id: 19,
+  id: 10,
   title: 'لما الـ Health Check يقول Healthy… والـ System يكون Broken',
   excerpt:
     'مش كل Service حالتها Healthy معناها إنها قادرة تنفذ شغل التطبيق. Running مش Ready — والـ Ping مش كفاية لو التطبيق بيعتمد على Write أو Lock.',

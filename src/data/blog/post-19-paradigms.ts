@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import paradigmImage from '@/assets/blog/csharp-multi-paradigm.jpg';
 
 export const post: BlogPost = {
-  id: 8,
+  id: 19,
   title: 'C# as a Multi-Paradigm Language',
   excerpt:
     'C# مش مجرد Classes وObjects. هي لغة Multi-Paradigm: تقدر تحل نفس المشكلة بأكتر من أسلوب، والمهم تختار اللي يناسب المشكلة مش اللي اتعودت عليه.',

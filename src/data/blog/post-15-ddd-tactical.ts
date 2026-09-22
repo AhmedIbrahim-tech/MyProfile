@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import dddTacticalImage from '@/assets/blog/ddd-tactical.jpg';
 
 export const post: BlogPost = {
-  id: 24,
+  id: 15,
   title: 'Domain-Driven Design (DDD) — الجزء الثاني: Tactical Design',
   excerpt:
     'Entity وValue Object وAggregate مش أسماء Classes. دول طريقة تخلي الكود يتكلم لغة الـ Business، ويحافظ على القواعد من غير ما تتحوّل الـ Service لمكان لكل حاجة.',

@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import domainEventsImage from '@/assets/blog/domain-events.jpg';
 
 export const post: BlogPost = {
-  id: 21,
+  id: 12,
   title: 'Domain Events في الـ Backend: ليه نستخدمها وإمتى؟',
   excerpt:
     'Domain Event = حقيقة حصلت في الـ Domain، مش أمر للتنفيذ. افصل الحدث عن رد الفعل عشان النظام يفضل سهل التغيير لما يكبر.',

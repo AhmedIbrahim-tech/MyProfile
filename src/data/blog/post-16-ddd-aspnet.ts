@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import dddAspNetImage from '@/assets/blog/ddd-aspnet.jpg';
 
 export const post: BlogPost = {
-  id: 25,
+  id: 16,
   title: 'Domain-Driven Design (DDD) — الجزء الثالث: تطبيق عملي في ASP.NET Core',
   excerpt:
     'DDD مش Folder Structure. في ASP.NET Core الـ Domain بيحمي القواعد، والـ Application بتنسّق الـ Use Case، والـ Infrastructure بتخبّي EF Core والـ Outbox.',

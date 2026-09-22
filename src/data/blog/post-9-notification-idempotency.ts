@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import notificationIdempotencyImage from '@/assets/blog/notification-idempotency.jpg';
 
 export const post: BlogPost = {
-  id: 18,
+  id: 9,
   title: 'إزاي Notification واحدة تتبعت لنفس الشخص 150 مرة؟',
   excerpt:
     'Outbox Pattern بيمنع ضياع الرسالة، مش التكرار. في الـ Distributed Systems لازم تصمم للـ Duplicates، مش تفترض إن الإرسال هيحصل مرة واحدة.',

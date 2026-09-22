@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import backendArchitecturesImage from '@/assets/blog/backend-architectures.jpg';
 
 export const post: BlogPost = {
-  id: 13,
+  id: 3,
   title: 'أشهر Architectural Styles في الـ Backend',
   excerpt:
     'Layered وClean وVertical Slice وMicroservices مش بدائل لبعض. كل واحدة بتحل مشكلة مختلفة. الخريطة دي توضح الفرق، وإمتى تستخدم كل واحدة في .NET.',

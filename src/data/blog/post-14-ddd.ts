@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import dddImage from '@/assets/blog/ddd.jpg';
 
 export const post: BlogPost = {
-  id: 23,
+  id: 14,
   title: 'Domain-Driven Design (DDD) — كيف تبني Software يعكس الـ Business؟',
   excerpt:
     'أصعب جزء مش إن الكود يشتغل. الأصعب إن الكود يعكس الـ Business، ويحافظ على القواعد، ويفضل قابل للتغيير بعد سنين. DDD بيصمم النظام حول الـ Domain مش حول الـ Database.',

@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import reflectionImage from '@/assets/blog/reflection-in-csharp.jpg';
 
 export const post: BlogPost = {
-  id: 7,
+  id: 17,
   title: 'Reflection in C# — How Frameworks Work Behind the Scenes',
   excerpt:
     'كيف يعرف EF Core إن الـ Class ده Table؟ وإزاي ASP.NET بيحوّل Controller لـ Endpoint من غير ما تكتب الـ Routing بإيدك؟ الإجابة غالبًا: Reflection.',

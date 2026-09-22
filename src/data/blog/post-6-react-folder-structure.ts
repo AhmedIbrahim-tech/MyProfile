@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import reactFolderStructureImage from '@/assets/blog/react-ts-folder-structure.jpg';
 
 export const post: BlogPost = {
-  id: 16,
+  id: 6,
   title: 'أفضل Folder Structure لمشاريع React + TypeScript',
   excerpt:
     'مش مجرد ترتيب ملفات. الـ Folder Structure جزء من الـ Architecture: بتحافظ على المشروع قابل للصيانة، وبتخلي كل Feature تعرف مكانها.',

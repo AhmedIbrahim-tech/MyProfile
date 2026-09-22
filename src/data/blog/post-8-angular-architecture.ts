@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import angularArchitectureImage from '@/assets/blog/angular-architecture.jpg';
 
 export const post: BlogPost = {
-  id: 17,
+  id: 8,
   title: 'أشهر Angular Architectural Styles لتنظيم المشاريع الكبيرة',
   excerpt:
     'Core وShared وFeatures مش فولدرات عشوائية. كل نمط Angular بيحل مشكلة مختلفة — والمهم تختار الأبسط اللي يفضل قابل للنمو.',

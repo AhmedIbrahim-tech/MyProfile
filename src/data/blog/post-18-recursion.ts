@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import recursionImage from '@/assets/blog/recursion-csharp.jpg';
 
 export const post: BlogPost = {
-  id: 26,
+  id: 18,
   title: 'Recursion في C# — عندما تستدعي الـ Function نفسها',
   excerpt:
     'Recursion مش مجرد Function تنادي نفسها. هي طريقة تقسّم المشكلة لنسخة أصغر من نفسها — بشرط يكون عندك Base Case، وتفهم الـ Call Stack.',

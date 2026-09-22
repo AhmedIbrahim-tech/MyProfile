@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import reactVsNextImage from '@/assets/blog/react-vs-nextjs.jpg';
 
 export const post: BlogPost = {
-  id: 9,
+  id: 20,
   title: 'React vs Next.js: Which to Choose?',
   excerpt:
     'مش منافسة. Next.js مبني فوق React. React بتبني الـ UI بحرية، وNext.js بيضيف Routing وRendering وSEO. الاختيار حسب المشروع مش حسب الترند.',

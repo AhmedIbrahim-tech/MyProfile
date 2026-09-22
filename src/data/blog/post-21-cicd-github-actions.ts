@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import cicdImage from '@/assets/blog/cicd-github-actions.jpg';
 
 export const post: BlogPost = {
-  id: 27,
+  id: 21,
   title: 'CI/CD & GitHub Actions — إزاي الكود ينتقل من git push إلى Production بشكل آمن؟',
   excerpt:
     'من الحاجات اللي بتفرق بين مشروع شغال على جهازك وSoftware System حقيقي في Production: إزاي التغيير بيوصل بأمان؟ دليلك الشامل لفهم CI/CD وGitHub Actions خطوة بخطوة.',

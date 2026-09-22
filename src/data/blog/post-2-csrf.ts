@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import cookieSecurityImage from '@/assets/blog/csrf-when-browser-works.jpg';
 
 export const post: BlogPost = {
-  id: 11,
+  id: 2,
   title: 'CSRF: HttpOnly Cookie مش حماية كافية',
   excerpt:
     'ممكن تعمل Authentication بـ HttpOnly وSecure وSession Cookie، وبرضه يتنفذ باسم المستخدم Request هو عمره ما طلبه. CSRF مش سرقة للـ Cookie — ده استغلال إن المتصفح بيستخدمها أوتوماتيك.',

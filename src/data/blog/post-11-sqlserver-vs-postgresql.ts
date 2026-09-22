@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import sqlServerVsPostgresImage from '@/assets/blog/sqlserver-vs-postgresql.jpg';
 
 export const post: BlogPost = {
-  id: 20,
+  id: 11,
   title: 'SQL Server ولا PostgreSQL لو شغال .NET؟',
   excerpt:
     'مفيش قاعدة بتقول إن .NET لازم يشتغل مع SQL Server. الاثنين ممتازين — الاختيار بيتحدد من الـ Workload والتكلفة والفريق، مش من الـ Framework.',

@@ -2,7 +2,7 @@ import type { BlogPost } from '@/modules/blog/types';
 import taskVsThreadImage from '@/assets/blog/task-vs-thread-async.jpg';
 
 export const post: BlogPost = {
-  id: 15,
+  id: 4,
   title: 'Task vs Thread vs async/await في .NET',
   excerpt:
     'Thread مش Task، وasync/await مش Parallelism. فهم الفرق — وعلاقته بالـ DbContext — هو أساس Scalability في .NET، مش مجرد سؤال Interview.',

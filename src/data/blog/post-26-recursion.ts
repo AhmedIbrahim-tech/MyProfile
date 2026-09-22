@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import recursionImage from '@/assets/blog/recursion-csharp.jpg';
 
 export const post: BlogPost = {

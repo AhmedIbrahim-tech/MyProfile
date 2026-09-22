@@ -1,5 +1,4 @@
-import Blog from '@/components/Blog';
-// import ComingSoon from '@/pages/ComingSoon';
+import { BlogList } from '@/modules/blog';
 import { sectionConfig } from '@/data/sectionConfig';
 import '@/assets/styles/pages/BlogPage.css';
 
@@ -10,7 +9,7 @@ const BlogPage = () => {
 
   return (
     <div className="blog-page">
-      <Blog />
+      <BlogList />
       {/* <ComingSoon /> */}
     </div>
   );

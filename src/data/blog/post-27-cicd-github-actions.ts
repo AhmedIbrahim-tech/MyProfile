@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import cicdImage from '@/assets/blog/cicd-github-actions.jpg';
 
 export const post: BlogPost = {

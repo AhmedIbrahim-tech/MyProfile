@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import paradigmImage from '@/assets/blog/csharp-multi-paradigm.jpg';
 
 export const post: BlogPost = {

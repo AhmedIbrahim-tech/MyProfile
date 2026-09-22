@@ -16,7 +16,7 @@ import { profileData } from '@/data/profileData';
 import { sectionConfig } from '@/data/sectionConfig';
 import { footerContent } from '@/data/footerContent';
 import { blogPosts } from '@/data/blogData';
-import { LogoMark } from '@/layouts/FooterIcons';
+import { LogoMark } from '@/shared/components/icons';
 import '@/assets/styles/layouts/Footer.css';
 
 // -----------------------------------------------------------------------------

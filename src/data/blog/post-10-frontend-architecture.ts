@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import architectureVsDebtImage from '@/assets/blog/architecture-vs-technical-debt.jpg';
 
 export const post: BlogPost = {

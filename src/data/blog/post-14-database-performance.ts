@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import databasePerformanceImage from '@/assets/blog/database-performance.jpg';
 
 export const post: BlogPost = {

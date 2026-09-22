@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import dddAspNetImage from '@/assets/blog/ddd-aspnet.jpg';
 
 export const post: BlogPost = {

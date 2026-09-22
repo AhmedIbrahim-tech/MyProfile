@@ -1,4 +1,4 @@
-import Contact from '@/components/Contact';
+import Contact from '@/modules/contact';
 import { sectionConfig } from '@/data/sectionConfig';
 import '@/assets/styles/pages/ContactPage.css';
 

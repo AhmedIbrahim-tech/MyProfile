@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import reactFolderStructureImage from '@/assets/blog/react-ts-folder-structure.jpg';
 
 export const post: BlogPost = {

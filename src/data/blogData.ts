@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import { post as post7 } from '@/data/blog/post-7';
 import { post as post8 } from '@/data/blog/post-8-paradigms';
 import { post as post9 } from '@/data/blog/post-9-react-vs-nextjs';

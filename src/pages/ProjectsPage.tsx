@@ -1,4 +1,4 @@
-import Projects from '@/features/projects/Projects';
+import Projects from '@/modules/projects';
 import { sectionConfig } from '@/data/sectionConfig';
 import '@/assets/styles/pages/ProjectsPage.css';
 

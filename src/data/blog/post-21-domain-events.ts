@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import domainEventsImage from '@/assets/blog/domain-events.jpg';
 
 export const post: BlogPost = {

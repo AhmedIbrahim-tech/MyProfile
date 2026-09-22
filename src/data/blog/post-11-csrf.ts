@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import cookieSecurityImage from '@/assets/blog/csrf-when-browser-works.jpg';
 
 export const post: BlogPost = {

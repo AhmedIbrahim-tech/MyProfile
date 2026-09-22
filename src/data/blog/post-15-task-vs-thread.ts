@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import taskVsThreadImage from '@/assets/blog/task-vs-thread-async.jpg';
 
 export const post: BlogPost = {

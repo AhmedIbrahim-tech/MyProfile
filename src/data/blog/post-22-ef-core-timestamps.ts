@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import efCoreTimestampsImage from '@/assets/blog/ef-core-timestamps.jpg';
 
 export const post: BlogPost = {

@@ -1,7 +1,7 @@
-import Hero from '@/features/Hero';
-import Skills from '@/features/Skills';
-import Experience from '@/features/Experience';
-import Education from '@/features/Education';
+import Hero from '@/modules/profile';
+import Skills from '@/modules/skills';
+import Experience from '@/modules/experience';
+import Education from '@/modules/education';
 import { sectionConfig } from '@/data/sectionConfig';
 import '@/assets/styles/pages/Home.css';
 

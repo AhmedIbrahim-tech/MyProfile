@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import reflectionImage from '@/assets/blog/reflection-in-csharp.jpg';
 
 export const post: BlogPost = {

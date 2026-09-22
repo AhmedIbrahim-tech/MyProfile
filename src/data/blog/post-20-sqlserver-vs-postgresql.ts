@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import sqlServerVsPostgresImage from '@/assets/blog/sqlserver-vs-postgresql.jpg';
 
 export const post: BlogPost = {

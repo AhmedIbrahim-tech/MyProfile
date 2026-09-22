@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import notificationIdempotencyImage from '@/assets/blog/notification-idempotency.jpg';
 
 export const post: BlogPost = {

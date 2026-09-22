@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import resumePdf from '@/assets/Ahmed Eprahim Resume.pdf';
 import { sectionConfig } from '@/data/sectionConfig';
-import ThemeToggle from '@/components/ThemeToggle';
+import ThemeToggle from '@/shared/components/ThemeToggle';
 import {
   HiOutlineHome,
   HiOutlineCode,

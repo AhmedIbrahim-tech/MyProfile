@@ -1,4 +1,4 @@
-import type { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/modules/blog/types';
 import processVsThreadImage from '@/assets/blog/process-vs-thread.jpg';
 
 export const post: BlogPost = {

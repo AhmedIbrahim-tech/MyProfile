@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import type { BlogPost } from '@/modules/blog/types';
 import { formatBlogDate, getBlogPlaceholderImage } from '@/modules/blog';
-import FeaturedStarBadge from '@/shared/components/FeaturedStarBadge';
-import userAvatar from '@/assets/user.jpg';
+import { getSeriesForArticle } from '@/modules/blog/services/blogSeriesService';
+import '@/assets/styles/pages/BlogSeries.css';
 
 export interface ArticleHeaderProps {
   post: BlogPost;
@@ -18,6 +19,8 @@ export const ArticleHeader = ({
   onCopy,
   onBack,
 }: ArticleHeaderProps) => {
+  const seriesContext = getSeriesForArticle(post.id);
+
   return (
     <>
       <button
@@ -42,53 +45,59 @@ export const ArticleHeader = ({
         <div className="blog-details-image-container">
           <img
             src={post.image}
-            alt=""
+            alt={post.title}
             className="blog-details-image"
             onError={(e) => {
               (e.target as HTMLImageElement).src =
                 getBlogPlaceholderImage(post.title);
             }}
           />
-          <div className="blog-details-image-overlay" />
-          <img
-            src={userAvatar}
-            alt=""
-            className="blog-details-header-avatar"
-            width={44}
-            height={44}
-          />
-          <span className="blog-details-read-time-pill" dir="ltr">
-            {post.readTime}
-          </span>
-          {post.featured && <FeaturedStarBadge className="blog-details-featured-badge" />}
           <span className="blog-details-category-badge" dir="ltr">
             {post.category}
           </span>
         </div>
         <div className="blog-details-header-content">
+          {seriesContext && (
+            <aside className="article-series-context-banner" aria-label="Series context">
+              <div className="article-series-context-left">
+                <span className="article-series-context-kicker">
+                  <i className="fas fa-layer-group" aria-hidden="true" />
+                  {seriesContext.series.title.toUpperCase()} SERIES
+                </span>
+                <span className="article-series-context-order">
+                  Article {seriesContext.position} of {seriesContext.total}
+                </span>
+              </div>
+              <Link
+                to={`/blog/series/${seriesContext.series.slug}`}
+                className="article-series-context-action"
+              >
+                <span>View full series</span>
+                <i className="fas fa-arrow-right" aria-hidden="true" />
+              </Link>
+            </aside>
+          )}
+
           <div className="blog-details-title-row">
             <h1 className={`blog-details-title ${isArabic ? 'rtl' : ''}`}>
-              {post.featured && (
-                <i className="fas fa-star blog-details-title-star" aria-hidden="true"></i>
-              )}
               {post.title}
             </h1>
             <button
               type="button"
               className={`blog-details-copy-btn ${copied ? 'copied' : ''}`}
               onClick={onCopy}
-              aria-label={isArabic ? 'نسخ المقالة' : 'Copy article'}
-              title={isArabic ? 'نسخ المقالة' : 'Copy article'}
+              aria-label={isArabic ? 'نسخ محتوى المقالة' : 'Copy article content'}
+              title={isArabic ? 'نسخ المحتوى' : 'Copy content'}
             >
               <i className={`fas ${copied ? 'fa-check' : 'fa-copy'}`} aria-hidden="true"></i>
               <span>
                 {copied
                   ? isArabic
-                    ? 'تم النسخ'
-                    : 'Copied'
+                    ? 'تم نسخ المحتوى'
+                    : 'Content copied'
                   : isArabic
-                    ? 'نسخ المقالة'
-                    : 'Copy article'}
+                    ? 'نسخ المحتوى'
+                    : 'Copy content'}
               </span>
             </button>
           </div>

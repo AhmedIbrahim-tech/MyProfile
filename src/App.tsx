@@ -8,6 +8,8 @@ import Home from '@/pages/Home';
 import ProjectsPage from '@/pages/ProjectsPage';
 import ContactPage from '@/pages/ContactPage';
 import BlogPage from '@/pages/BlogPage';
+import BlogSeriesPage from '@/pages/BlogSeriesPage';
+import BlogSeriesDetailPage from '@/pages/BlogSeriesDetailPage';
 import BlogDetailsPage from '@/pages/BlogDetailsPage';
 import ComingSoon from '@/pages/ComingSoon';
 import ProjectDetailsPage from '@/pages/ProjectDetailsPage';
@@ -44,6 +46,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/:id" element={<ProjectDetailsPage />} />
+          <Route path="/blog/series" element={<BlogSeriesPage />} />
+          <Route path="/blog/series/:slug" element={<BlogSeriesDetailPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:id" element={<BlogDetailsPage />} />
           <Route path="/contact" element={<ContactPage />} />

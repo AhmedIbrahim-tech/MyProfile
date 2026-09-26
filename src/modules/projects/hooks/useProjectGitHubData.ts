@@ -35,9 +35,18 @@ export const useProjectGitHubData = (repoName: string | undefined) => {
           setReadme(readmeData);
           setLoading(false);
         }
-      } catch (err) {
+      } catch (err: unknown) {
         if (isMounted) {
-          setError("Failed to fetch repository data from GitHub");
+          const apiErr = err as { status?: number; message?: string };
+          let errorMessage = "Unable to connect to GitHub at this time. Please check your network or try again later.";
+          if (apiErr?.status === 404) {
+            errorMessage = "The requested repository could not be found on GitHub.";
+          } else if (apiErr?.status === 403) {
+            errorMessage = "GitHub API rate limit exceeded. Please wait a moment or try again later.";
+          } else if (apiErr?.message) {
+            errorMessage = `GitHub request failed: ${apiErr.message}`;
+          }
+          setError(errorMessage);
           setLoading(false);
         }
       }

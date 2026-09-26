@@ -6,22 +6,20 @@ export const ProjectTechStack = ({ techTags }: ProjectTechStackProps) => {
   if (techTags.length === 0) return null;
 
   return (
-    <section className="tech-dashboard-bar">
-      <div className="bar-label">Infrastructure & Stack</div>
-      <div className="tech-scroller">
+    <section className="case-study-section tech-stack-section" aria-labelledby="tech-stack-heading">
+      <div className="case-study-section-header">
+        <span className="section-eyebrow">TECHNOLOGY STACK</span>
+        <h2 id="tech-stack-heading" className="case-study-section-title">
+          Tools, Libraries & Infrastructure
+        </h2>
+      </div>
+      <div className="case-study-tech-wrap">
         {techTags.map((tag: string, i: number) => {
-          const parts = tag.split(': ');
+          const cleanTag = tag.replace(/^Stack:\s*/i, '');
           return (
-            <div key={i} className="tech-badge-premium">
-              {parts.length > 1 ? (
-                <>
-                  <span className="badge-label">{parts[0]}</span>
-                  <span className="badge-value">{parts[1]}</span>
-                </>
-              ) : (
-                tag
-              )}
-            </div>
+            <span key={i} className="tech-badge-editorial">
+              {cleanTag}
+            </span>
           );
         })}
       </div>

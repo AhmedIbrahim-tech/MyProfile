@@ -19,3 +19,30 @@ export interface TocEntry {
 }
 
 export type BlogCategory = string;
+
+export type BlogSeriesItemStatus = 'published' | 'coming-soon';
+
+export interface BlogSeriesItem {
+  order: number;
+  title: string;
+  description?: string;
+  articleId?: number;
+  status: BlogSeriesItemStatus;
+}
+
+export interface BlogSeries {
+  id: string;
+  slug: string;
+  title: string;
+  shortTitle?: string;
+  description: string;
+  intro?: string;
+  image?: string;
+  items: BlogSeriesItem[];
+}
+
+export interface BlogSeriesStats {
+  totalTopics: number;
+  publishedCount: number;
+  comingSoonCount: number;
+}

@@ -9,8 +9,14 @@ import {
 } from '@/modules/blog';
 import { ArticleHeader } from './ArticleHeader';
 import { TableOfContents, ArticleSummary } from './TableOfContents';
+import {
+  getSeriesForArticle,
+  getPreviousSeriesArticle,
+  getNextSeriesArticle,
+} from '@/modules/blog/services/blogSeriesService';
 import Loading from '@/shared/components/feedback/Loading';
 import '@/assets/styles/pages/BlogDetailsPage.css';
+import '@/assets/styles/pages/BlogSeries.css';
 
 function fallbackCopyText(text: string): boolean {
   const textarea = document.createElement('textarea');
@@ -80,10 +86,9 @@ export const ArticleReader = ({ postId }: ArticleReaderProps) => {
     };
   }, []);
 
-  const handleCopyArticle = useCallback(async () => {
-    if (!post) return;
-    const text = [post.title, post.excerpt, post.content.trim()].filter(Boolean).join('\n\n');
-    const ok = await copyTextToClipboard(text);
+  const handleCopyContent = useCallback(async () => {
+    if (!post?.content) return;
+    const ok = await copyTextToClipboard(post.content);
     if (!ok) return;
     setCopied(true);
     if (copiedTimeoutRef.current !== null) {
@@ -93,7 +98,7 @@ export const ArticleReader = ({ postId }: ArticleReaderProps) => {
       setCopied(false);
       copiedTimeoutRef.current = null;
     }, 2000);
-  }, [post]);
+  }, [post?.content]);
 
   const relatedPosts = useMemo(() => {
     if (!post || !posts.length) return [];
@@ -106,6 +111,16 @@ export const ArticleReader = ({ postId }: ArticleReaderProps) => {
   const prevPost = postIndex > 0 ? posts[postIndex - 1] : null;
   const nextPost = postIndex >= 0 && postIndex < posts.length - 1 ? posts[postIndex + 1] : null;
 
+  const seriesContext = useMemo(() => (post ? getSeriesForArticle(post.id) : null), [post]);
+  const prevSeriesItem = useMemo(
+    () => (post && seriesContext ? getPreviousSeriesArticle(post.id, seriesContext.series) : null),
+    [post, seriesContext]
+  );
+  const nextSeriesItem = useMemo(
+    () => (post && seriesContext ? getNextSeriesArticle(post.id, seriesContext.series) : null),
+    [post, seriesContext]
+  );
+
   const isArabic = useMemo(() => {
     if (!post) return false;
     return containsArabic(post.title) || containsArabic(post.content) || containsArabic(post.excerpt);
@@ -113,9 +128,14 @@ export const ArticleReader = ({ postId }: ArticleReaderProps) => {
 
   const tocEntries = useMemo(() => (post ? extractHeadings(post.content) : []), [post]);
 
+  const hasToc = useMemo(() => {
+    const h2Count = tocEntries.filter((e) => e.level === 2).length;
+    return h2Count >= 4;
+  }, [tocEntries]);
+
   const formattedContent = useMemo(
-    () => (post ? formatMarkdownContent(post.content, tocEntries) : null),
-    [post, tocEntries]
+    () => (post ? formatMarkdownContent(post.content, tocEntries, isArabic) : null),
+    [post, tocEntries, isArabic]
   );
 
   if (loading) {
@@ -154,13 +174,13 @@ export const ArticleReader = ({ postId }: ArticleReaderProps) => {
           post={post}
           isArabic={isArabic}
           copied={copied}
-          onCopy={handleCopyArticle}
+          onCopy={handleCopyContent}
           onBack={() => navigate('/blog')}
         />
 
         <article className={`blog-details-article ${isArabic ? 'rtl' : ''}`}>
-          <div className="blog-details-body-wrap">
-            <TableOfContents entries={tocEntries} />
+          <div className={`blog-details-body-wrap ${hasToc ? 'has-toc' : 'no-toc'}`}>
+            <TableOfContents entries={tocEntries} isArabic={isArabic} />
             <div className={`blog-details-content ${isArabic ? 'rtl' : ''}`}>
               <ArticleSummary entries={tocEntries} />
               {formattedContent}
@@ -212,7 +232,89 @@ export const ArticleReader = ({ postId }: ArticleReaderProps) => {
           )}
 
           <footer className="blog-details-footer">
-            <nav className="blog-details-nav" aria-label="Blog post navigation">
+            {seriesContext && (
+              <nav
+                className="blog-details-series-nav"
+                aria-label={`${seriesContext.series.title} series navigation`}
+              >
+                <div className="blog-details-series-nav-header">
+                  <span className="blog-details-series-nav-kicker">
+                    <i className="fas fa-layer-group" aria-hidden="true" />
+                    {seriesContext.series.title} Series Navigation
+                  </span>
+                  <span className="blog-details-series-nav-counter">
+                    Article {seriesContext.position} of {seriesContext.total}
+                  </span>
+                </div>
+
+                <div className="blog-details-series-nav-links">
+                  <div className="blog-details-series-nav-col prev">
+                    {prevSeriesItem && prevSeriesItem.articleId ? (
+                      <Link
+                        to={`/blog/${prevSeriesItem.articleId}`}
+                        className="blog-details-series-nav-card"
+                        rel="prev"
+                      >
+                        <span className="blog-details-series-nav-direction">
+                          <i className="fas fa-arrow-left" aria-hidden="true" />
+                          Previous in {seriesContext.series.shortTitle || seriesContext.series.title}
+                        </span>
+                        <span className="blog-details-series-nav-item-title">
+                          {prevSeriesItem.title}
+                        </span>
+                      </Link>
+                    ) : (
+                      <div className="blog-details-series-nav-disabled" aria-hidden="true">
+                        <span className="blog-details-series-nav-direction">Start of series</span>
+                        <span className="blog-details-series-nav-item-title">
+                          First article in roadmap
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="blog-details-series-nav-col hub">
+                    <Link
+                      to={`/blog/series/${seriesContext.series.slug}`}
+                      className="blog-details-series-nav-hub-btn"
+                    >
+                      <i className="fas fa-list-ol" aria-hidden="true" />
+                      <span>View {seriesContext.series.title} Series</span>
+                    </Link>
+                  </div>
+
+                  <div className="blog-details-series-nav-col next">
+                    {nextSeriesItem && nextSeriesItem.articleId ? (
+                      <Link
+                        to={`/blog/${nextSeriesItem.articleId}`}
+                        className="blog-details-series-nav-card"
+                        rel="next"
+                      >
+                        <span className="blog-details-series-nav-direction">
+                          Next in {seriesContext.series.shortTitle || seriesContext.series.title}
+                          <i className="fas fa-arrow-right" aria-hidden="true" />
+                        </span>
+                        <span className="blog-details-series-nav-item-title">
+                          {nextSeriesItem.title}
+                        </span>
+                      </Link>
+                    ) : (
+                      <div className="blog-details-series-nav-disabled" aria-hidden="true">
+                        <span className="blog-details-series-nav-direction">Series frontier</span>
+                        <span className="blog-details-series-nav-item-title">
+                          Next topics coming soon
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </nav>
+            )}
+
+            <nav
+              className={`blog-details-nav ${seriesContext ? 'secondary-blog-nav' : ''}`}
+              aria-label="Blog post chronological navigation"
+            >
               <div className="blog-details-nav-group blog-details-nav-prev">
                 {prevPost ? (
                   <Link

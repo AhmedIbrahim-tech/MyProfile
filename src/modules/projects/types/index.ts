@@ -10,7 +10,10 @@ export interface Repository {
   topics: string[];
   created_at: string;
   updated_at: string;
+  showGitHub?: boolean;
 }
+
+export type PortfolioTier = "flagship" | "selected";
 
 export interface TopProject {
   id: string; // URL slug, e.g., 'e-commerce-platform'
@@ -20,8 +23,11 @@ export interface TopProject {
   github: string;
   liveDemo?: string;
   category?: "frontend" | "backend" | "fullstack";
+  portfolioTier?: PortfolioTier;
+  showGitHub?: boolean;
 
   // Case Study Fields
+  purpose?: string;
   role?: string;
   contribution?: string;
   techStack?: string[];
@@ -79,8 +85,15 @@ export interface ProjectDetails {
   caseStudy: TopProject | null;
   techTags: string[];
   teamMembers: TeamMember[];
+  contributors: GitHubContributor[];
   architecture: string[];
   features: string[];
   challenges: string[];
   metrics: string[];
+  role?: string;
+  contribution?: string;
+  purpose?: string;
+  outcome?: string;
+  showGitHub?: boolean;
 }
+

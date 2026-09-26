@@ -8,6 +8,9 @@ export { BlogFilters, type BlogFiltersProps } from './components/BlogFilters';
 export { BlogPagination, type BlogPaginationProps } from './components/BlogPagination';
 export { ArticleReader, type ArticleReaderProps } from './components/ArticleReader';
 export { ArticleHeader, type ArticleHeaderProps } from './components/ArticleHeader';
+export { BlogSeriesDiscovery } from './components/BlogSeriesDiscovery';
+export { BlogSeriesList } from './components/BlogSeriesList';
+export { BlogSeriesDetail } from './components/BlogSeriesDetail';
 export {
   TableOfContents,
   ArticleSummary,
@@ -17,6 +20,17 @@ export {
 
 // Services
 export { blogService } from './services/blogService';
+export {
+  blogSeriesService,
+  getAllSeries,
+  getSeriesBySlug,
+  getSeriesStats,
+  getPublishedSeriesItems,
+  getFirstPublishedSeriesArticle,
+  getSeriesForArticle,
+  getPreviousSeriesArticle,
+  getNextSeriesArticle,
+} from './services/blogSeriesService';
 
 // Hooks
 export { useBlogPosts } from './hooks/useBlogPosts';

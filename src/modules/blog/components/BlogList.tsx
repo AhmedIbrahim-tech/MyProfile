@@ -5,6 +5,7 @@ import { BlogCard } from './BlogCard';
 import { FeaturedBlogCard } from './FeaturedBlogCard';
 import { BlogFilters } from './BlogFilters';
 import { BlogPagination } from './BlogPagination';
+import { BlogSeriesDiscovery } from './BlogSeriesDiscovery';
 import Loading from '@/shared/components/feedback/Loading';
 import '@/assets/styles/components/Blog.css';
 
@@ -92,6 +93,8 @@ export const BlogList = () => {
             resetToFirstPage();
           }}
         />
+
+        <BlogSeriesDiscovery />
 
         {loading ? (
           <div className="blog-state blog-state-loading">

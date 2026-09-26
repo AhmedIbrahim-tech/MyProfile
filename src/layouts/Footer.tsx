@@ -120,22 +120,38 @@ function FooterTopProjects() {
   return (
     <FooterSection title={sections.topProjects}>
       <FooterNavList>
-        {list.map((project, index) => (
-          <li key={`${project.name}-${index}`}>
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-link-with-icon"
-              aria-label={`${project.name} (opens GitHub)`}
-            >
-              <span className="footer-link-icon-wrap">
-                <Icon className="footer-link-icon" aria-hidden />
-              </span>
-              <span>{project.name}</span>
-            </a>
-          </li>
-        ))}
+        {list.map((project, index) => {
+          const hasGithub = Boolean(project.github && (project as { showGitHub?: boolean }).showGitHub !== false);
+          return (
+            <li key={`${project.name}-${index}`}>
+              {hasGithub ? (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer-link-with-icon"
+                  aria-label={`${project.name} (opens GitHub)`}
+                >
+                  <span className="footer-link-icon-wrap">
+                    <Icon className="footer-link-icon" aria-hidden />
+                  </span>
+                  <span>{project.name}</span>
+                </a>
+              ) : (
+                <Link
+                  to={`/projects/${project.id}`}
+                  className="footer-link-with-icon"
+                  aria-label={`View ${project.name}`}
+                >
+                  <span className="footer-link-icon-wrap">
+                    <Icon className="footer-link-icon" aria-hidden />
+                  </span>
+                  <span>{project.name}</span>
+                </Link>
+              )}
+            </li>
+          );
+        })}
       </FooterNavList>
     </FooterSection>
   );

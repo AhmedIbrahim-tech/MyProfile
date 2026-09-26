@@ -10,6 +10,7 @@ export { ProjectTechStack, type ProjectTechStackProps } from './components/Proje
 export { ProjectMetrics, type ProjectMetricsProps } from './components/ProjectMetrics';
 export { TechnicalDetails, type TechnicalDetailsProps } from './components/TechnicalDetails';
 export { ProjectSidebar, type ProjectSidebarProps } from './components/ProjectSidebar';
+export { ProjectNavigation, type ProjectNavigationProps } from './components/ProjectNavigation';
 
 // Hooks
 export { useRepositories } from './hooks/useRepositories';
@@ -27,6 +28,7 @@ export { generateDescription } from './utils/projectDescription';
 export { generateFeatures } from './utils/projectFeatures';
 export { getTechnologyTags, getTopProjectTags } from './utils/technologyTags';
 export { isRepoHidden } from './utils/repoFilter';
+export { isCuratedProject, normalizeIdentifier } from './utils/projectDeduplication';
 
 // Constants
 export { getProjectImage } from './constants/projectImages';

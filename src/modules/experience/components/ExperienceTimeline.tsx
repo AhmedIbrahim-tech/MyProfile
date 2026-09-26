@@ -63,6 +63,14 @@ export const ExperienceTimeline = () => {
       'B2C',
       'ERP',
       'ORM',
+      'Next.js',
+      'SignalR',
+      'Hangfire',
+      'Angular',
+      'VB.NET',
+      'IIS',
+      'Windows Server',
+      'RTL/LTR',
     ];
 
     let formatted = responsibility;

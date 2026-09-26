@@ -22,11 +22,11 @@ export const ProjectFilters = ({
   const [showTechFilters, setShowTechFilters] = useState(false);
 
   const categories: { value: FilterCategory; label: string; icon: string }[] = [
-    { value: 'all', label: 'All Projects', icon: 'fas fa-th' },
-    { value: 'top', label: 'Top Projects', icon: 'fas fa-star' },
-    { value: 'frontend', label: 'Frontend', icon: 'fas fa-desktop' },
-    { value: 'backend', label: 'Backend', icon: 'fas fa-server' },
-    { value: 'fullstack', label: 'Full Stack', icon: 'fas fa-layer-group' },
+    { value: 'all', label: 'ALL', icon: 'fas fa-th-large' },
+    { value: 'top', label: 'PORTFOLIO', icon: 'fas fa-briefcase' },
+    { value: 'fullstack', label: 'FULL STACK', icon: 'fas fa-layer-group' },
+    { value: 'backend', label: 'BACKEND', icon: 'fas fa-server' },
+    { value: 'frontend', label: 'FRONTEND', icon: 'fas fa-desktop' },
   ];
 
   const toggleTechnology = (tech: string) => {
@@ -45,105 +45,95 @@ export const ProjectFilters = ({
   const hasActiveFilters = selectedCategory !== 'all' || selectedTechnologies.length > 0;
 
   return (
-    <div className="project-filters">
-      <div className="filters-header">
-        <h3 className="filters-title">
-          <i className="fas fa-filter"></i>
-          Filter Projects
-        </h3>
-        {hasActiveFilters && (
-          <button className="clear-filters-btn" onClick={clearAllFilters}>
-            <i className="fas fa-times"></i>
-            Clear All
-          </button>
-        )}
-      </div>
-
-      <div className="category-filters">
-        <div className="filter-group">
-          <label className="filter-group-label">
-            <i className="fas fa-folder"></i>
-            Category
-          </label>
-          <div className="category-buttons">
-            {categories.map((category) => (
-              <button
-                key={category.value}
-                className={`category-btn ${selectedCategory === category.value ? 'active' : ''}`}
-                onClick={() => onCategoryChange(category.value)}
-              >
-                <i className={category.icon}></i>
-                <span>{category.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="technology-filters">
-        <div className="filter-group">
-          <div className="filter-group-header">
-            <label className="filter-group-label">
-              <i className="fas fa-tags"></i>
-              Technologies
-            </label>
+    <nav className="project-filters-toolbar" aria-label="Project Filters">
+      <div className="filters-primary-row">
+        <div className="category-filters-group" role="group" aria-label="Filter by project type">
+          {categories.map((category) => (
             <button
-              className={`toggle-tech-btn ${showTechFilters ? 'active' : ''}`}
-              onClick={() => setShowTechFilters(!showTechFilters)}
+              key={category.value}
+              type="button"
+              className={`category-filter-btn ${selectedCategory === category.value ? 'active' : ''}`}
+              onClick={() => onCategoryChange(category.value)}
+              aria-pressed={selectedCategory === category.value}
             >
-              <i className={`fas fa-chevron-${showTechFilters ? 'up' : 'down'}`}></i>
+              <i className={category.icon} aria-hidden="true"></i>
+              <span>{category.label}</span>
             </button>
-          </div>
-          {showTechFilters && (
-            <div className="technology-tags">
-              {availableTechnologies.length > 0 ? (
-                availableTechnologies.map((tech) => (
-                  <button
-                    key={tech}
-                    className={`tech-filter-tag ${selectedTechnologies.includes(tech) ? 'active' : ''}`}
-                    onClick={() => toggleTechnology(tech)}
-                  >
-                    {tech}
-                    {selectedTechnologies.includes(tech) && (
-                      <i className="fas fa-check"></i>
-                    )}
-                  </button>
-                ))
-              ) : (
-                <p className="no-tech-message">No technologies available</p>
-              )}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {hasActiveFilters && (
-        <div className="active-filters">
-          <span className="active-filters-label">Active Filters:</span>
-          {selectedCategory !== 'all' && (
-            <span className="active-filter-badge">
-              {categories.find((c) => c.value === selectedCategory)?.label}
-              <button
-                onClick={() => onCategoryChange('all')}
-                className="remove-filter-btn"
-              >
-                <i className="fas fa-times"></i>
-              </button>
-            </span>
-          )}
-          {selectedTechnologies.map((tech) => (
-            <span key={tech} className="active-filter-badge">
-              {tech}
-              <button
-                onClick={() => toggleTechnology(tech)}
-                className="remove-filter-btn"
-              >
-                <i className="fas fa-times"></i>
-              </button>
-            </span>
           ))}
         </div>
+
+        <div className="filters-secondary-controls">
+          {availableTechnologies.length > 0 && (
+            <button
+              type="button"
+              id="tech-filters-toggle"
+              className={`tech-toggle-btn ${showTechFilters ? 'expanded' : ''} ${selectedTechnologies.length > 0 ? 'has-active' : ''}`}
+              onClick={() => setShowTechFilters(!showTechFilters)}
+              aria-expanded={showTechFilters}
+              aria-controls="project-tech-filter-panel"
+            >
+              <i className="fas fa-tags" aria-hidden="true"></i>
+              <span>Technologies</span>
+              {selectedTechnologies.length > 0 && (
+                <span className="tech-count-badge">{selectedTechnologies.length}</span>
+              )}
+              <i className={`fas fa-chevron-${showTechFilters ? 'up' : 'down'} toggle-icon`} aria-hidden="true"></i>
+            </button>
+          )}
+
+          {hasActiveFilters && (
+            <button
+              type="button"
+              className="clear-filters-action"
+              onClick={clearAllFilters}
+              aria-label="Clear all active project filters"
+            >
+              <i className="fas fa-times" aria-hidden="true"></i>
+              <span>Reset</span>
+            </button>
+          )}
+        </div>
+      </div>
+
+      {showTechFilters && (
+        <div
+          id="project-tech-filter-panel"
+          className="technology-filter-panel"
+          role="region"
+          aria-label="Technology tag filters"
+        >
+          <div className="tech-panel-header">
+            <span className="tech-panel-hint">Filter projects by specific technology:</span>
+            {selectedTechnologies.length > 0 && (
+              <button
+                type="button"
+                className="clear-tech-only-btn"
+                onClick={() => onTechnologiesChange([])}
+              >
+                Clear tech filters ({selectedTechnologies.length})
+              </button>
+            )}
+          </div>
+          <div className="technology-tags-grid">
+            {availableTechnologies.map((tech) => {
+              const isSelected = selectedTechnologies.includes(tech);
+              return (
+                <button
+                  key={tech}
+                  type="button"
+                  className={`tech-tag-btn ${isSelected ? 'active' : ''}`}
+                  onClick={() => toggleTechnology(tech)}
+                  aria-pressed={isSelected}
+                >
+                  {tech}
+                  {isSelected && <i className="fas fa-check check-icon" aria-hidden="true"></i>}
+                </button>
+              );
+            })}
+          </div>
+        </div>
       )}
-    </div>
+    </nav>
   );
 };
+

@@ -1,102 +1,79 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import type { Repository } from "@/modules/projects/types";
 import { getProjectCategory } from "@/modules/projects/utils/projectCategory";
-import { generateDescription } from "@/modules/projects/utils/projectDescription";
-import { generateFeatures } from "@/modules/projects/utils/projectFeatures";
-import { getTechnologyTags } from "@/modules/projects/utils/technologyTags";
-import { getProjectImage } from "@/modules/projects/constants/projectImages";
 
 interface ProjectCardProps {
   repo: Repository;
+  index?: number;
 }
 
-export const ProjectCard = ({ repo }: ProjectCardProps) => {
+export const ProjectCard = ({ repo, index = 0 }: ProjectCardProps) => {
   if (!repo) return null;
 
-  const navigate = useNavigate();
   const projectPath = `/projects/${repo.name}`;
   const category = getProjectCategory(repo);
-  const description = repo.description || generateDescription(repo);
-  const imageUrl = getProjectImage(
-    repo.html_url,
-    repo.name,
-    description,
-    category
-  );
-  const techTags = getTechnologyTags(repo);
+  const cleanName = repo.name.replace(/[-_]/g, " ");
+
+  const categoryLabel =
+    category === "fullstack"
+      ? "FULL STACK"
+      : category === "frontend"
+      ? "FRONTEND"
+      : "BACKEND";
+
+  const metaParts = [
+    categoryLabel,
+    repo.language ? repo.language.toUpperCase() : null,
+  ].filter(Boolean);
+
+  const metadataLine = metaParts.join(" · ");
+  const formattedIndex = String(index + 1).padStart(2, "0");
 
   return (
-    <div
-      className="project-card project-card--clickable-case-study"
-      onClick={() => navigate(projectPath)}
-    >
-      <div className="project-image-container">
-        <img
-          src={imageUrl}
-          alt={repo.name}
-          className="project-image"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src =
-              "https://via.placeholder.com/400x200/7C3AED/ffffff?text=" +
-              encodeURIComponent(repo.name);
-          }}
-        />
-        {category && (
-          <div className={`project-badge category-${category}`}>
-            {category === "fullstack"
-              ? "Full Stack"
-              : category === "frontend"
-                ? "Front End"
-                : "Back End"}
-          </div>
-        )}
+    <article className="more-work-row">
+      <div className="more-work-index" aria-hidden="true">
+        {formattedIndex}
       </div>
-      <div className="project-content">
-        <div className="project-header">
-          <h3>{repo.name.replace(/-/g, " ").replace(/_/g, " ")}</h3>
+
+      <div className="more-work-main">
+        <div className="more-work-header">
+          <h4 className="more-work-title">
+            <Link to={projectPath} className="more-work-title-link">
+              {cleanName}
+            </Link>
+          </h4>
+          <span className="more-work-meta-line">{metadataLine}</span>
         </div>
-        <p className="project-description">
-          {description}
-        </p>
 
-        {techTags.length > 0 && (
-          <div className="tech-tags">
-            {techTags.map((tag, index) => (
-              <span key={index} className="tech-tag">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        {repo.description ? (
+          <p className="more-work-description">{repo.description}</p>
+        ) : null}
+      </div>
 
-        <ul className="project-features">
-          {generateFeatures(repo).map((feature, index) => (
-            <li key={index}>{feature}</li>
-          ))}
-        </ul>
-
-        <div className="project-actions">
-          <Link
-            to={projectPath}
-            className="btn-view"
-            aria-label={`${repo.name.replace(/-/g, " ")} — explore project`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <i className="fas fa-search-plus"></i>
-            Explore Project
-          </Link>
+      <div className="more-work-actions">
+        <Link
+          to={projectPath}
+          className="more-work-action more-work-action--details"
+          aria-label={`View details for ${cleanName}`}
+        >
+          <span>DETAILS</span>
+          <span className="more-work-arrow" aria-hidden="true">→</span>
+        </Link>
+        {repo.html_url && repo.showGitHub !== false && (
           <a
             href={repo.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-view btn-view-secondary"
-            onClick={(e) => e.stopPropagation()}
+            className="more-work-action more-work-action--github"
+            aria-label={`View ${cleanName} on GitHub (opens in new tab)`}
           >
-            <i className="fab fa-github"></i>
-            GitHub
+            <span>GITHUB</span>
+            <span className="more-work-arrow" aria-hidden="true">↗</span>
           </a>
-        </div>
+        )}
       </div>
-    </div>
+    </article>
   );
 };
+
+

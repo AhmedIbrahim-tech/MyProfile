@@ -20,6 +20,16 @@ import { post as post18 } from '@/data/blog/post-18-recursion';
 import { post as post19 } from '@/data/blog/post-19-paradigms';
 import { post as post20 } from '@/data/blog/post-20-react-vs-nextjs';
 import { post as post21 } from '@/data/blog/post-21-cicd-github-actions';
+import { post as post22 } from '@/data/blog/post-22-exception-handling-aspnetcore';
+import { post as post23 } from '@/data/blog/post-23-command-vs-query-cqrs-mediatr';
+import { post as post24 } from '@/data/blog/post-24-auth-cookies-jwt-oauth-oidc';
+import { post as post25 } from '@/data/blog/post-25-retries-timeouts-circuit-breaker-polly';
+import { post as post26 } from '@/data/blog/post-26-types-of-classes-csharp';
+import { post as post27 } from '@/data/blog/system-design/post-27-system-design-fundamentals';
+import { post as post28 } from '@/data/blog/system-design/post-28-scalability';
+import { post as post29 } from '@/data/blog/system-design/post-29-cap-theorem';
+import { post as post30 } from '@/data/blog/system-design/post-30-database-replication';
+import { post as post31 } from '@/data/blog/system-design/post-31-replication-strategies';
 
 export type { BlogPost };
 
@@ -45,6 +55,16 @@ const blogPosts: BlogPost[] = [
   post19,
   post20,
   post21,
+  post22,
+  post23,
+  post24,
+  post25,
+  post26,
+  post27,
+  post28,
+  post29,
+  post30,
+  post31,
 ];
 
 export { blogPosts };

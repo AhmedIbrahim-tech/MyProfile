@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import type { TopProject } from "@/modules/projects/types";
 import { getTopProjectCategory } from "@/modules/projects/utils/projectCategory";
 import { getTopProjectTags } from "@/modules/projects/utils/technologyTags";
@@ -6,84 +6,133 @@ import { getProjectImage } from "@/modules/projects/constants/projectImages";
 
 interface TopProjectCardProps {
   project: TopProject;
+  index?: number;
+  tier?: "flagship" | "selected";
 }
 
-export const TopProjectCard = ({ project }: TopProjectCardProps) => {
-  const navigate = useNavigate();
+export const TopProjectCard = ({ project, index = 0, tier }: TopProjectCardProps) => {
   const caseStudyPath = `/projects/${project.id}`;
   const category = project.category || getTopProjectCategory(project);
+  const effectiveTier = tier || project.portfolioTier || "selected";
+  const isFlagship = effectiveTier === "flagship";
+
   const imageUrl = getProjectImage(
     project.github,
     project.name,
     project.description,
     category
   );
-  const techTags = getTopProjectTags(project);
+
+  // Curated tech stack priority (Phase 1 rule)
+  const techStack =
+    project.techStack && project.techStack.length > 0
+      ? project.techStack
+      : getTopProjectTags(project);
+
+  const formattedIndex = String(index + 1).padStart(2, "0");
+  const categoryLabel =
+    category === "fullstack"
+      ? "Full Stack"
+      : category === "frontend"
+      ? "Frontend"
+      : "Backend";
 
   return (
-    <div
-      className="project-card project-card--clickable-case-study"
-      onClick={() => navigate(caseStudyPath)}
-    >
-      <div className="project-image-container">
-        <img
-          src={imageUrl}
-          alt={project.name}
-          className="project-image"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src =
-              "https://via.placeholder.com/400x200/7C3AED/ffffff?text=" +
-              encodeURIComponent(project.name);
-          }}
-        />
-        <div className="project-badge">Top Project</div>
-      </div>
-      <div className="project-content">
-        <div className="project-header">
-          <h3>{project.name}</h3>
+    <article className={`selected-project-row selected-project-row--${effectiveTier}`}>
+      <div className="selected-project-content">
+        <div className="selected-project-eyebrow">
+          <span className={`tier-marker-tag tier-marker-tag--${effectiveTier}`}>
+            {isFlagship ? "FLAGSHIP SYSTEM" : "CASE STUDY"}
+          </span>
+          <span className="selected-project-index">PROJECT {formattedIndex}</span>
+          <span className="selected-project-eyebrow-sep">/</span>
+          <span className="selected-project-category">{categoryLabel}</span>
         </div>
-        <p className="project-description">{project.description}</p>
-        {techTags.length > 0 && (
-          <div className="tech-tags">
-            {techTags.map((tag, idx) => (
-              <span key={idx} className="tech-tag">
-                {tag}
+
+        <h3 className="selected-project-title">
+          <Link to={caseStudyPath} className="selected-project-title-link">
+            {project.name}
+          </Link>
+        </h3>
+
+        {project.role && (
+          <div className="selected-project-role">
+            <span className="role-label">Role:</span>
+            <span className="role-value">{project.role}</span>
+          </div>
+        )}
+
+        <p className="selected-project-description">{project.description}</p>
+
+        {techStack.length > 0 && (
+          <div className="selected-project-tech-inline" aria-label="Key Technologies">
+            {techStack.map((tech, idx) => (
+              <span key={tech} className="tech-inline-item">
+                {tech.toUpperCase()}
+                {idx < techStack.length - 1 && <span className="tech-inline-sep">·</span>}
               </span>
             ))}
           </div>
         )}
-        {project.features && project.features.length > 0 && (
-          <ul className="project-features">
-            {project.features[0]
-              .split(",")
-              .slice(0, 3)
-              .map((feature, idx) => (
-                <li key={idx}>{feature.trim()}</li>
-              ))}
-          </ul>
-        )}
-        <div className="project-actions">
+
+        <div className="selected-project-actions">
           <Link
             to={caseStudyPath}
-            className="btn-view"
-            aria-label={`${project.name} — explore project`}
-            onClick={(e) => e.stopPropagation()}
+            className="btn-selected-primary"
+            aria-label={`View case study for ${project.name}`}
           >
-            <i className="fas fa-search-plus"></i>
-            Explore Project
+            <span>View Case Study</span>
+            <span className="btn-arrow" aria-hidden="true">→</span>
           </Link>
-          <a 
-            href={project.github}
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="btn-view btn-view-secondary"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <i className="fab fa-github"></i>
-            GitHub
-          </a>
+
+          {project.liveDemo && (
+            <a
+              href={project.liveDemo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-selected-secondary"
+              aria-label={`Visit live demo for ${project.name} (opens in new tab)`}
+            >
+              <span>Live Project</span>
+              <span className="btn-arrow" aria-hidden="true">↗</span>
+            </a>
+          )}
+
+          {project.github && project.showGitHub !== false && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-selected-secondary"
+              aria-label={`View ${project.name} on GitHub (opens in new tab)`}
+            >
+              <span>GitHub</span>
+              <span className="btn-arrow" aria-hidden="true">↗</span>
+            </a>
+          )}
         </div>
       </div>
-    </div>
+
+      <div className="selected-project-visual">
+        <Link
+          to={caseStudyPath}
+          className="selected-project-visual-link"
+          tabIndex={-1}
+          aria-hidden="true"
+        >
+          <img
+            src={imageUrl}
+            alt=""
+            className="selected-project-image"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src =
+                "https://via.placeholder.com/600x380/0d1222/38bdf8?text=" +
+                encodeURIComponent(project.name);
+            }}
+          />
+        </Link>
+      </div>
+    </article>
   );
 };
+
